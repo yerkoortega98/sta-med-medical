@@ -1,7 +1,7 @@
 import React from 'react';
 import { startLogout } from '../../actions/auth';
 import { useDispatch } from 'react-redux';
-import { ViewVainas } from './ViewVainas';
+import { MedicalVainas } from './MedicalVainas';
 
 export const MedicalScreen = () => {
     
@@ -9,10 +9,14 @@ export const MedicalScreen = () => {
     const PersonaCronica ={
         nombre:'Cesar heriquez Ortuzar',
         rut:'4.567.523-1',
-        edad: '56'
+        edad: '56',
+        fumador:'10 al dia',
+        actividad:'Sedentario',
+        estadoFisico:'OBESO IMC 32'
+
     }
 
-    const {nombre,edad,rut} = PersonaCronica;
+    const {nombre,edad,rut,fumador,actividad,estadoFisico} = PersonaCronica;
     const dispatch = useDispatch();
     
     const enfermedades = [
@@ -31,33 +35,35 @@ export const MedicalScreen = () => {
     }
     
     return (
-        <div className="content">
-
-            <ul className="list-center">
-                <li className="list-inline-item ">{ nombre }</li>
-                <li className="list-inline-item">{rut}</li>
-                <li className="list-inline-item">{ edad } Años</li>
+        <div className="content medical__content">
+            <div>
+                <ul className="list-center">
+                    <li className="list-inline-item medical__text "><h1>{ nombre }</h1></li>
+                    <li className="list-inline-item medical__text"><h1> { rut } </h1></li>
+                    <li className="list-inline-item medical__text"><h1>{ edad } Años</h1></li>   
+                </ul>
+                <ul className="list-center">
+                    <li className="list-inline-item medical__text"><h3> Fumador {fumador} </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3>{ actividad } </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3>{estadoFisico} </h3></li>   
+                </ul>
 
                 <button 
-                        className="btn btn-primary"
-                        onClick={ handleLogout}
-                    >
-                        Logout
-                </button>
-            </ul>
-            <div>
-                <h2 > Nombre paciente: { nombre } </h2>
-                <h2 > RUT: { rut } </h2>
-                <h2 > { edad } Años  </h2>
-                
+                    className="btn btn-primary"
+                    onClick={ handleLogout }
+                >
+                            Cerrar Sesión
+                </button>  
             </div>
+            
+            
 
-            <div>
+            <div >
             {/* Yerko trabaja aqui */}
                  
                 {
                     enfermedades.map( enfermedad => (
-                        <ViewVainas
+                        <MedicalVainas
                             key={ enfermedad.id }
                             // Extraemos cada una de las propiedades que tengan los notes.
                             
