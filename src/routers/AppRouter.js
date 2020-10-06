@@ -44,8 +44,10 @@ export const AppRouter = () => {
 
     if(checking){
         return(
-            <div className="spinner-border m-5" role="status">
-                <span className="sr-only">Loading...</span>
+            <div className="d-flex justify-content-center">
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                 </div>
             </div>
         )       
     }

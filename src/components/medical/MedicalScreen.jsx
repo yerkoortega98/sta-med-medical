@@ -31,7 +31,7 @@ export const MedicalScreen = () => {
     }
     
     return (
-        <div className="content">
+        <div className="content medical__content">
 
             <ul className="list-center">
                 <li className="list-inline-item ">{ nombre }</li>
@@ -39,20 +39,15 @@ export const MedicalScreen = () => {
                 <li className="list-inline-item">{ edad } Años</li>
 
                 <button 
-                        className="btn btn-primary"
+                        className="btn btn-primary list-right "
                         onClick={ handleLogout}
                     >
                         Logout
                 </button>
             </ul>
-            <div>
-                <h2 > Nombre paciente: { nombre } </h2>
-                <h2 > RUT: { rut } </h2>
-                <h2 > { edad } Años  </h2>
-                
-            </div>
+            
 
-            <div>
+            <div >
             {/* Yerko trabaja aqui */}
                  
                 {
