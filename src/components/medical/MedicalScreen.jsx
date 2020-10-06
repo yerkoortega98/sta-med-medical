@@ -32,16 +32,24 @@ export const MedicalScreen = () => {
     
     return (
         <div className="content">
-            <div>
-                <h2 > Nombre paciente: { nombre } </h2>
-                <h2 > RUT: { rut } </h2>
-                <h2 > { edad } Años  </h2>
+
+            <ul className="list-center">
+                <li className="list-inline-item ">{ nombre }</li>
+                <li className="list-inline-item">{rut}</li>
+                <li className="list-inline-item">{ edad } Años</li>
+
                 <button 
                         className="btn btn-primary"
                         onClick={ handleLogout}
                     >
                         Logout
                 </button>
+            </ul>
+            <div>
+                <h2 > Nombre paciente: { nombre } </h2>
+                <h2 > RUT: { rut } </h2>
+                <h2 > { edad } Años  </h2>
+                
             </div>
 
             <div>
