@@ -1,12 +1,12 @@
 import React from 'react';
-import {Card, CardContent, Typography} from '@material-ui/core';
+import {Card, CardContent} from '@material-ui/core';
 
 export const ViewVainas = () => {
     return (
         <div>
            <Card>
                <CardContent>
-                    <Typography>hola</Typography>        
+                    <h2>Enfermedad</h2>
                </CardContent>
            </Card>
         </div>
