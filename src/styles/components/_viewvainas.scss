@@ -1,0 +1,8 @@
+.ViewVainas {
+    flex: 1;
+    cursor: pointer;
+}
+
+.ViewVainas:not(:last-child) {
+    margin-right: 15px;
+}

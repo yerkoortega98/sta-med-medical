@@ -24,7 +24,7 @@ export const AppRouter = () => {
 
     const [ checking, setChecking] = useState(true);
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
 
    
