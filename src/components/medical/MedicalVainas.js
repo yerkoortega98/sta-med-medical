@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, CardContent, Typography} from '@material-ui/core';
 
-export const ViewVainas = () => {
+export const MedicalVainas = () => {
     return (
         <div>
            <Card>

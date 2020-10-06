@@ -1,7 +1,7 @@
 import React from 'react';
 import { startLogout } from '../../actions/auth';
 import { useDispatch } from 'react-redux';
-import { ViewVainas } from './ViewVainas';
+import { MedicalVainas } from './MedicalVainas';
 
 export const MedicalScreen = () => {
     
@@ -9,10 +9,14 @@ export const MedicalScreen = () => {
     const PersonaCronica ={
         nombre:'Cesar heriquez Ortuzar',
         rut:'4.567.523-1',
-        edad: '56'
+        edad: '56',
+        fumador:'10 al dia',
+        actividad:'Sedentario',
+        estadoFisico:'OBESO IMC 32'
+
     }
 
-    const {nombre,edad,rut} = PersonaCronica;
+    const {nombre,edad,rut,fumador,actividad,estadoFisico} = PersonaCronica;
     const dispatch = useDispatch();
     
     const enfermedades = [
@@ -39,9 +43,9 @@ export const MedicalScreen = () => {
                     <li className="list-inline-item medical__text"><h1>{ edad } Años</h1></li>   
                 </ul>
                 <ul className="list-center">
-                    <li className="list-inline-item medical__text"><h3> Fumador 10 al dia </h3>     </li>
-                    <li className="list-inline-item medical__text"><h3>Sedenario </h3>     </li>
-                    <li className="list-inline-item medical__text"><h3>OBESO IMC 32 </h3></li>   
+                    <li className="list-inline-item medical__text"><h3> Fumador {fumador} </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3>{ actividad } </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3>{estadoFisico} </h3></li>   
                 </ul>
 
                 <button 
@@ -59,7 +63,7 @@ export const MedicalScreen = () => {
                  
                 {
                     enfermedades.map( enfermedad => (
-                        <ViewVainas
+                        <MedicalVainas
                             key={ enfermedad.id }
                             // Extraemos cada una de las propiedades que tengan los notes.
                             
