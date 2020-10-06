@@ -44,7 +44,9 @@ export const AppRouter = () => {
 
     if(checking){
         return(
-                <h1>Espere...</h1>
+            <div className="spinner-border m-5" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
         )       
     }
 
