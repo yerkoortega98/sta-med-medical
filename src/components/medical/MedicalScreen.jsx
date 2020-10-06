@@ -32,19 +32,26 @@ export const MedicalScreen = () => {
     
     return (
         <div className="content medical__content">
-
-            <ul className="list-center">
-                <li className="list-inline-item ">{ nombre }</li>
-                <li className="list-inline-item">{rut}</li>
-                <li className="list-inline-item">{ edad } Años</li>
+            <div>
+                <ul className="list-center">
+                    <li className="list-inline-item medical__text "><h1>{ nombre }</h1></li>
+                    <li className="list-inline-item medical__text"><h1> { rut } </h1></li>
+                    <li className="list-inline-item medical__text"><h1>{ edad } Años</h1></li>   
+                </ul>
+                <ul className="list-center">
+                    <li className="list-inline-item medical__text"><h3> Fumador 10 al dia </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3>Sedenario </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3>OBESO IMC 32 </h3></li>   
+                </ul>
 
                 <button 
-                        className="btn btn-primary list-right "
-                        onClick={ handleLogout}
-                    >
-                        Logout
-                </button>
-            </ul>
+                    className="btn btn-primary"
+                    onClick={ handleLogout }
+                >
+                            Cerrar Sesión
+                </button>  
+            </div>
+            
             
 
             <div >

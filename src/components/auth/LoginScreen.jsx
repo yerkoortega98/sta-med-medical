@@ -39,7 +39,7 @@ export const LoginScreen = () => {
    
     return (
         <>
-            <h3 className="auth__title"> Login </h3>
+            <h3 className="auth__title"> Autentificacion </h3>
             <form onSubmit={ handleLogin }>
                 <input 
                     type="text"
@@ -66,7 +66,7 @@ export const LoginScreen = () => {
                     className="btn btn-primary btn-block"
                     disabled={ loading }
                 >
-                    Login
+                    Ingresar
                 </button>
             </form>
         </>

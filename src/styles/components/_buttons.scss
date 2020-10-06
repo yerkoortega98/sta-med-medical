@@ -3,7 +3,7 @@
     border: none;
     color: white;
     cursor:pointer;
-    font-size: 12px;
+    font-size: 20px; //Tamaño de la letra
     padding:7px 10px 7px 10px;
 
     transition: color .3s ease;
@@ -20,7 +20,7 @@
 
 .btn-primary{
     background-color: $primary;
-    border-radius: 2px;
+    border-radius: 100px;
 
     &:disabled {
         background-color: lighten($color: blue, $amount: 15);
