@@ -33,9 +33,9 @@ export const MedicalScreen = () => {
     return (
         <div className="content">
             <div>
-                <h1 > Nombre paciente: { nombre } </h1>
-                <h1 > RUT: { rut } </h1>
-                <h1 > { edad } Años  </h1>
+                <h2 > Nombre paciente: { nombre } </h2>
+                <h2 > RUT: { rut } </h2>
+                <h2 > { edad } Años  </h2>
                 <button 
                         className="btn btn-primary"
                         onClick={ handleLogout}
