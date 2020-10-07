@@ -1,7 +1,7 @@
 //aqui manejamos el objeto que vamos a manejar en el state
 /*{
     uid:'ajsdajsdjasdjasd',
-    name:'cJorge
+    name:'Jorge'
 }
 */
 // definimos el state en vacio

@@ -12,12 +12,22 @@ import Swal from 'sweetalert2';
 export const startLoginEmailPassword =( email,password ) =>{
     return ( dispatch )=>{
         dispatch(startLoading() );
+
+        Swal.fire({
+            title:'Ingresando...',
+            text:'Por Favor espere...',
+            allowOutsideClick:false,
+            willOpen: ()=>{
+                Swal.showLoading();
+            }
+        });
+
         // Validamos el usuario con la base de datos
         firebase.auth().signInWithEmailAndPassword( email,password )
             .then( ({ user }) => {
-                
                 dispatch( login( user.uid, user.displayName ));
                 dispatch( finishLoading() );
+                Swal.close();
             })
             .catch(e => { 
                 dispatch(finishLoading());
