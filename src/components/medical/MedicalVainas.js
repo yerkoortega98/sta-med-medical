@@ -1,15 +1,23 @@
-import React from 'react';
-import {Card, CardContent} from '@material-ui/core';
+import React, {Fragment} from 'react';
 
-export const MedicalVainas = () => {
+
+export const MedicalVainas = (...props) => {
     return (
-        <div>
-           <Card>
-               <CardContent>
-                    <h2>Enfermedad</h2>
-               </CardContent>
-           </Card>
-        </div>
+        <Fragment>
+            <div className="conjunto_vainas">
+                <div className="Vaina">
+                </div>
+                <div>
+                    <button className="btn2 btn_vainas">
+                        Mantener
+                    </button>
+                    <br/>
+                    <button className="btn2 btnCambio">
+                        Cambio
+                    </button>
+                </div>
+            </div>
+        </Fragment>
     );
 }
 

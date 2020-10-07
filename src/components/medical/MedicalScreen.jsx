@@ -3,8 +3,8 @@ import { startLogout } from '../../actions/auth';
 import { useDispatch } from 'react-redux';
 import { MedicalVainas } from './MedicalVainas';
 
+
 export const MedicalScreen = () => {
-    
 
     const PersonaCronica ={
         nombre:'Cesar heriquez Ortuzar',
@@ -23,12 +23,7 @@ export const MedicalScreen = () => {
         {
             id:1,
             enfermedad:'HTA'
-        },
-        {
-            id:2,
-            enfermedad:'CROC'
         }
-
     ]
     const handleLogout =()=>{
         dispatch(startLogout());
@@ -58,23 +53,19 @@ export const MedicalScreen = () => {
             
             
 
-            <div >
+            <div className="Vainas">
             {/* Yerko trabaja aqui */}
-                 
-                {
-                    enfermedades.map( enfermedad => (
-                        <MedicalVainas
-                            key={ enfermedad.id }
-                            // Extraemos cada una de las propiedades que tengan los notes.
-                            
-                        />
-                    ))
-                }
-                    
+                <MedicalVainas
+                    titulo="askdkal"
+                />
+                <MedicalVainas
+                    titulo="askdkal"
+                />
+                <MedicalVainas
+                    titulo="askdkal"
+                />
             </div>
 
-            
-            
         </div>
     )
 }

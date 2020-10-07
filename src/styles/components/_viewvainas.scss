@@ -1,9 +1,18 @@
-.ViewVainas {
-    flex: 1;
-    cursor: pointer;
+.Vaina{
+    border: 3px solid red;
+    background: #000000;
+    border-radius: 30px;
+    display: inline-block;
+    margin: 20px;
+    padding: 11em 6em;
+    margin-top: 3em;
 }
 
-.ViewVainas:not(:last-child) {
-    margin-right: 15px;
+.btn2{
+    display: flex;
+    margin-left: 70px;
 }
 
+.conjunto_vainas{
+    display: inline-table;
+}
