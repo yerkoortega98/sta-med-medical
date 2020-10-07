@@ -23,6 +23,18 @@ export const MedicalScreen = () => {
         {
             id:1,
             enfermedad:'HTA'
+        },
+        {
+            id:2,
+            enfermedad:'DM'
+        },
+        {
+            id:3,
+            enfermedad:'Dislip'
+        },
+        {
+            id:4,
+            enfermedad:'Epi'
         }
     ]
     const handleLogout =()=>{
@@ -55,7 +67,17 @@ export const MedicalScreen = () => {
 
             <div className="Vainas">
             {/* Yerko trabaja aqui */}
-                <MedicalVainas
+
+            {
+                    enfermedades.map( enfermedad => (
+                        <MedicalVainas
+                            key={ enfermedad.id }
+                            // Extraemos cada una de las propiedades que tengan los notes.
+                            
+                        />
+                    ))
+                }
+                {/* <MedicalVainas
                     titulo="askdkal"
                 />
                 <MedicalVainas
@@ -63,7 +85,7 @@ export const MedicalScreen = () => {
                 />
                 <MedicalVainas
                     titulo="askdkal"
-                />
+                /> */}
             </div>
 
         </div>
