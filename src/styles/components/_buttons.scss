@@ -19,7 +19,7 @@
 }
 
 .btn2 {
-  padding: .375rem .75rem;
+  padding: .375rem 2.5rem;
   border-radius: .25rem;
   background-color: red;
   color: rgb(0, 0, 0);
@@ -32,22 +32,6 @@
 
 .btn-btn2:active {
   background-color: #cc0000;
-}
-
-.btnCambio {
-    padding: .375rem .99rem;
-    border-radius: .25rem;
-    background-color: red;
-    color: rgb(0, 0, 0);
-    transition: background-color .15s ease-in-out;
-  }
-  
-  .btn-btnCambio:hover, .btn-btnCambio:focus {
-    background-color: #d90000;
-  }
-  
-  .btn-btnCambio:active {
-    background-color: #cc0000;
 }
 
 .btn-primary{

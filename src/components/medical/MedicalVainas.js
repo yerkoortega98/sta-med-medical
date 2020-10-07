@@ -6,15 +6,16 @@ export const MedicalVainas = (...props) => {
         <Fragment>
             <div className="conjunto_vainas">
                 <div className="Vaina">
+                    
                 </div>
                 <div>
                     <button className="btn2 btn_vainas">
                         Mantener
                     </button>
                     <br/>
-                    <button className="btn2 btnCambio">
-                        Cambio
-                    </button>
+                    <section>
+                        <div className="BotonCambio">Cambio</div>
+                    </section>
                 </div>
             </div>
         </Fragment>
