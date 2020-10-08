@@ -22,6 +22,7 @@ export const startLoginEmailPassword =( email,password ) =>{
             }
         });
 
+        
         // Validamos el usuario con la base de datos
         firebase.auth().signInWithEmailAndPassword( email,password )
             .then( ({ user }) => {

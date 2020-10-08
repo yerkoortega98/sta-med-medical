@@ -53,7 +53,7 @@ export const AppRouter = () => {
     }
 
     return (
-        <Router>
+        <Router >
             <div>
                 <Switch>
                     <PublicRoute
