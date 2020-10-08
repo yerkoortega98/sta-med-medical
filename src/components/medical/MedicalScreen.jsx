@@ -13,7 +13,6 @@ export const MedicalScreen = () => {
         fumador:'10 al dia',
         actividad:'Sedentario',
         estadoFisico:'OBESO IMC 32'
-
     }
 
     const {nombre,edad,rut,fumador,actividad,estadoFisico} = PersonaCronica;
