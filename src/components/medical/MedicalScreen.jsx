@@ -73,7 +73,7 @@ export const MedicalScreen = () => {
                         <MedicalVainas
                             key={ enfermedad.id }
                             // Extraemos cada una de las propiedades que tengan los notes.
-                            
+                            enfermedad={ enfermedad.enfermedad }  
                         />
                     ))
                 }

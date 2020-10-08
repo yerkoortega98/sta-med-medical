@@ -17,17 +17,11 @@ const events =[{
 
 
 export const CalendarScreen = () => {
-
-
-
-
     return (
         <div className="calendar-screen">
-           
            <NavBar/>
-
            <Calendar
-                localizer={ localizer}
+                localizer={ localizer }
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
