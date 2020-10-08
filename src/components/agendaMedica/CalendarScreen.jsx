@@ -11,14 +11,18 @@ const localizer = momentLocalizer( moment );
 const events =[{
     title: ' Yerko Ortega ',
     start: moment().toDate(),
-    end: moment().add(2,'hours').toDate(),
+    end: moment().add(10,'minute').toDate(),
     bgcolor:'#fafafa'
 }]
 
 
 export const CalendarScreen = () => {
+
+
+
+
     return (
-        <div>
+        <div className="calendar-screen">
            
            <NavBar/>
 

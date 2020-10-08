@@ -5,7 +5,7 @@ import {
     Switch, Redirect
   } from "react-router-dom";
 
-import { MedicalScreen } from '../components/medical/MedicalScreen';
+
 
 
 
@@ -17,6 +17,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { AuthRouter } from '../routers/AuthRouter';
 
 import { login } from '../actions/auth';
+import { DashboardRoutes } from './DashboardRoutes';
 
 export const AppRouter = () => {
 
@@ -63,9 +64,9 @@ export const AppRouter = () => {
                     />
 
                     <PrivateRoute
-                        exact 
+                         
                         path="/"
-                        component={ MedicalScreen }
+                        component={ DashboardRoutes }
                         isLoggedIn={ isLoggedIn }
                     />
 

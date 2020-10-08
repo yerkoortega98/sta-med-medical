@@ -43,20 +43,22 @@ export const LoginScreen = () => {
             <h3 className="auth__title"> Autentificacion </h3>
             <form onSubmit={ handleLogin }>
                 <input 
+                    className="auth__input"
                     type="text"
                     placeholder="email"
                     name="email"
-                    className="auth__input"
+                    
                     value={ email }
                     onChange={ handleInputChange }
                 >
                 </input>
 
                 <input
+                    className="auth__input"
                     type="password"
                     placeholder="password"
                     name="password"
-                    className="auth__input"
+                    
                     value={ password }
                     onChange= { handleInputChange }
                 >
