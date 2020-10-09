@@ -37,6 +37,8 @@ export const MedicalVainas = ({...props}) => {
                 </div>
             </div>
         </Fragment>
+
+        
     );
 }
 
