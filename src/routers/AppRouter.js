@@ -18,6 +18,8 @@ import { AuthRouter } from '../routers/AuthRouter';
 
 import { login } from '../actions/auth';
 import { DashboardRoutes } from './DashboardRoutes';
+import { startLoadingDiary } from '../actions/diary';
+
 
 export const AppRouter = () => {
 
@@ -34,10 +36,10 @@ export const AppRouter = () => {
             if( user?.uid ){        
                 dispatch( login( user.uid ,user.displayName ));
                 setIsLoggedIn(true);
+                dispatch(startLoadingDiary(user.uid))
             } else {
                 setIsLoggedIn(false);
             }
-            
             setChecking(false)
         }) ;
     }, [ dispatch,setChecking ]);

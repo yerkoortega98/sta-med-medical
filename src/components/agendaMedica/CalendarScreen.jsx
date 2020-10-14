@@ -16,13 +16,16 @@ import { Redirect } from 'react-router-dom';
 
 
 
+
 // Cambiamos el idioma de moment
 moment.locale('es');
 
 const localizer = momentLocalizer( moment );
 
+
+
 const events =[{
-    title: ' Yerko Ortega ',
+    name: ' Rodrigo Venegas  ',
     start: moment().toDate(),
     end: moment().add(10,'minute').toDate(),
     bgcolor:'#fafafa'
@@ -48,7 +51,7 @@ export const CalendarScreen = () => {
             display:'block',
             color:'white'
         }
-        return {style}
+        return { style }
     }
 
     return (
@@ -61,7 +64,8 @@ export const CalendarScreen = () => {
                 endAccessor="end"
                 messages={ messages }
                 eventPropGetter={ eventStyleGetter }
-                onDoubleClickEvent={ onDoubleClick }      
+                onDoubleClickEvent={ onDoubleClick } 
+                timeslots={1}   
            />
 
            {
