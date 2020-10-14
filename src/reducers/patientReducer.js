@@ -2,7 +2,7 @@ import { types } from "../types/types";
 
 
 const initialState={
-    rutPatient:null,
+    rutPatient:'',
     namePatient:'',
     agePatient:'',
     disease:[],
