@@ -34,6 +34,10 @@ export const MedicalScreen = () => {
         {
             id:4,
             enfermedad:'Epi'
+        },
+        {
+            id:5,
+            enfermedad:'HOla'
         }
     ]
     const handleLogout =()=>{

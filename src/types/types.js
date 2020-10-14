@@ -12,13 +12,14 @@ export const types={
     uiStartLoading:'[UI] Start Loading',
     uiFinishLoading:'[UI] Finish Loading',
 
-    // // Creamos types para el noteReducer
 
-    // notesAddNew: '[Notes] New Notes',
-    // notesActive: '[Notes] Set Active Notes',
-    // notesLoad: '[Notes] Load Notes',
-    // notesUpdated:' [Notes] Update Note Saved',
-    // notesFileUrl: '[Notes] Update image url',
-    // notesDelete: '[Notes] Delete notes',
-    // notesLogoutCleaning: '[Notes] Delete note',
+    // types para el paciente
+    // Cargar agenda del medico
+    // LoadAgend: '[Agend] Load Agend',
+
+    // Seleccionar paciente, debe estar activo con su informacion correspondiente
+    patientActive: '[Patient] Set Active Patient',
+    patientLoad: '[Patient] Load Patient',
+    patientLoadDisease: '[Patient] Load Disease',
+    // patientLoadtreatments: '[Patient] Load Treatments' 
 }
