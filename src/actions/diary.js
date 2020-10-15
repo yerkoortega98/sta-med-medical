@@ -1,5 +1,3 @@
-
-
 // import { loadDiary } from '../helpers/loadDiary'
 import { loadDiary } from '../helpers/loadDiary';
 import {types} from '../types/types'
@@ -24,4 +22,9 @@ export const setDiary = ( diary ) =>({
 
 export const diaryLogoutCleaning =()=> ({
     type: types.diaryLogoutCleaning
+})
+
+export const diarySetActive = ( diary )=>({
+    type:types.diarySetActive,
+    payload:diary
 })

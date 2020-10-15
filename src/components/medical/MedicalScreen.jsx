@@ -1,11 +1,15 @@
 import React from 'react';
 import { startLogout } from '../../actions/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MedicalVainas } from './MedicalVainas';
 
 
 export const MedicalScreen = () => {
 
+    const  {activePatient}  = useSelector(state => state.diary)
+
+    const {rutPaciente,nombrePaciente,edad:edadPaciente} = activePatient;
+    
     const PersonaCronica ={
         nombre:'Cesar heriquez Ortuzar',
         rut:'4.567.523-1',
@@ -48,9 +52,9 @@ export const MedicalScreen = () => {
         <div className="content medical__content">
             <div>
                 <ul className="list-center">
-                    <li className="list-inline-item medical__text "><h1>{ nombre }</h1></li>
-                    <li className="list-inline-item medical__text"><h1> { rut } </h1></li>
-                    <li className="list-inline-item medical__text"><h1>{ edad } Años</h1></li>   
+                    <li className="list-inline-item medical__text "><h1>{ nombrePaciente }</h1></li>
+                    <li className="list-inline-item medical__text"><h1> { rutPaciente } </h1></li>
+                    <li className="list-inline-item medical__text"><h1>{ edadPaciente } Años</h1></li>   
                 </ul>
                 <ul className="list-center">
                     <li className="list-inline-item medical__text"><h3> Fumador {fumador} </h3>     </li>

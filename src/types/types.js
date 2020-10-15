@@ -16,6 +16,7 @@ export const types={
     // types para el paciente
     // Cargar agenda del medico
     diaryLoad: '[Diary] Diary Load',
-    diaryLogoutCleaning: '[Diary] Diary Logout Cleaning'
+    diaryLogoutCleaning: '[Diary] Diary Logout Cleaning',
+    diarySetActive: '[Diary] Diary set Active'
 
 }

@@ -13,6 +13,9 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import  'moment/locale/es';
 import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { CalendarDiary } from './CalendarDiary';
+import { diarySetActive } from '../../actions/diary';
 
 
 
@@ -22,24 +25,23 @@ moment.locale('es');
 
 const localizer = momentLocalizer( moment );
 
-
-
-const events =[{
-    name: ' Rodrigo Venegas  ',
-    start: moment().toDate(),
-    end: moment().add(10,'minute').toDate(),
-    bgcolor:'#fafafa'
-}]
-
-
 export const CalendarScreen = () => {
 
     const [onClickEvent, setOnClickEvent] = useState(false);
 
+    const { diary } = useSelector(state => state.diary)
 
+    const dispatch = useDispatch();
+
+    const event = diary;
     const onDoubleClick = ()=>{
         console.log("Aqui deberia poder mostrar una vista")
         setOnClickEvent(true);
+    }
+
+    const onSelectEvent = (e)=>{
+        console.log(e)
+        dispatch(diarySetActive(e));
     }
     // Creamos una nueva constante. Lo que sea que regrese, va a ser el estilo que le va a aplicar al evento en particular
     const eventStyleGetter = (event,start,end,isSelected )=>{
@@ -59,13 +61,17 @@ export const CalendarScreen = () => {
            <NavBar/>
            <Calendar
                 localizer={ localizer }
-                events={ events }
+                events={ event }
                 startAccessor="start"
                 endAccessor="end"
                 messages={ messages }
                 eventPropGetter={ eventStyleGetter }
                 onDoubleClickEvent={ onDoubleClick } 
-                timeslots={1}   
+                onSelectEvent={ onSelectEvent }
+                timeslots={1}
+                components={{
+                    event: CalendarDiary
+                }}
            />
 
            {
