@@ -3,6 +3,7 @@ import { startLogout } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { MedicalVainas } from './MedicalVainas';
 import { Redirect } from 'react-router-dom';
+import { diaryClearActiveDiary } from '../../actions/diary';
 
 
 export const MedicalScreen = () => {
@@ -22,8 +23,8 @@ export const MedicalScreen = () => {
 
     const dispatch = useDispatch();
     
-    const handleLogout =()=>{
-        dispatch(startLogout());
+    const handleBackView =()=>{
+        dispatch(diaryClearActiveDiary());
     }
     
     return (
@@ -42,9 +43,9 @@ export const MedicalScreen = () => {
 
                 <button 
                     className="btn btn-primary"
-                    onClick={ handleLogout }
+                    onClick={ handleBackView }
                 >
-                            Cerrar Sesión
+                            Volver atras
                 </button>  
             </div>
             
@@ -70,6 +71,8 @@ export const MedicalScreen = () => {
             }
                 
             </div>
+
+            
 
         </div>
     )
