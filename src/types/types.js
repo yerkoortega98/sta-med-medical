@@ -17,6 +17,7 @@ export const types={
     // Cargar agenda del medico
     diaryLoad: '[Diary] Diary Load',
     diaryLogoutCleaning: '[Diary] Diary Logout Cleaning',
-    diarySetActive: '[Diary] Diary set Active'
+    diarySetActive: '[Diary] Diary set Active',
+    diaryClearActiveDiary: '[Diary] Diary Clear Active Diary'
 
 }

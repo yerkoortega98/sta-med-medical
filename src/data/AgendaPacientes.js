@@ -28,7 +28,22 @@ export const Agenda = [
         'nombrePaciente':'Jorge Luis Barrera Donoso',
         'start':start.toDate(),
         'end':end.toDate(),
-        'edad':'21'
+        'edad':'21',
+        'enfermedades':[
+            {
+                id:1,
+                enfermedad:'HTA'
+            },
+            {
+                id:2,
+                enfermedad:'PBE'
+            },
+            {
+                id:3,
+                enfermedad:'HTO'
+            }
+
+        ]
     },
     {
         'uid':'SmLyKSRex4T0r5lIosyhf04JGec2',
@@ -36,15 +51,60 @@ export const Agenda = [
         'nombrePaciente':'Matias Ignacio Espinoza Santis',
         'start':start1.toDate(),
         'end':end1.toDate(),
-        'edad':'22'
+        'edad':'22',
+        'enfermedades':[
+            {
+                id:1,
+                enfermedad:'HTA'
+            },
+            {
+                id:2,
+                enfermedad:'DM'
+            },
+            {
+                id:3,
+                enfermedad:'Dislip'
+            }
+
+        ]
     },
     {
         'uid':'SmLyKSRex4T0r5lIosyhf04JGec2',
-        'rutPaciente':'9.158.485-k',
-        'nombrePaciente':'Rodrigo Esteban Medina Cornejo',
+        'rutPaciente':'4.567.523-1',
+        'nombrePaciente':'Cesar Henriquez Ortuzar',
         'start':start2.toDate(),
         'end':end2.toDate(),
-        'edad':'45'
+        'edad':'56',
+        'enfermedades':[
+            {
+                id:1,
+                enfermedad:'HTA'
+            },
+            {
+                id:2,
+                enfermedad:'DM'
+            },
+            {
+                id:3,
+                enfermedad:'Dislip'
+            },
+            {
+                id:4,
+                enfermedad:'Epi'
+            },
+            {
+                id:5,
+                enfermedad:'ASMA'
+            },
+            {
+                id:6,
+                enfermedad:'Parkinson'
+            },
+            {
+                id:7,
+                enfermedad:'Artrosis'
+            }
+        ]
     },
     {
         'uid':'RNFUH8FlGnaGMBWnOamDrJRdn4p1',
@@ -52,7 +112,22 @@ export const Agenda = [
         'nombrePaciente':'Mario Sebastian Hernandez Salas',
         'start':start3.toDate(),
         'end':end3.toDate(),
-        'edad':'56'
+        'edad':'56',
+        'enfermedades':[
+            {
+                id:1,
+                enfermedad:'HTA'
+            },
+            {
+                id:2,
+                enfermedad:'Dislip'
+            },
+            {
+                id:3,
+                enfermedad:'Parkinson'
+            }
+
+        ]
     },
     {
         'uid':'RNFUH8FlGnaGMBWnOamDrJRdn4p1',
@@ -60,7 +135,14 @@ export const Agenda = [
         'nombrePaciente':'Lucas Diego Valencia Hernanez',
         'start':start4.toDate(),
         'end':end4.toDate(),
-        'edad':'22'
+        'edad':'22',
+        'enfermedades':[
+            {
+                id:1,
+                enfermedad:'HTA'
+            }
+
+        ]
     },
     {
         'uid':'RNFUH8FlGnaGMBWnOamDrJRdn4p1',
@@ -68,6 +150,17 @@ export const Agenda = [
         'nombrePaciente':'Alejandra Este Catalan Soto',
         'start':start5.toDate(),
         'end':end5.toDate(),
-        'edad':'25'
+        'edad':'25',
+        'enfermedades':[
+            {
+                id:1,
+                enfermedad:'HTA'
+            },
+            {
+                id:2,
+                enfermedad:'ASMA'
+            }
+
+        ]
     }
 ]

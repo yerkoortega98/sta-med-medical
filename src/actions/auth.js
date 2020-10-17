@@ -4,7 +4,7 @@ import { firebase } from '../firebase/firebase-config'
 import { finishLoading, startLoading } from "./ui"
 
 import Swal from 'sweetalert2';
-import { diaryLogoutCleaning } from "./diary";
+import { diaryClearActiveDiary, diaryLogoutCleaning } from "./diary";
 
 
 // -------------------------------------------------------------------------------------------------------------------------------
@@ -64,6 +64,7 @@ export const startLogout =()=>{
         // hacemos el dispatch de la accion de logout
         dispatch(logout());
         dispatch(diaryLogoutCleaning())
+        dispatch(diaryClearActiveDiary());
     }
 }
 

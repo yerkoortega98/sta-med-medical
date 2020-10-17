@@ -14,21 +14,21 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p>Compensación <i class="fas fa-check text-success"></i></p>
-                                <p>Laboratorio <i class="far fa-question-circle text-primary"></i></p>
-                                <p>Sintomas <i class="fas fa-times text-danger"></i></p>
-                                <p>Avisos:   <span class="text-success">Ninguno</span></p>
+                                <p>Compensación <i className="fas fa-check text-success"></i></p>
+                                <p>Laboratorio <i className="far fa-question-circle text-primary"></i></p>
+                                <p>Sintomas <i className="fas fa-times text-danger"></i></p>
+                                <p>Avisos:   <span className="text-success">Ninguno</span></p>
                                 <br/>
                             </div>
                             <div className="tituloTratamiento">
                                 <p>Tratamiento:</p>
                             </div>
                             <div className="ContenidoTratamiento">
-                                <p>Losartan: <span class="text-success">1 c/12</span></p>
-                                <p>HCT:<span class="text-warning">1 c/dia</span></p>
-                                <p>Amlodipina: <span class="text-success">0.5 c/12</span></p>
-                                <p>Aspirina:<span class="text-success">1 c/dia</span></p>
-                                <p>Atenolol: <span class="text-danger">1 c/dia</span></p>
+                                <p>Losartan: <span className="text-success">1 c/12</span></p>
+                                <p>HCT:<span className="text-warning">1 c/dia</span></p>
+                                <p>Amlodipina: <span className="text-success">0.5 c/12</span></p>
+                                <p>Aspirina:<span className="text-success">1 c/dia</span></p>
+                                <p>Atenolol: <span className="text-danger">1 c/dia</span></p>
                             </div>
                         </div>
                     </div>

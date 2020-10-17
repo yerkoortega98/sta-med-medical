@@ -34,13 +34,12 @@ export const CalendarScreen = () => {
     const dispatch = useDispatch();
 
     const event = diary;
+    
     const onDoubleClick = ()=>{
-        console.log("Aqui deberia poder mostrar una vista")
         setOnClickEvent(true);
     }
 
     const onSelectEvent = (e)=>{
-        console.log(e)
         dispatch(diarySetActive(e));
     }
     // Creamos una nueva constante. Lo que sea que regrese, va a ser el estilo que le va a aplicar al evento en particular
@@ -75,11 +74,11 @@ export const CalendarScreen = () => {
            />
 
            {
-               (onClickEvent)
+               ( onClickEvent  )
                ?
                (<Redirect to='/medical'/>)
                :
-               console.log("")
+               console.log('Debo poner algo aqui')
             
            }
            

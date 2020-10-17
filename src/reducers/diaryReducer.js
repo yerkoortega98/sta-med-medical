@@ -26,6 +26,12 @@ export const diaryReducer = ( state=initialState, action )=>{
                 ...state,
                 diary:[]
             }
+
+        case types.diaryClearActiveDiary:
+            return {
+                ...state,
+                activePatient:null
+            }
       
         default:
             return state;

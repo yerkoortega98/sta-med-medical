@@ -28,3 +28,7 @@ export const diarySetActive = ( diary )=>({
     type:types.diarySetActive,
     payload:diary
 })
+
+export const diaryClearActiveDiary=()=>({
+    type: types.diaryClearActiveDiary
+})

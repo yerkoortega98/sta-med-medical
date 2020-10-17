@@ -2,48 +2,26 @@ import React from 'react';
 import { startLogout } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { MedicalVainas } from './MedicalVainas';
+import { Redirect } from 'react-router-dom';
 
 
 export const MedicalScreen = () => {
 
-    const  {activePatient}  = useSelector(state => state.diary)
+    const  { activePatient }  = useSelector(state => state.diary)
 
-    const {rutPaciente,nombrePaciente,edad:edadPaciente} = activePatient;
-    
+   
+    const { rutPaciente, nombrePaciente, edad:edadPaciente, enfermedades } = activePatient;
+
     const PersonaCronica ={
-        nombre:'Cesar heriquez Ortuzar',
-        rut:'4.567.523-1',
-        edad: '56',
         fumador:'10 al dia',
         actividad:'Sedentario',
         estadoFisico:'OBESO IMC 32'
     }
 
-    const {nombre,edad,rut,fumador,actividad,estadoFisico} = PersonaCronica;
+    const {fumador,actividad,estadoFisico} = PersonaCronica;
+
     const dispatch = useDispatch();
     
-    const enfermedades = [
-        {
-            id:1,
-            enfermedad:'HTA'
-        },
-        {
-            id:2,
-            enfermedad:'DM'
-        },
-        {
-            id:3,
-            enfermedad:'Dislip'
-        },
-        {
-            id:4,
-            enfermedad:'Epi'
-        },
-        {
-            id:5,
-            enfermedad:'HOla'
-        }
-    ]
     const handleLogout =()=>{
         dispatch(startLogout());
     }
@@ -76,23 +54,21 @@ export const MedicalScreen = () => {
             {/* Yerko trabaja aqui */}
 
             {
-                    enfermedades.map( enfermedad => (
+                    
+                    (activePatient)
+                    ?
+                    (enfermedades.map( enfermedad => (
                         <MedicalVainas
                             key={ enfermedad.id }
                             // Extraemos cada una de las propiedades que tengan los notes.
                             enfermedad={ enfermedad.enfermedad }  
                         />
-                    ))
-                }
-                {/* <MedicalVainas
-                    titulo="askdkal"
-                />
-                <MedicalVainas
-                    titulo="askdkal"
-                />
-                <MedicalVainas
-                    titulo="askdkal"
-                /> */}
+                    )))
+                    :
+                    (<Redirect to='/'/>)
+
+            }
+                
             </div>
 
         </div>
