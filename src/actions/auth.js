@@ -14,6 +14,7 @@ export const startLoginEmailPassword =( email,password ) =>{
     return ( dispatch )=>{
         dispatch(startLoading() );
 
+        // Alerta
         Swal.fire({
             title:'Ingresando...',
             text:'Por Favor espere...',
@@ -43,9 +44,7 @@ export const startLoginEmailPassword =( email,password ) =>{
 // Creamos un action para el login, que requiere el uid y el displayName.
 // Esto es una funcion sincrona
 export const login = ( uid,displayName ) => ({
-      // retornamos el type correspondiente al login
-        type: types.login,
-        // retornamos un payload, que sera un objeto que contiene el uid y el displyName
+    type: types.login,
         payload: {
             uid,
             displayName

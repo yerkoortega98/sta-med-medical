@@ -66,7 +66,6 @@ export const AppRouter = () => {
                     />
 
                     <PrivateRoute
-                         
                         path="/"
                         component={ DashboardRoutes }
                         isLoggedIn={ isLoggedIn }

@@ -14,12 +14,12 @@ export const DashboardRoutes = () => {
                 <Switch>
                     <Route exact path="/agenda" component={ CalendarScreen }/>
                     {
-                        activePatient?
+                        activePatient
+                        ?
                         (<Route exact path="/medical" component={ MedicalScreen }/>):
                         console.log('Ruta no permitida')
                     }
                     
-
                     <Redirect to="/agenda"/>
                 </Switch>
             </div>  

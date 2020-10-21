@@ -1,28 +1,27 @@
-<<<<<<< HEAD
+
 import React from 'react';
-=======
-import React, {useState, useEffect} from 'react';
->>>>>>> 1b6e98fdcbb722e7e0f636fb07bb5a9ba368fa07
+
+
 import { useDispatch, useSelector } from 'react-redux';
 import { MedicalVainas } from './MedicalVainas';
 import { Redirect } from 'react-router-dom';
 import { diaryClearActiveDiary } from '../../actions/diary';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 export const MedicalScreen = () => {
 
-    const [data, setData] = useState("");
+    // const [data, setData] = useState("");
 
-    useEffect(() => {
-        const datos = () => axios.get('http://localhost:4000/test')
-          .then(res => {
-          const respuesta = res.data;
-          setData(respuesta);
-      })
-        datos();
-        console.log(datos);
-    }, []);
+    // useEffect(() => {
+    //     const datos = () => axios.get('http://localhost:4000/test')
+    //       .then(res => {
+    //       const respuesta = res.data;
+    //       setData(respuesta);
+    //   })
+    //     datos();
+    //     console.log(datos);
+    // }, []);
 
 
     const  { activePatient }  = useSelector(state => state.diary)
@@ -48,9 +47,9 @@ export const MedicalScreen = () => {
         <div className="content medical__content">
             <div>
                 <ul className="list-center">
-                    <li className="list-inline-item medical__text "><h1>{ data.nombre_completo }</h1></li>
-                    <li className="list-inline-item medical__text"><h1> { data.rut } </h1></li>
-                    <li className="list-inline-item medical__text"><h1>{ data.edad } Años</h1></li>   
+                    <li className="list-inline-item medical__text "><h1>{ nombrePaciente }</h1></li>
+                    <li className="list-inline-item medical__text"><h1> { rutPaciente } </h1></li>
+                    <li className="list-inline-item medical__text"><h1>{ edadPaciente } Años</h1></li>   
                 </ul>
                 <ul className="list-center">
                     <li className="list-inline-item medical__text"><h3> Fumador {fumador} </h3>     </li>
