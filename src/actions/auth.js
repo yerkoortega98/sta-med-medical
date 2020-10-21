@@ -13,7 +13,6 @@ import { diaryClearActiveDiary, diaryLogoutCleaning } from "./diary";
 export const startLoginEmailPassword =( email,password ) =>{
     return ( dispatch )=>{
         dispatch(startLoading() );
-
         // Alerta
         Swal.fire({
             title:'Ingresando...',
@@ -24,10 +23,12 @@ export const startLoginEmailPassword =( email,password ) =>{
             }
         });
 
-        
+// -----------------------------------------------------------------------------------------//
+        // Codigo para validar usuario con base de datos FireBase        
         // Validamos el usuario con la base de datos
         firebase.auth().signInWithEmailAndPassword( email,password )
             .then( ({ user }) => {
+
                 dispatch( login( user.uid, user.displayName ));
                 dispatch( finishLoading() );
                 Swal.close();
@@ -35,7 +36,22 @@ export const startLoginEmailPassword =( email,password ) =>{
             .catch(e => { 
                 dispatch(finishLoading());
                 Swal.fire('Error',e.message,'error')
-            })      
+            })   
+            
+// -----------------------------------------------------------------------------------------//
+
+                // Aqui ira el codigo para validar el usuario con BDD Oracle
+
+        // const resp = await fetchSinToken('auth',{email,password},'POST');
+        // const body = await resp.json();
+
+        // if(body.ok){
+        //     dispatch(login({
+        //         uid:body.uid,
+        //         name:body.name
+        //     }))
+        //     dispatch(finishLoading());
+        // }
     }
 };
 
