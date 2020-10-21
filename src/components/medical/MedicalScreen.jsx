@@ -1,5 +1,4 @@
 import React from 'react';
-import { startLogout } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { MedicalVainas } from './MedicalVainas';
 import { Redirect } from 'react-router-dom';

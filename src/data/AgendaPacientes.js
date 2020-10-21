@@ -9,7 +9,6 @@ const end1 = start1.clone().add(20,'minutes');
 const start2 = moment().minute(0).second(0).add(50,'minutes');
 const end2 = start2.clone().add(20,'minutes');
 
-
 const start3 = moment().minute(0).second(0).add(70,'minutes');
 const end3 = start3.clone().add(20,'minutes');
 
