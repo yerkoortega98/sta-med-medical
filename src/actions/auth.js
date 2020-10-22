@@ -5,6 +5,7 @@ import { finishLoading, startLoading } from "./ui"
 
 import Swal from 'sweetalert2';
 import { diaryClearActiveDiary, diaryLogoutCleaning } from "./diary";
+// import { fetchSinToken } from "../helpers/fetch";
 
 
 // -------------------------------------------------------------------------------------------------------------------------------
