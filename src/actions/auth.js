@@ -38,21 +38,8 @@ export const startLoginEmailPassword =( email,password ) =>{
                 dispatch(finishLoading());
                 Swal.fire('Error',e.message,'error')
             })   
-            
-// -----------------------------------------------------------------------------------------//
+//-------------------------------------------------------------------------------------------- //          
 
-                // Aqui ira el codigo para validar el usuario con BDD Oracle
-
-        // const resp = await fetchSinToken('auth',{email,password},'POST');
-        // const body = await resp.json();
-
-        // if(body.ok){
-        //     dispatch(login({
-        //         uid:body.uid,
-        //         name:body.name
-        //     }))
-        //     dispatch(finishLoading());
-        // }
     }
 };
 

@@ -5,9 +5,8 @@ import { NavBar } from '../ui/NavBar';
 import { messages } from '../../helpers/calendar-message-es';
 
 // Importamos estas dos librerias para poder utilizar el calendario
-import { Calendar,momentLocalizer} from 'react-big-calendar';
+import { Calendar,momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
-
 
 // Importamos css
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -16,6 +15,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CalendarDiary } from './CalendarDiary';
 import { diarySetActive } from '../../actions/diary';
+
 
 
 
@@ -54,7 +54,10 @@ export const CalendarScreen = () => {
         }
         return { style }
     }
+    
+   
 
+   
     return (
         <div className="calendar-screen">
            <NavBar/>
@@ -71,6 +74,7 @@ export const CalendarScreen = () => {
                 components={{
                     event: CalendarDiary
                 }}
+                views={{month:true,week: true ,day:true}}
            />
 
            {

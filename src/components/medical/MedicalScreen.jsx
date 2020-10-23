@@ -14,7 +14,7 @@ export const MedicalScreen = () => {
     // const [data, setData] = useState("");
 
     // useEffect(() => {
-    //     const datos = () => axios.get('http://localhost:4000/test')
+    //     const datos = () => axios.get('http://localhost:4000/medical/diary')
     //       .then(res => {
     //       const respuesta = res.data;
     //       setData(respuesta);
@@ -52,9 +52,9 @@ export const MedicalScreen = () => {
                     <li className="list-inline-item medical__text"><h1>{ edadPaciente } Años</h1></li>   
                 </ul>
                 <ul className="list-center">
-                    <li className="list-inline-item medical__text"><h3> Fumador {fumador} </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3> Fumador { fumador } </h3>     </li>
                     <li className="list-inline-item medical__text"><h3>{ actividad } </h3>     </li>
-                    <li className="list-inline-item medical__text"><h3>{estadoFisico} </h3></li>   
+                    <li className="list-inline-item medical__text"><h3>{ estadoFisico } </h3></li>   
                 </ul>
 
                 <button 
@@ -64,31 +64,21 @@ export const MedicalScreen = () => {
                             Volver atras
                 </button>  
             </div>
-            
-            
-
+    
             <div className="Vainas">
-            {/* Yerko trabaja aqui */}
-
-            {
-                    
+            { 
                     (activePatient)
                     ?
                     (enfermedades.map( enfermedad => (
                         <MedicalVainas
                             key={ enfermedad.id }
-                            // Extraemos cada una de las propiedades que tengan los notes.
                             enfermedad={ enfermedad.enfermedad }  
                         />
                     )))
                     :
                     (<Redirect to='/'/>)
-
-            }
-                
+            }         
             </div>
-
-            
 
         </div>
     )
