@@ -10,7 +10,6 @@ export const startLoadingDiary = ( uid ) =>{
         const diary = await loadDiary(uid);
 
         dispatch(setDiary( diary ));
-    
    }    
 }
 
@@ -31,3 +30,4 @@ export const diarySetActive = ( diary )=>({
 export const diaryClearActiveDiary=()=>({
     type: types.diaryClearActiveDiary
 })
+

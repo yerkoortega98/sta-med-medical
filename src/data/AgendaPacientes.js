@@ -35,13 +35,47 @@ export const Agenda = [
             },
             {
                 id:2,
-                enfermedad:'PBE'
+                enfermedad:'Diabetes'
             },
             {
                 id:3,
-                enfermedad:'HTO'
+                enfermedad:'Dislip'
             }
 
+        ],
+        'ParametrosCompensacion':[
+            {
+                PAS: 90,
+                PAD: 70,
+                hbglic: 4 ,
+                glicemia: null ,
+                CT:200 ,
+                TG: 140 ,
+                LDL: 160,
+                HDL: 50,
+                Sexo: 'Masculino',
+                TSH:0.5,
+                T4L: 1.85,
+                uremia:15,
+                VFG: 60,
+                microalbuminuria:15,
+                nureico : 40,
+                PTJEEpilepsia: 0,
+                temblor:1 ,
+                equilibrio:1,
+                rigidez:1,
+                lento:1,
+                arrastre:1,
+                suma:5,
+                PTJEAsma:0,
+                PTJEArtrosis:0,
+                Rx:null,
+                D:0,
+                C:0,
+                B:0,
+                I:0,
+                PTJEEpoc:9
+            }
         ]
     },
     {
@@ -58,13 +92,47 @@ export const Agenda = [
             },
             {
                 id:2,
-                enfermedad:'DM'
+                enfermedad:'Insuficiencia Renal'
             },
             {
                 id:3,
-                enfermedad:'Dislip'
+                enfermedad:'Asma'
             }
 
+        ],
+        'ParametrosCompensacion':[
+            {
+                PAS: 90,
+                PAD: 70,
+                hbglic: 5 ,
+                glicemia: 69 ,
+                CT:200 ,
+                TG: 140 ,
+                LDL: 160,
+                HDL: 50,
+                Sexo: 'Masculino',
+                TSH:0.5,
+                T4L: 1.85,
+                uremia:15,
+                VFG: 60,
+                microalbuminuria:15,
+                nureico : 40,
+                PTJEEpilepsia: 0,
+                temblor:1 ,
+                equilibrio:1,
+                rigidez:1,
+                lento:1,
+                arrastre:1,
+                suma:5,
+                PTJEAsma:0,
+                PTJEArtrosis:0,
+                Rx:null,
+                D:0,
+                C:0,
+                B:0,
+                I:0,
+                PTJEEpoc:9
+            }
         ]
     },
     {
@@ -81,11 +149,11 @@ export const Agenda = [
             },
             {
                 id:2,
-                enfermedad:'DM'
+                enfermedad:'Hipotiroihismo'
             },
             {
                 id:3,
-                enfermedad:'Dislip'
+                enfermedad:'Epoc'
             },
             {
                 id:4,
@@ -93,7 +161,7 @@ export const Agenda = [
             },
             {
                 id:5,
-                enfermedad:'ASMA'
+                enfermedad:'Asma'
             },
             {
                 id:6,
@@ -102,6 +170,40 @@ export const Agenda = [
             {
                 id:7,
                 enfermedad:'Artrosis'
+            }
+        ],
+        'ParametrosCompensacion':[
+{
+                PAS: 140,
+                PAD: 150,
+                hbglic: 5 ,
+                glicemia: 69 ,
+                CT:200 ,
+                TG: 140 ,
+                LDL: 160,
+                HDL: 50,
+                Sexo: 'Masculino',
+                TSH:0.5,
+                T4L: 1.85,
+                uremia:15,
+                VFG: 60,
+                microalbuminuria:15,
+                nureico : 40,
+                PTJEEpilepsia: 4,
+                temblor:1 ,
+                equilibrio:1,
+                rigidez:1,
+                lento:1,
+                arrastre:1,
+                suma:1,
+                PTJEAsma:3,
+                PTJEArtrosis:0,
+                Rx:null,
+                D:0,
+                C:0,
+                B:0,
+                I:0,
+                PTJEEpoc:9
             }
         ]
     },
@@ -119,13 +221,47 @@ export const Agenda = [
             },
             {
                 id:2,
-                enfermedad:'Dislip'
+                enfermedad:'Epi'
             },
             {
                 id:3,
                 enfermedad:'Parkinson'
             }
 
+        ],
+        'ParametrosCompensacion':[
+{
+                PAS: 90,
+                PAD: 70,
+                hbglic: 5 ,
+                glicemia: 69 ,
+                CT:200 ,
+                TG: 140 ,
+                LDL: 160,
+                HDL: 50,
+                Sexo: 'Masculino',
+                TSH:0.5,
+                T4L: 1.85,
+                uremia:15,
+                VFG: 60,
+                microalbuminuria:15,
+                nureico : 40,
+                PTJEEpilepsia: 0,
+                temblor:1 ,
+                equilibrio:1,
+                rigidez:1,
+                lento:1,
+                arrastre:1,
+                suma:5,
+                PTJEAsma:0,
+                PTJEArtrosis:0,
+                Rx:null,
+                D:0,
+                C:0,
+                B:0,
+                I:0,
+                PTJEEpoc:9
+            }
         ]
     },
     {
@@ -141,6 +277,40 @@ export const Agenda = [
                 enfermedad:'HTA'
             }
 
+        ],
+        'ParametrosCompensacion':[
+{
+                PAS: 90,
+                PAD: 70,
+                hbglic: 5 ,
+                glicemia: 69 ,
+                CT:200 ,
+                TG: 140 ,
+                LDL: 160,
+                HDL: 50,
+                Sexo: 'Masculino',
+                TSH:0.5,
+                T4L: 1.85,
+                uremia:15,
+                VFG: 60,
+                microalbuminuria:15,
+                nureico : 40,
+                PTJEEpilepsia: 0,
+                temblor:1 ,
+                equilibrio:1,
+                rigidez:1,
+                lento:1,
+                arrastre:1,
+                suma:5,
+                PTJEAsma:0,
+                PTJEArtrosis:0,
+                Rx:null,
+                D:0,
+                C:0,
+                B:0,
+                I:0,
+                PTJEEpoc:9
+            }
         ]
     },
     {
@@ -160,6 +330,40 @@ export const Agenda = [
                 enfermedad:'ASMA'
             }
 
+        ],
+        'ParametrosCompensacion':[
+{
+                PAS: 90,
+                PAD: 70,
+                hbglic: 5 ,
+                glicemia: 69 ,
+                CT:200 ,
+                TG: 140 ,
+                LDL: 160,
+                HDL: 50,
+                Sexo: 'Masculino',
+                TSH:0.5,
+                T4L: 1.85,
+                uremia:15,
+                VFG: 60,
+                microalbuminuria:15,
+                nureico : 40,
+                PTJEEpilepsia: 0,
+                temblor:1 ,
+                equilibrio:1,
+                rigidez:1,
+                lento:1,
+                arrastre:1,
+                suma:5,
+                PTJEAsma:0,
+                PTJEArtrosis:0,
+                Rx:null,
+                D:0,
+                C:0,
+                B:0,
+                I:0,
+                PTJEEpoc:9
+            }
         ]
     }
 ]

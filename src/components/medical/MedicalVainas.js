@@ -1,7 +1,102 @@
 import React, {Fragment} from 'react';
+import { useSelector } from 'react-redux';
+import { 
+    calcCompensacionDiabetes, 
+    calcCompensacionEpilepsia, 
+    calcCompensacionHipotiroihismo, 
+    calcCompensacionInsuficienciaRenal, 
+    calcCompesacionHTA,
+    calcCompensacionParkinson,
+    calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia
+ } from '../../helpers/compensacion';
 
 
 export const MedicalVainas = ({...props}) => {
+
+    const { ParametrosCompensacion } = useSelector(state => state.diary.activePatient)
+    const { 
+            PAS, PAD,
+            hbglic, glicemia,
+            TSH, T4L, 
+            uremia, VFG, microalbuminuria, nureico,
+            PTJEEpilepsia,
+            temblor,equilibrio,rigidez,lento,arrastre,suma,
+            PTJEAsma,
+            PTJEArtrosis,Rx,D,C,B,I,
+            PTJEEpoc,
+            CT,TG,LDL,HDL,Sexo
+        } = ParametrosCompensacion[0];
+   
+    const compensacion = ()=>{
+        
+        if(props.enfermedad === 'HTA'){
+
+            const resultado = calcCompesacionHTA(PAS,PAD);
+            console.log('Vaina HTA :', resultado );
+
+            return resultado;
+
+            
+    
+        }else if(props.enfermedad ==='Diabetes'){
+            
+            const resultado = calcCompensacionDiabetes(hbglic, glicemia);
+            console.log('Vaina Diabetes :', resultado );
+
+            return resultado;
+
+        }else if (props.enfermedad === 'Hipotiroihismo'){
+            
+            const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
+            console.log('Vaina Hipotiroihismo :', resultado );
+
+            return resultado;
+        }else if (props.enfermedad === 'Insuficiencia Renal'){
+
+            const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
+            console.log('Vaina Insuficiencia Renal: ', resultado)
+            return resultado;
+        }else if(props.enfermedad === 'Epi'){
+
+            const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
+            console.log('Vaina Epilepsia: ', resultado);
+            return resultado;
+
+        }else if(props.enfermedad === 'Parkinson'){
+
+            const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
+            console.log('Vaina Parkinson: ', resultado);
+            return resultado;
+
+        } else if ( props.enfermedad === 'Asma') {
+
+            const resultado = calcCompensacionAsma(PTJEAsma);
+            console.log('Vaina Asma: ', resultado);
+            return resultado;
+
+        }else if(props.enfermedad === 'Artrosis'){
+            const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
+            console.log('Vaina Artrosis: ', resultado);
+            return resultado;
+        }
+        else if(props.enfermedad === 'Epoc'){
+            const resultado = calcCompensacionEpoc(PTJEEpoc);
+            console.log('Vaine Epoc: ', resultado)
+            return resultado;
+        }else if( props.enfermedad === 'Dislip'){
+
+            const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,Sexo);
+
+            console.log('Vaina Dislip: ' , resultado);
+
+            return resultado;
+        }
+    }
+
+    const resultadoCompensacion = compensacion();
+
+    // console.log('Compensacion: ',resultadoCompensacion)
+
     return (
         <Fragment>
             <div className="conjunto_vainas">

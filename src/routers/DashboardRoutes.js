@@ -17,7 +17,7 @@ export const DashboardRoutes = () => {
                         activePatient
                         ?
                         (<Route exact path="/medical" component={ MedicalScreen }/>):
-                        console.log('Ruta no permitida')
+                        <Redirect to="/agenda"/>
                     }
                     
                     <Redirect to="/agenda"/>

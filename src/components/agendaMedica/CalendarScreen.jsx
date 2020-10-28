@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // Componentes
 import { NavBar } from '../ui/NavBar';
@@ -15,7 +15,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CalendarDiary } from './CalendarDiary';
 import { diarySetActive } from '../../actions/diary';
-import axios from "axios";
+// import axios from "axios";
 
 
 
@@ -31,7 +31,7 @@ export const CalendarScreen = () => {
 
     const [onClickEvent, setOnClickEvent] = useState(false);
 
-    const [ datos, setDatos ] = useState("");
+    // const [ datos, setDatos ] = useState("");
 
     const { diary } = useSelector(state => state.diary)
 
@@ -39,12 +39,13 @@ export const CalendarScreen = () => {
 
     const event = diary;
     
-    const onDoubleClick = ()=>{
+    const onDoubleClick = (e)=>{
         setOnClickEvent(true);
+        dispatch(diarySetActive(e));
     }
 
     const onSelectEvent = (e)=>{
-        dispatch(diarySetActive(e));
+        
     }
     // Creamos una nueva constante. Lo que sea que regrese, va a ser el estilo que le va a aplicar al evento en particular
     const eventStyleGetter = (event,start,end,isSelected )=>{
@@ -60,16 +61,16 @@ export const CalendarScreen = () => {
     }
     
    
-    useEffect(() => {
-        const agenda = () => axios.get('http://localhost:4000/test')
-          .then(res => {
-          const respuesta = res.data;
-          setDatos(respuesta);
-      })
-        agenda();
-      }, []);
+    // useEffect(() => {
+    //     const agenda = () => axios.get('http://localhost:4000/test')
+    //       .then(res => {
+    //       const respuesta = res.data;
+    //       setDatos(respuesta);
+    //   })
+    //     agenda();
+    //   }, []);
 
-      console.log(datos);
+    //   console.log(datos);
    
     return (
         <div className="calendar-screen">
