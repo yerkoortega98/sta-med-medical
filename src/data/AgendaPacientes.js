@@ -327,7 +327,7 @@ export const Agenda = [
             },
             {
                 id:2,
-                enfermedad:'ASMA'
+                enfermedad:'Asma'
             }
 
         ],
@@ -355,7 +355,7 @@ export const Agenda = [
                 lento:1,
                 arrastre:1,
                 suma:5,
-                PTJEAsma:0,
+                PTJEAsma:4,
                 PTJEArtrosis:0,
                 Rx:null,
                 D:0,

@@ -59,43 +59,41 @@ export const MedicalVainas = ({...props}) => {
         }else if(props.enfermedad === 'Epi'){
 
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
-            console.log('Vaina Epilepsia: ', resultado);
+            
             return resultado;
 
         }else if(props.enfermedad === 'Parkinson'){
 
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
-            console.log('Vaina Parkinson: ', resultado);
+            
             return resultado;
 
         } else if ( props.enfermedad === 'Asma') {
 
             const resultado = calcCompensacionAsma(PTJEAsma);
-            console.log('Vaina Asma: ', resultado);
+            
             return resultado;
 
         }else if(props.enfermedad === 'Artrosis'){
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
-            console.log('Vaina Artrosis: ', resultado);
+            
             return resultado;
         }
         else if(props.enfermedad === 'Epoc'){
             const resultado = calcCompensacionEpoc(PTJEEpoc);
-            console.log('Vaine Epoc: ', resultado)
+           
             return resultado;
         }else if( props.enfermedad === 'Dislip'){
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,Sexo);
 
-            console.log('Vaina Dislip: ' , resultado);
+            
 
             return resultado;
         }
     }
 
     const resultadoCompensacion = compensacion();
-
-   
 
     return (
         <Fragment>
@@ -109,7 +107,7 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p>Compensación <i className="fas fa-check text-success">{resultadoCompensacion}</i></p>
+                                <p>Compensación <i className={`fas ${ resultadoCompensacion  }`}></i></p>
                                 <p>Laboratorio <i className="far fa-question-circle text-primary"></i></p>
                                 <p>Sintomas <i className="fas fa-times text-danger"></i></p>
                                 <p>Avisos:   <span className="text-success">Ninguno</span></p>

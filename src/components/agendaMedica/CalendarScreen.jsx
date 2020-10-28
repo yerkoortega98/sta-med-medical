@@ -91,17 +91,7 @@ export const CalendarScreen = () => {
                 views={{month:true,week: true ,day:true}}
            />
 
-           {
-               ( onClickEvent  )
-               ?
-               (<Redirect to='/medical'/>)
-               :
-               console.log('Debo poner algo aqui')
-            
-           }
-           
-
-
+           { onClickEvent  && <Redirect to='/medical'/>     }
         </div>
     )
 }

@@ -13,13 +13,10 @@ export const DashboardRoutes = () => {
             <div>
                 <Switch>
                     <Route exact path="/agenda" component={ CalendarScreen }/>
+                                     
                     {
-                        activePatient
-                        ?
-                        (<Route exact path="/medical" component={ MedicalScreen }/>):
-                        <Redirect to="/agenda"/>
+                        activePatient && <Route exact path="/medical" component={ MedicalScreen }/>
                     }
-                    
                     <Redirect to="/agenda"/>
                 </Switch>
             </div>  
