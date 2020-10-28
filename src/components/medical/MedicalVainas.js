@@ -95,7 +95,7 @@ export const MedicalVainas = ({...props}) => {
 
     const resultadoCompensacion = compensacion();
 
-    // console.log('Compensacion: ',resultadoCompensacion)
+   
 
     return (
         <Fragment>
@@ -109,7 +109,7 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p>Compensación <i className="fas fa-check text-success"></i></p>
+                                <p>Compensación <i className="fas fa-check text-success">{resultadoCompensacion}</i></p>
                                 <p>Laboratorio <i className="far fa-question-circle text-primary"></i></p>
                                 <p>Sintomas <i className="fas fa-times text-danger"></i></p>
                                 <p>Avisos:   <span className="text-success">Ninguno</span></p>
