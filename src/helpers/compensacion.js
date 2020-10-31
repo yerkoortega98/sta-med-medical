@@ -230,7 +230,7 @@ export const calcCompensacionAsma = ( PTJE ) =>{
    
     if(PTJE === 0){
         const resultado = "fa-check text-success";
-        console.log(resultado)
+        
         return resultado;
     }else if(PTJE > 0 && PTJE < 3){
         const resultado = "fa-check text-warning";

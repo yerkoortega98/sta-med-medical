@@ -22,7 +22,7 @@ const end5 = start5.clone().add(20,'minutes');
 
 export const Agenda = [
     {
-        'uid':'SmLyKSRex4T0r5lIosyhf04JGec2',
+        'uid':'191549758',
         'rutPaciente':'19.975.154-9',
         'nombrePaciente':'Jorge Luis Barrera Donoso',
         'start':start.toDate(),
@@ -79,7 +79,7 @@ export const Agenda = [
         ]
     },
     {
-        'uid':'SmLyKSRex4T0r5lIosyhf04JGec2',
+        'uid':'191549758',
         'rutPaciente':'19.974.558-8',
         'nombrePaciente':'Matias Ignacio Espinoza Santis',
         'start':start1.toDate(),
@@ -136,7 +136,7 @@ export const Agenda = [
         ]
     },
     {
-        'uid':'SmLyKSRex4T0r5lIosyhf04JGec2',
+        'uid':'191549758',
         'rutPaciente':'4.567.523-1',
         'nombrePaciente':'Cesar Henriquez Ortuzar',
         'start':start2.toDate(),
@@ -208,7 +208,7 @@ export const Agenda = [
         ]
     },
     {
-        'uid':'RNFUH8FlGnaGMBWnOamDrJRdn4p1',
+        'uid':'199751549',
         'rutPaciente':'17.955.154-9',
         'nombrePaciente':'Mario Sebastian Hernandez Salas',
         'start':start3.toDate(),
@@ -265,7 +265,7 @@ export const Agenda = [
         ]
     },
     {
-        'uid':'RNFUH8FlGnaGMBWnOamDrJRdn4p1',
+        'uid':'199751549',
         'rutPaciente':'14.975.154-9',
         'nombrePaciente':'Lucas Diego Valencia Hernanez',
         'start':start4.toDate(),
@@ -314,7 +314,7 @@ export const Agenda = [
         ]
     },
     {
-        'uid':'RNFUH8FlGnaGMBWnOamDrJRdn4p1',
+        'uid':'199751549',
         'rutPaciente':'12.965.154-9',
         'nombrePaciente':'Alejandra Este Catalan Soto',
         'start':start5.toDate(),

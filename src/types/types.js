@@ -11,6 +11,8 @@ export const types={
      // 1.Creamos los types
     uiStartLoading:'[UI] Start Loading',
     uiFinishLoading:'[UI] Finish Loading',
+    uiOpenModal: '[UI] Open Modal',
+    uiCloseModal: '[UI] Close Modal',
 
 
     // types para el paciente

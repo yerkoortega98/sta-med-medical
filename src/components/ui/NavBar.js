@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../actions/auth';
 
 
@@ -9,6 +9,7 @@ export const NavBar = () => {
 
     const dispatch = useDispatch();
 
+    const {name} = useSelector(state => state.auth)
     const handleLogout =()=>{
         dispatch(startLogout());
     }
@@ -16,7 +17,7 @@ export const NavBar = () => {
     return (
         <div className="navbar navbar-dark bg-dark mb-4">
             <span className="navbar-brand">
-                Jorge
+                {name}
             </span>
 
             <button 

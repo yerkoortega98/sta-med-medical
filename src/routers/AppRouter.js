@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from 'react';
-// Para usar el router, se instala "npm install react-router-dom"
 import {
     BrowserRouter as Router,
     Switch, Redirect
-  } from "react-router-dom";
-
-
-
-
-
-import { firebase } from '../firebase/firebase-config'
-import { useDispatch } from 'react-redux';
+} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { AuthRouter } from '../routers/AuthRouter';
 
-import { login } from '../actions/auth';
+// import { login } from '../actions/auth';
 import { DashboardRoutes } from './DashboardRoutes';
 import { startLoadingDiary } from '../actions/diary';
 
@@ -29,21 +22,19 @@ export const AppRouter = () => {
 
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
-
-   
+    const { uid } = useSelector(state => state.auth);
+       
     useEffect(() => {
-        firebase.auth().onAuthStateChanged( async( user )=>{
-            if( user?.uid ){        
-                dispatch( login( user.uid ,user.displayName ));
+            if( !!uid ){        
+                
                 setIsLoggedIn(true);
-                dispatch(startLoadingDiary(user.uid))
+                dispatch(startLoadingDiary(uid))
             } else {
                 setIsLoggedIn(false);
             }
             setChecking(false)
-        }) ;
-    }, [ dispatch,setChecking ]);
-
+    }, [ uid,dispatch,setChecking ]);
+    ;
 
     if(checking){
         return(

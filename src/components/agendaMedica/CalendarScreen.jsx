@@ -15,14 +15,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CalendarDiary } from './CalendarDiary';
 import { diarySetActive } from '../../actions/diary';
-// import axios from "axios";
 
-
-
-
-
-
-// Cambiamos el idioma de moment
 moment.locale('es');
 
 const localizer = momentLocalizer( moment );
@@ -31,7 +24,6 @@ export const CalendarScreen = () => {
 
     const [onClickEvent, setOnClickEvent] = useState(false);
 
-    // const [ datos, setDatos ] = useState("");
 
     const { diary } = useSelector(state => state.diary)
 
@@ -60,18 +52,6 @@ export const CalendarScreen = () => {
         return { style }
     }
     
-   
-    // useEffect(() => {
-    //     const agenda = () => axios.get('http://localhost:4000/test')
-    //       .then(res => {
-    //       const respuesta = res.data;
-    //       setDatos(respuesta);
-    //   })
-    //     agenda();
-    //   }, []);
-
-    //   console.log(datos);
-   
     return (
         <div className="calendar-screen">
            <NavBar/>

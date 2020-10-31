@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { uiOpenModal } from '../../actions/ui';
 import { 
     calcCompensacionDiabetes, 
     calcCompensacionEpilepsia, 
@@ -9,6 +10,7 @@ import {
     calcCompensacionParkinson,
     calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia
  } from '../../helpers/compensacion';
+import { VainasModal } from './VainasModal';
 
 
 export const MedicalVainas = ({...props}) => {
@@ -32,68 +34,211 @@ export const MedicalVainas = ({...props}) => {
         if(props.enfermedad === 'HTA'){
 
             const resultado = calcCompesacionHTA(PAS,PAD);
-            console.log('Vaina HTA :', resultado );
+            
+            const parametros = [{
+                id:1,
+                nombreParametro:'PAS',
+                valor:PAS
+            },{
+                id:2,
+                nombreParametro:'PAD',
+                valor:PAD
+            }];
 
-            return resultado;
-
+            return {resultado,parametros};
             
     
         }else if(props.enfermedad ==='Diabetes'){
             
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
-            console.log('Vaina Diabetes :', resultado );
+           
+            const parametros = [{
+                id:1,
+                nombreParametro:'HBGLIC',
+                valor:hbglic
+            },{
+                id:2,
+                nombreParametro:'Glicemia',
+                Glicemia:glicemia
+            }];
 
-            return resultado;
+            return {resultado,parametros};
 
         }else if (props.enfermedad === 'Hipotiroihismo'){
             
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
-            console.log('Vaina Hipotiroihismo :', resultado );
+            
 
-            return resultado;
+            const parametros = [{
+                id:1,
+                nombreParametro:'TSH',
+                valor:TSH
+            },{
+                id:2,
+                nombreParametro:'T4L',
+                valor:T4L
+            }
+        ];
+
+            return {resultado,parametros};
         }else if (props.enfermedad === 'Insuficiencia Renal'){
 
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
-            console.log('Vaina Insuficiencia Renal: ', resultado)
-            return resultado;
+            
+            const parametros = [{
+                id:1,
+                nombreParametro:'Uremia',
+                valor:uremia
+            },{
+                id:2,
+                nombreParametro:'VFG',
+                valor:VFG
+            },{
+                id:2,
+                nombreParametro:'MicroAlbuminuria',
+                valor:nureico
+            }
+        ];
+
+            return {resultado,parametros};
+
         }else if(props.enfermedad === 'Epi'){
 
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
             
-            return resultado;
+            const parametros = [{
+                id:1,
+                nombreParametro:'Puntaje Epilepsia',
+                valor:PTJEEpilepsia
+            }];
+
+            return {resultado,parametros};
 
         }else if(props.enfermedad === 'Parkinson'){
 
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
             
-            return resultado;
+            const parametros = [{
+                id:1,
+                nombreParametro:'Temblor',
+                valor:temblor
+            },{
+                id:2,
+                nombreParametro:'Equilibrio',
+                valor:equilibrio
+            },{
+                id:3,
+                nombreParametro:'Rigidez',
+                valor:rigidez
+            },{
+                id:4,
+                nombreParametro:'Lento',
+                valor:lento
+            },{
+                id:5,
+                nombreParametro:'Arrastre',
+                valor:arrastre
+            },{
+                id:6,
+                nombreParametro:'Suma',
+                valor:suma
+            }
+        ];
+
+            return {resultado,parametros};
 
         } else if ( props.enfermedad === 'Asma') {
 
             const resultado = calcCompensacionAsma(PTJEAsma);
             
-            return resultado;
+            const parametros = [{
+                id:1,
+                nombreParametro:'Puntaje Asma',
+                valor:PTJEAsma
+            }];
+
+            return {resultado,parametros};
 
         }else if(props.enfermedad === 'Artrosis'){
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
             
-            return resultado;
+            const parametros = [{
+                id:1,
+                nombreParametro:'Puntaje Artrosis',
+                valor: PTJEArtrosis
+            },{
+                id:2,
+                nombreParametro:'Rx',
+                valor:Rx
+            },{
+                id:3,
+                nombreParametro:'D',
+                valor:D
+            },{
+                id:4,
+                nombreParametro:'C',
+                valor:C
+            },{
+                id:5,
+                nombreParametro:'B',
+                valor:B
+            },{
+                id:6,
+                nombreParametro:'I',
+                valor:I
+            }];
+
+            return {resultado,parametros};
         }
         else if(props.enfermedad === 'Epoc'){
             const resultado = calcCompensacionEpoc(PTJEEpoc);
            
-            return resultado;
+            const parametros = [{
+                id:1,
+                nombreParametro:'Puntaje Epoc',
+                valor:PTJEEpoc
+            }];
+
+            return {resultado,parametros};
         }else if( props.enfermedad === 'Dislip'){
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,Sexo);
 
-            
+            const parametros = [{
+                id:1,
+                nombreParametro:'CT',
+                valor:CT
+            },{
+                id:2,
+                nombreParametro:'TG',
+                valor:TG
+            },{
+                id:3,
+                nombreParametro:'LDL',
+                valor:LDL
+            },{
+                id:4,
+                nombreParametro:'HDL',
+                valor:HDL
+            }]
 
-            return resultado;
+            return {resultado,parametros};
         }
     }
 
-    const resultadoCompensacion = compensacion();
+    const calCompensacion = compensacion();
+
+    const {resultado:resultadoCompensacion,parametros} = calCompensacion;
+
+    const dispatch = useDispatch();
+
+    
+
+    // Activar modal
+    const handleClick = ()=>{
+        dispatch( uiOpenModal() );
+    }
+
 
     return (
         <Fragment>
@@ -107,7 +252,7 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p>Compensación <i className={`fas ${ resultadoCompensacion  }`}></i></p>
+                                <p>Compensación <i onClick={ handleClick } className={`fas ${ resultadoCompensacion  }`}></i></p>
                                 <p>Laboratorio <i className="far fa-question-circle text-primary"></i></p>
                                 <p>Sintomas <i className="fas fa-times text-danger"></i></p>
                                 <p>Avisos:   <span className="text-success">Ninguno</span></p>
@@ -139,6 +284,7 @@ export const MedicalVainas = ({...props}) => {
                         </p>
                     </section>
                 </div>
+                <VainasModal parametros={parametros} />
             </div>
         </Fragment>
 
