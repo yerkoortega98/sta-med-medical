@@ -15,6 +15,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CalendarDiary } from './CalendarDiary';
 import { diarySetActive } from '../../actions/diary';
+import { startLoadEnfermedad } from '../../actions/patient';
 
 moment.locale('es');
 
@@ -27,6 +28,7 @@ export const CalendarScreen = () => {
 
     const { diary } = useSelector(state => state.diary)
 
+
     const dispatch = useDispatch();
 
     const event = diary;
@@ -34,6 +36,7 @@ export const CalendarScreen = () => {
     const onDoubleClick = (e)=>{
         setOnClickEvent(true);
         dispatch(diarySetActive(e));
+        dispatch(startLoadEnfermedad());
     }
 
     const onSelectEvent = (e)=>{

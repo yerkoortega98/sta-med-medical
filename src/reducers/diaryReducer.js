@@ -3,7 +3,7 @@ import {types} from '../types/types';
 
 const initialState={
     diary:[],
-    activePatient:null
+    activePatient:[]
 }
 
 export const diaryReducer = ( state=initialState, action )=>{

@@ -6,23 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MedicalVainas } from './MedicalVainas';
 import { Redirect } from 'react-router-dom';
 import { diaryClearActiveDiary } from '../../actions/diary';
-// import axios from 'axios';
+import { clearActiveEnfermedad } from '../../actions/patient';
+
 
 
 export const MedicalScreen = () => {
-
-    // const [data, setData] = useState("");
-
-    // useEffect(() => {
-    //     const datos = () => axios.get('http://localhost:4000/medical/diary')
-    //       .then(res => {
-    //       const respuesta = res.data;
-    //       setData(respuesta);
-    //   })
-    //     datos();
-    //     console.log(datos);
-    // }, []);
-
 
     const  { activePatient }  = useSelector(state => state.diary)
 
@@ -41,6 +29,7 @@ export const MedicalScreen = () => {
     
     const handleBackView =()=>{
         dispatch(diaryClearActiveDiary());
+        dispatch(clearActiveEnfermedad());
     }
     
     return (

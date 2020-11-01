@@ -80,7 +80,7 @@ export const Agenda = [
     },
     {
         'uid':'191549758',
-        'rutPaciente':'19.974.558-8',
+        'rutPaciente':'199745588',
         'nombrePaciente':'Matias Ignacio Espinoza Santis',
         'start':start1.toDate(),
         'end':end1.toDate(),
