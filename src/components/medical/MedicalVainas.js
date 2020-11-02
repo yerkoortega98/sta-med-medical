@@ -16,6 +16,7 @@ import { VainasModal } from './VainasModal';
 export const MedicalVainas = ({...props}) => {
 
     const { ParametrosCompensacion } = useSelector(state => state.diary.activePatient)
+    
     const { 
             PAS, PAD,
             hbglic, glicemia,
@@ -48,7 +49,7 @@ export const MedicalVainas = ({...props}) => {
             return {resultado,parametros};
             
     
-        }else if(props.enfermedad ==='Diabetes'){
+        }else if(props.enfermedad ==='DM'){
             
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
            
@@ -64,7 +65,7 @@ export const MedicalVainas = ({...props}) => {
 
             return {resultado,parametros};
 
-        }else if (props.enfermedad === 'Hipotiroihismo'){
+        }else if (props.enfermedad === 'Hipotir'){
             
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
             
@@ -81,7 +82,7 @@ export const MedicalVainas = ({...props}) => {
         ];
 
             return {resultado,parametros};
-        }else if (props.enfermedad === 'Insuficiencia Renal'){
+        }else if (props.enfermedad === 'IRC'){
 
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
             
@@ -114,7 +115,7 @@ export const MedicalVainas = ({...props}) => {
 
             return {resultado,parametros};
 
-        }else if(props.enfermedad === 'Parkinson'){
+        }else if(props.enfermedad === 'Park'){
 
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
             
@@ -200,7 +201,7 @@ export const MedicalVainas = ({...props}) => {
             }];
 
             return {resultado,parametros};
-        }else if( props.enfermedad === 'Dislip'){
+        }else if( props.enfermedad === 'Dis/ATE'){
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,Sexo);
 
@@ -231,8 +232,6 @@ export const MedicalVainas = ({...props}) => {
     const {resultado:resultadoCompensacion,parametros} = calCompensacion;
 
     const dispatch = useDispatch();
-
-    
 
     // Activar modal
     const handleClick = ()=>{
@@ -284,7 +283,7 @@ export const MedicalVainas = ({...props}) => {
                         </p>
                     </section>
                 </div>
-                <VainasModal parametros={parametros} />
+                <VainasModal key={props.enfermedad} parametros={parametros} />
             </div>
         </Fragment>
 

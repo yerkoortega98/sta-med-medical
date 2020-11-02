@@ -24,6 +24,14 @@ export const types={
 
     // Cargar enfermedades paciente
     setEnfermedad: '[Patient] setEnfermedad',
-    clearActiveEnfermedad:'[Patient] Clear enfermedad'
+    clearActiveEnfermedad:'[Patient] Clear enfermedad',
+    setActivePaciente:'[Patient] Set active Paciente',
+    clearActivePaciente:'[Patient] Clear active paciente',
+    setInfoPaciente:'[Patient] Set info Paciente',
+    clearInfoPaciente:'[Patient] Cler Info Paciente',
+
+    // PacienteACtivo
+    patientIsCheckingTrue: '[Patient] Patient is Checking in True',
+    patientIsCheckingFalse: '[Patient] Patient is Checking in False',
 
 }

@@ -34,7 +34,6 @@ export const AppRouter = () => {
             }
             setChecking(false)
     }, [ uid,dispatch,setChecking ]);
-    ;
 
     if(checking){
         return(

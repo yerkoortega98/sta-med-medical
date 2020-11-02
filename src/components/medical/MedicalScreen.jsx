@@ -1,49 +1,48 @@
-
 import React from 'react';
-
-
 import { useDispatch, useSelector } from 'react-redux';
-import { MedicalVainas } from './MedicalVainas';
 import { Redirect } from 'react-router-dom';
+
+
+import { MedicalVainas } from './MedicalVainas';
+import { clearActiveEnfermedad, clearInfoPaciente, patientIsCheckingFalse}from '../../actions/patient';
 import { diaryClearActiveDiary } from '../../actions/diary';
-import { clearActiveEnfermedad } from '../../actions/patient';
 
 
 
 export const MedicalScreen = () => {
 
-    const  { activePatient }  = useSelector(state => state.diary)
-
-   
-    const { rutPaciente, nombrePaciente, edad:edadPaciente, enfermedades } = activePatient;
-
-    const PersonaCronica ={
-        fumador:'10 al dia',
-        actividad:'Sedentario',
-        estadoFisico:'OBESO IMC 32'
-    }
-
-    const {fumador,actividad,estadoFisico} = PersonaCronica;
-
     const dispatch = useDispatch();
     
+    const  { activePatient }  = useSelector(state => state.diary)
+    
+    const { enfermedades,isChecking } = useSelector(state => state.pacienteActivo);
+
+    const { rutPaciente, infoPaciente } = useSelector(state => state.pacienteActivo);
+    
+    const { nombre, edad, ejercicio, fumador, IMC }= infoPaciente[0];
+
+    
     const handleBackView =()=>{
+
+        dispatch(patientIsCheckingFalse());
         dispatch(diaryClearActiveDiary());
+        dispatch(clearInfoPaciente());
         dispatch(clearActiveEnfermedad());
+        
     }
     
     return (
         <div className="content medical__content">
             <div>
                 <ul className="list-center">
-                    <li className="list-inline-item medical__text "><h1>{ nombrePaciente }</h1></li>
+                    <li className="list-inline-item medical__text "><h1>{ nombre }</h1></li>
                     <li className="list-inline-item medical__text"><h1> { rutPaciente } </h1></li>
-                    <li className="list-inline-item medical__text"><h1>{ edadPaciente } Años</h1></li>   
+                    <li className="list-inline-item medical__text"><h1>{ edad } Años</h1></li>   
                 </ul>
                 <ul className="list-center">
-                    <li className="list-inline-item medical__text"><h3> Fumador { fumador } </h3>     </li>
-                    <li className="list-inline-item medical__text"><h3>{ actividad } </h3>     </li>
-                    <li className="list-inline-item medical__text"><h3>{ estadoFisico } </h3></li>   
+                    <li className="list-inline-item medical__text"><h3> Fumador { fumador } al dia </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3>{ ejercicio } al dia </h3>     </li>
+                    <li className="list-inline-item medical__text"><h3>{ IMC } IMC </h3></li>   
                 </ul>
 
                 <button 
@@ -60,14 +59,16 @@ export const MedicalScreen = () => {
                     ?
                     (enfermedades.map( enfermedad => (
                         <MedicalVainas
-                            key={ enfermedad.id }
-                            enfermedad={ enfermedad.enfermedad }  
+                            key={ enfermedad.con_cronica }
+                            enfermedad={ enfermedad.con_cronica }  
                         />
                     )))
                     :
                     (<Redirect to='/'/>)
             }         
             </div>
+
+            { !isChecking && <Redirect to='/'/>}
 
         </div>
     )

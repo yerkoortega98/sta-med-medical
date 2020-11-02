@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Componentes
 import { NavBar } from '../ui/NavBar';
@@ -15,7 +15,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CalendarDiary } from './CalendarDiary';
 import { diarySetActive } from '../../actions/diary';
-import { startLoadEnfermedad } from '../../actions/patient';
+import { startLoadInfoPaciente } from '../../actions/patient';
 
 moment.locale('es');
 
@@ -23,7 +23,7 @@ const localizer = momentLocalizer( moment );
 
 export const CalendarScreen = () => {
 
-    const [onClickEvent, setOnClickEvent] = useState(false);
+    const {isChecking} = useSelector(state => state.pacienteActivo)
 
 
     const { diary } = useSelector(state => state.diary)
@@ -34,9 +34,12 @@ export const CalendarScreen = () => {
     const event = diary;
     
     const onDoubleClick = (e)=>{
-        setOnClickEvent(true);
+
+
         dispatch(diarySetActive(e));
-        dispatch(startLoadEnfermedad());
+
+        dispatch( startLoadInfoPaciente(e.rutPaciente));
+        
     }
 
     const onSelectEvent = (e)=>{
@@ -74,7 +77,9 @@ export const CalendarScreen = () => {
                 views={{month:true,week: true ,day:true}}
            />
 
-           { onClickEvent  && <Redirect to='/medical'/>     }
+           { isChecking  && <Redirect to='/medical'/>      }
+
+           
         </div>
     )
 }

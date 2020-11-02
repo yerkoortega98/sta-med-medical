@@ -23,26 +23,11 @@ const end5 = start5.clone().add(20,'minutes');
 export const Agenda = [
     {
         'uid':'191549758',
-        'rutPaciente':'19.975.154-9',
-        'nombrePaciente':'Jorge Luis Barrera Donoso',
+        'rutPaciente':'130425518',
+        'nombrePaciente':'Veronica Ester Donoso Casoni',
         'start':start.toDate(),
         'end':end.toDate(),
         'edad':'21',
-        'enfermedades':[
-            {
-                id:1,
-                enfermedad:'HTA'
-            },
-            {
-                id:2,
-                enfermedad:'Diabetes'
-            },
-            {
-                id:3,
-                enfermedad:'Dislip'
-            }
-
-        ],
         'ParametrosCompensacion':[
             {
                 PAS: 90,
@@ -85,21 +70,6 @@ export const Agenda = [
         'start':start1.toDate(),
         'end':end1.toDate(),
         'edad':'22',
-        'enfermedades':[
-            {
-                id:1,
-                enfermedad:'HTA'
-            },
-            {
-                id:2,
-                enfermedad:'Insuficiencia Renal'
-            },
-            {
-                id:3,
-                enfermedad:'Asma'
-            }
-
-        ],
         'ParametrosCompensacion':[
             {
                 PAS: 90,
@@ -137,41 +107,11 @@ export const Agenda = [
     },
     {
         'uid':'191549758',
-        'rutPaciente':'4.567.523-1',
+        'rutPaciente':'45675231',
         'nombrePaciente':'Cesar Henriquez Ortuzar',
         'start':start2.toDate(),
         'end':end2.toDate(),
         'edad':'56',
-        'enfermedades':[
-            {
-                id:1,
-                enfermedad:'HTA'
-            },
-            {
-                id:2,
-                enfermedad:'Hipotiroihismo'
-            },
-            {
-                id:3,
-                enfermedad:'Epoc'
-            },
-            {
-                id:4,
-                enfermedad:'Epi'
-            },
-            {
-                id:5,
-                enfermedad:'Asma'
-            },
-            {
-                id:6,
-                enfermedad:'Parkinson'
-            },
-            {
-                id:7,
-                enfermedad:'Artrosis'
-            }
-        ],
         'ParametrosCompensacion':[
 {
                 PAS: 140,
@@ -209,26 +149,11 @@ export const Agenda = [
     },
     {
         'uid':'199751549',
-        'rutPaciente':'17.955.154-9',
+        'rutPaciente':'198457597',
         'nombrePaciente':'Mario Sebastian Hernandez Salas',
         'start':start3.toDate(),
         'end':end3.toDate(),
         'edad':'56',
-        'enfermedades':[
-            {
-                id:1,
-                enfermedad:'HTA'
-            },
-            {
-                id:2,
-                enfermedad:'Epi'
-            },
-            {
-                id:3,
-                enfermedad:'Parkinson'
-            }
-
-        ],
         'ParametrosCompensacion':[
 {
                 PAS: 90,
@@ -266,18 +191,11 @@ export const Agenda = [
     },
     {
         'uid':'199751549',
-        'rutPaciente':'14.975.154-9',
+        'rutPaciente':'108547687',
         'nombrePaciente':'Lucas Diego Valencia Hernanez',
         'start':start4.toDate(),
         'end':end4.toDate(),
         'edad':'22',
-        'enfermedades':[
-            {
-                id:1,
-                enfermedad:'HTA'
-            }
-
-        ],
         'ParametrosCompensacion':[
 {
                 PAS: 90,
@@ -315,22 +233,11 @@ export const Agenda = [
     },
     {
         'uid':'199751549',
-        'rutPaciente':'12.965.154-9',
+        'rutPaciente':'98457658',
         'nombrePaciente':'Alejandra Este Catalan Soto',
         'start':start5.toDate(),
         'end':end5.toDate(),
         'edad':'25',
-        'enfermedades':[
-            {
-                id:1,
-                enfermedad:'HTA'
-            },
-            {
-                id:2,
-                enfermedad:'Asma'
-            }
-
-        ],
         'ParametrosCompensacion':[
 {
                 PAS: 90,
