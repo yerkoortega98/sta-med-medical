@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
@@ -12,6 +12,19 @@ export const DashboardRoutes = () => {
 
     const { isChecking } = useSelector(state => state.pacienteActivo);
 
+    const [isChechkingOn, setIsChechkingOn] = useState(false);
+
+    useEffect(() => {
+        if( isChecking ){        
+            
+            setIsChechkingOn(true);
+            
+        } else {
+            setIsChechkingOn(false);
+        }
+        setIsChechkingOn(false)
+}, [isChecking ]);
+
     
     return (
         <>
@@ -22,10 +35,10 @@ export const DashboardRoutes = () => {
                     <Route exact path="/medical" component={ MedicalScreen }/>
                         
                     {
-                        isChecking && <Route exact path="/medical" component={ MedicalScreen }/>
+                        isChechkingOn 
+                        ? <Route exact path="/medical" component={ MedicalScreen} />
+                        :(<Redirect to='/agenda'/> )
                     }
-                    
-                    <Redirect to="/agenda"/>
                 </Switch>
             </div>  
         </>

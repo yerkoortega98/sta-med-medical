@@ -22,9 +22,10 @@ export const MedicalScreen = () => {
     const { nombre, edad, ejercicio, fumador, IMC }= infoPaciente[0];
 
     
-    const handleBackView =()=>{
+    const handleBackView = async()=>{
 
-        dispatch(patientIsCheckingFalse());
+        await dispatch(patientIsCheckingFalse());
+
         dispatch(diaryClearActiveDiary());
         dispatch(clearInfoPaciente());
         dispatch(clearActiveEnfermedad());
