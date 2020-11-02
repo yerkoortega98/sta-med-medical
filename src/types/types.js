@@ -28,7 +28,9 @@ export const types={
     setActivePaciente:'[Patient] Set active Paciente',
     clearActivePaciente:'[Patient] Clear active paciente',
     setInfoPaciente:'[Patient] Set info Paciente',
-    clearInfoPaciente:'[Patient] Cler Info Paciente',
+    clearInfoPaciente:'[Patient] Clear Info Paciente',
+    setCompensacion:'[Patient] set Compensacion paciente',
+    clearCompensacion:'[Patient] Clear compensacion',
 
     // PacienteACtivo
     patientIsCheckingTrue: '[Patient] Patient is Checking in True',

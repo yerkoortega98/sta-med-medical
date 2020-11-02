@@ -1,7 +1,8 @@
-import {types} from '../types/types';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+import {types} from '../types/types';
+import { Agenda } from '../data/AgendaPacientes'
 
 
 // Primero realizamos una peticion al BackEnd para buscar el rut en la lista de pacientes existentes
@@ -35,15 +36,17 @@ export const startLoadInfoPaciente = (rutPaciente) => {
             // Disparamos el action para comenzar a cargar las enfermedades del paciente.
             dispatch(startLoadEnfermedad(rutPaciente));
 
-            
- 
+            // Disparamos el action para comenzar a cargar la compensacion del paciente
+            dispatch(startLoadCompensacion(rutPaciente));
+
         }).catch(e => {
             Swal.fire('Error',e.message,'error');
         })
         setTimeout(() => {
+            dispatch(patientIsCheckingTrue());
             Swal.close();
         }, 1000);
-
+        
     }
 }
 
@@ -68,7 +71,7 @@ export const startLoadEnfermedad = (rutPaciente) => {
 
             dispatch( setEnfermedad(enfermedades));  
 
-            dispatch(patientIsCheckingTrue());
+            // dispatch(patientIsCheckingTrue());
         })
     }
 }
@@ -78,6 +81,22 @@ export const setEnfermedad = (enfermedades)=>({
     payload:enfermedades
 })
 
+// ------------------------------------------------------------------\\
+// Action para cargar compensacion estatica
+
+export const startLoadCompensacion = (rutPaciente)=> {
+    return (dispatch)=>{
+        
+        const compensacionSnap =  Agenda.filter( agenda => agenda.rutPaciente === rutPaciente); 
+
+        dispatch(setCompensacion(compensacionSnap));
+    }  
+}
+
+export const setCompensacion = (compensacion)=>({
+    type:types.setCompensacion,
+    payload:compensacion
+})
 
 
 // Action para limpiar el estado de enfermedades del store.
@@ -90,6 +109,10 @@ export const clearInfoPaciente = ()=>({
     type:types.clearInfoPaciente
 })
 
+export const clearCompensacion = ()=>({
+    type:types.clearCompensacion
+})
+
 export const patientIsCheckingTrue = ()=>({
     type:types.patientIsCheckingTrue
 })
@@ -97,5 +120,7 @@ export const patientIsCheckingTrue = ()=>({
 export const patientIsCheckingFalse = ()=>({
     type:types.patientIsCheckingFalse
 })
+
+
 
 

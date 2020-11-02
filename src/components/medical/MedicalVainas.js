@@ -15,8 +15,14 @@ import { VainasModal } from './VainasModal';
 
 export const MedicalVainas = ({...props}) => {
 
-    const { ParametrosCompensacion } = useSelector(state => state.diary.activePatient)
+    // const { ParametrosCompensacion } = useSelector(state => state.diary.activePatient)
     
+    const { compensacion } = useSelector(state => state.pacienteActivo)
+
+    console.log('Compensacion:',compensacion)
+    const { ParametrosCompensacion } = compensacion[0];
+
+    console.log('Parametros:',ParametrosCompensacion)
     const { 
             PAS, PAD,
             hbglic, glicemia,
@@ -28,9 +34,9 @@ export const MedicalVainas = ({...props}) => {
             PTJEArtrosis,Rx,D,C,B,I,
             PTJEEpoc,
             CT,TG,LDL,HDL,Sexo
-        } = ParametrosCompensacion[0];
+        } = ParametrosCompensacion;
    
-    const compensacion = ()=>{
+    const compensacionPrueba = ()=>{
         
         if(props.enfermedad === 'HTA'){
 
@@ -227,7 +233,7 @@ export const MedicalVainas = ({...props}) => {
         }
     }
 
-    const calCompensacion = compensacion();
+    const calCompensacion = compensacionPrueba();
 
     const {resultado:resultadoCompensacion,parametros} = calCompensacion;
 

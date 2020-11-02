@@ -31,9 +31,13 @@ export const startLoginEmailPassword =( email,password ) =>{
             const usuarioCorrecto =  respuesta.filter( Usuario => Usuario.email === email)
             
             if(usuarioCorrecto[0]?.hash_clave === password){
-                dispatch( login( usuarioCorrecto[0].rut, usuarioCorrecto[0].nombre ));
-                dispatch( finishLoading() );
+
+                setTimeout(() => {
+                    dispatch( login( usuarioCorrecto[0].rut, usuarioCorrecto[0].nombre ));
+                    dispatch( finishLoading() );
                 Swal.close();
+                }, 1000);
+                
             }else{
                 dispatch(finishLoading());
                 Swal.fire('Error','Usuario y/o Contraseña incorrecto','error');   

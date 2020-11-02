@@ -8,6 +8,7 @@ export const loadDiary = ( uid )=>{
     const diary=[];
 
     diarySnap.forEach(snapHijo =>{
+        console.log(snapHijo)
         diary.push({
             uid:snapHijo.uid,
             ...snapHijo
