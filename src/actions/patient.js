@@ -40,7 +40,7 @@ export const startLoadInfoPaciente = (rutPaciente) => {
             dispatch(startLoadCompensacion(rutPaciente));
 
             // Disparamos el action para comenzar a cargar la compensacion del paciente con datos no en duro
-            dispatch(startLoadCompensacionn());
+            dispatch(startLoadCompensacionn(rutPaciente));
 
         }).catch(e => {
             Swal.fire('Error',e.message,'error');
@@ -102,17 +102,33 @@ export const setCompensacion = (compensacion)=>({
 })
 
 //action oara cargar datos relevantes para la compensación. Luego hay que borrar una "N".
-export const startLoadCompensacionn = () => {
+export const startLoadCompensacionn = (rutPaciente) => {
     return async(dispatch) => {
         await axios({
             method:'GET',
             url: 'http://localhost:4000/getCompensacion'
         }).then(res => {
             const respuesta = res.data;
-            console.log(respuesta);
+            
+            const compensacion = respuesta.filter( compensacion => compensacion.rut === rutPaciente )
+
+            console.log(compensacion)
+
+            dispatch(setCompensacionn(compensacion));
+
+            
         })
     }
 }
+
+export const setCompensacionn = (compensacion)=>({
+    type: types.setCompensacionn,
+    payload: compensacion
+})
+
+export const clearCompensacionn = ()=>({
+    type:types.clearCompensacionn
+}) 
 
 // Action para limpiar el estado de enfermedades del store.
 export const clearActiveEnfermedad = ()=>({

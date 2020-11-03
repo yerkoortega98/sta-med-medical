@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 
 import { MedicalVainas } from './MedicalVainas';
-import { clearActiveEnfermedad, clearInfoPaciente, patientIsCheckingFalse}from '../../actions/patient';
+import { clearActiveEnfermedad, clearCompensacion, clearCompensacionn, clearInfoPaciente, patientIsCheckingFalse}from '../../actions/patient';
 import { diaryClearActiveDiary } from '../../actions/diary';
 
 
@@ -17,9 +17,9 @@ export const MedicalScreen = () => {
     
     const { enfermedades,isChecking } = useSelector(state => state.pacienteActivo);
 
-    const { rutPaciente, infoPaciente } = useSelector(state => state.pacienteActivo);
+    const {  infoPaciente } = useSelector(state => state.pacienteActivo);
     
-    const { nombre, edad, ejercicio, fumador, IMC }= infoPaciente[0];
+    const { nombre,rut:rutPaciente, edad, ejercicio, fumador, IMC }= infoPaciente[0];
 
     
     const handleBackView = async()=>{
@@ -29,6 +29,8 @@ export const MedicalScreen = () => {
         dispatch(diaryClearActiveDiary());
         dispatch(clearInfoPaciente());
         dispatch(clearActiveEnfermedad());
+        dispatch(clearCompensacion());
+        dispatch(clearCompensacionn());
         
     }
     

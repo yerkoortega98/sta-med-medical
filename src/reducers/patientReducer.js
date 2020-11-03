@@ -56,6 +56,24 @@ export const patientReducer = ( state=initialState, action )=>{
                 isChecking:false
             }
         
+        case types.setCompensacionn:
+            return{
+                ...state,
+                compensacionn:[...action.payload]
+            }
+        
+        case types.clearCompensacionn:
+            return{
+                ...state,
+                compensacionn:[]
+            }
+        
+            case types.clearCompensacion:
+                return{
+                    ...state,
+                    compensacion:[]
+                }
+        
         default:
             return state;
     }

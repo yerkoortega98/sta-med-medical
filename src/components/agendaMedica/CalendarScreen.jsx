@@ -35,9 +35,7 @@ export const CalendarScreen = () => {
     
     const onDoubleClick = (e)=>{
 
-
         dispatch(diarySetActive(e));
-
         dispatch( startLoadInfoPaciente(e.rutPaciente));
         
     }
