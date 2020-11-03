@@ -2,7 +2,7 @@ import React from 'react'
 
 export const CalendarDiary = ({ event }) =>{
 
-    const {  nombrePaciente } = event;
+    const { nombrePaciente } = event;
 
     return (
        

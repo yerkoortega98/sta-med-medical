@@ -3,11 +3,7 @@ import axios from 'axios';
 import moment from 'moment'
 // Creamos un nuevo action ascyncronico para retornar una lista de pacientes solo del medico correspondiente.
 export const startLoadingDiary = ( uid ) =>{
-   
     return async( dispatch )=>{
-
-        
-
         await axios({
             method:'GET',
             url:'http://localhost:4000/getAgenda'
@@ -32,13 +28,9 @@ export const startLoadingDiary = ( uid ) =>{
                     end:endConsulta.toDate()
                 })
             })
-            console.log('Agenda: ',agenda);
-            dispatch(setDiary( agenda ));
            
-        })
-        
-        
-       
+            dispatch(setDiary( agenda ));         
+        })   
    }    
 }
 

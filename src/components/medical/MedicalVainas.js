@@ -19,10 +19,9 @@ export const MedicalVainas = ({...props}) => {
     
     const { compensacion } = useSelector(state => state.pacienteActivo)
 
-    console.log('Compensacion:',compensacion)
+    
     const { ParametrosCompensacion } = compensacion[0];
 
-    console.log('Parametros:',ParametrosCompensacion)
     const { 
             PAS, PAD,
             hbglic, glicemia,
