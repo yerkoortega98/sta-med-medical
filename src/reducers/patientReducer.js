@@ -6,7 +6,8 @@ const initialState={
     infoPaciente:null,
     enfermedades:[],
     compensacion:null,
-    laboratorio:null
+    laboratorio:null,
+    compensacionn:[]
 }
 
 export const patientReducer = ( state=initialState, action )=>{
