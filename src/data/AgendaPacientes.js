@@ -293,6 +293,44 @@ export const Agenda = [
                 PTJEEpoc:9
             }
         
+    },
+    {
+        'rutPaciente':'78456848',
+        'ParametrosCompensacion':
+            {
+                PAS: 90,
+                PAD: 70,
+                hbglic: 5 ,
+                glicemia: 69 ,
+                CT:200 ,
+                TG: 140 ,
+                LDL: 160,
+                HDL: 50,
+                Sexo: 'Masculino',
+                TSH:0.5,
+                T4L: 1.85,
+                uremia:15,
+                VFG: 60,
+                microalbuminuria:15,
+                nureico : 40,
+                PTJEEpilepsia: 0,
+                temblor:1 ,
+                equilibrio:1,
+                rigidez:1,
+                lento:1,
+                arrastre:1,
+                suma:5,
+                PTJEAsma:4,
+                PTJEArtrosis:0,
+                Rx:null,
+                D:0,
+                C:0,
+                B:0,
+                I:0,
+                PTJEEpoc:9
+            }
+        
     }
+
 
 ]

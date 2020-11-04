@@ -112,8 +112,6 @@ export const startLoadCompensacionn = (rutPaciente) => {
             
             const compensacion = respuesta.filter( compensacion => compensacion.rut === rutPaciente )
 
-            console.log(compensacion)
-
             dispatch(setCompensacionn(compensacion));
 
             
