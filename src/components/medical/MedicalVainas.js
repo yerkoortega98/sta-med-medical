@@ -119,8 +119,8 @@ export const MedicalVainas = ({...props}) => {
 
 
 
-            const validacionSexoHombre = respuestaHombre();
-            const validacionSexoMujer = respuestaMujer();
+            const validacionSexoHombre = respuestaHombre[0];
+            const validacionSexoMujer = respuestaMujer[0];
             const sexo = ()=>{
                 if(validacionSexoHombre){
                     
@@ -268,6 +268,45 @@ export const MedicalVainas = ({...props}) => {
 
             console.log('Dis/ATE:  ',resultado)
             return {resultado};
+        }else if(props.enfermedad === 'HTA'){
+            
+
+            const respuestaPAS = compensacionn.filter(com=> com.nombre_param === 'pa_sist');
+            const respuestaPAD = compensacionn.filter(com=> com.nombre_param === 'pa_dist');
+            
+            const parametroPAS = respuestaPAS[0];
+            const parametroPAD = respuestaPAD[0];
+
+            const validacionPAS = ()=>{
+                if(parametroPAS){
+                    const { valor:PAS } = parametroPAS;
+                    return PAS;
+                }else{
+
+                    const PAS = 0;
+                    return PAS;
+                }
+            };
+
+            const PAS = validacionPAS();
+
+            const validacionPAD = ()=>{
+                if(parametroPAD){
+                    const {valor:PAD} = parametroPAD;
+
+                    return PAD;
+                }else{
+                    const PAD = 0;
+
+                    return PAD;
+                }
+            };
+
+            const PAD = validacionPAD();
+
+            const resultado = calcCompesacionHTA(PAS,PAD);
+            console.log('HTA:',resultado)
+            return { resultado }; 
         }
     }   
 
@@ -277,7 +316,7 @@ export const MedicalVainas = ({...props}) => {
 
    if(resultIconizacion){
         const {resultado:result} = resultIconizacion;
-        console.log("Resultado",result);
+        console.log("Resultado vaina: ",result);
    }
 
     //Algoritmo con informacion estatica, que luego será reemplazado por el codigo de arriba.    
