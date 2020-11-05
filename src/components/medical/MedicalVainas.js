@@ -333,6 +333,228 @@ export const MedicalVainas = ({...props}) => {
             console.log("epilepsia: "+resultado);
             return {resultado};
 
+        }else if(props.enfermedad === 'Park'){
+
+            const respuestaTemblor = compensacionn.filter(com => com.nombre_param === 'Temblor');
+            const respuestaEquilibrio = compensacionn.filter(com => com.nombre_param === 'Problema de equilibrio');
+            const respuestaRigidez = compensacionn.filter(com => com.nombre_param === 'Rigidez muscular');
+            const respuestaLento = compensacionn.filter(com => com.nombre_param === 'Movimiento lento');
+            const respuestaArrastre = compensacionn.filter(com => com.nombre_param === 'Arrastre de los pies');
+
+            const parametroTemblor = respuestaTemblor[0];
+            const parametroEquilibrio = respuestaEquilibrio[0];
+            const parametroRigidez = respuestaRigidez[0];
+            const parametroLento = respuestaLento[0];
+            const parametroArrastre = respuestaArrastre[0];
+
+            const validarTemblor = () => {
+                if(parametroTemblor) {
+                    const {valor:temblor} = parametroTemblor;
+
+                    return temblor;
+                }else{
+                    const temblor = 0;
+                    
+                    return temblor;
+                }
+            }
+
+            const validarEquilibrio = () => {
+                if(parametroEquilibrio) {
+                    const {valor:equilibrio} = parametroEquilibrio;
+
+                    return equilibrio;
+                }else{
+                    const equilibrio = 0;
+                    
+                    return equilibrio;
+                }
+            }
+
+            const validarRigidez = () => {
+                if(parametroRigidez) {
+                    const {valor:rigidez} = parametroRigidez;
+
+                    return rigidez;
+                }else{
+                    const rigidez = 0;
+                    
+                    return rigidez;
+                }
+            }
+
+            const validarLento = () => {
+                if(parametroLento) {
+                    const {valor:lento} = parametroLento;
+
+                    return lento;
+                }else{
+                    const lento = 0;
+                    
+                    return lento;
+                }
+            }
+
+            const validarArrastre = () => {
+                if(parametroArrastre) {
+                    const {valor:arrastre} = parametroArrastre;
+
+                    return arrastre;
+                }else{
+                    const arrastre = 0;
+                    
+                    return arrastre;
+                }
+            }
+
+            const temblor = validarTemblor();
+            const equilibrio = validarEquilibrio(); 
+            const rigidez = validarRigidez();
+            const lento = validarLento();
+            const arrastre = validarArrastre();
+
+            const suma = temblor + equilibrio + rigidez + lento + arrastre;
+
+            const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
+            console.log("Park: "+resultado);
+            return {resultado};
+
+        }else if(props.enfermedad === 'Asma'){
+
+            const respuestaPTJEAsma = compensacionn.filter(com=> com.nombre_param === 'PTJEAsma');
+
+            const parametroPTJEAsma = respuestaPTJEAsma[0];
+
+            const validarPTJEAsma = () => {
+                if(parametroPTJEAsma) {
+                    const {valor:PTJEAsma} = parametroPTJEAsma;
+
+                    return PTJEAsma;
+
+                }else{
+                    const PTJEAsma = 0;
+
+                    return PTJEAsma;
+                }
+            }
+
+            const PTJEAsma = validarPTJEAsma();
+
+            const resultado = calcCompensacionAsma(PTJEAsma);
+            console.log("Asma: "+resultado);
+            return {resultado};
+
+        }else if(props.enfermedad === 'Artrosis'){
+
+            const respuestaRx = compensacionn.filter(com => com.nombre_param === 'Rx');
+            const respuestaDolor = compensacionn.filter(com => com.nombre_param === 'Dolor articular');
+            const respuestaCrujido = compensacionn.filter(com => com.nombre_param === 'Crujido articular');
+            const respuestaBloqueo = compensacionn.filter(com => com.nombre_param === 'Bloqueo articular');
+            const respuestaInflamacion = compensacionn.filter(com => com.nombre_param === 'Inflamación articular');
+
+            const parametroRx = respuestaRx[0];
+            const parametroDolor = respuestaDolor[0];
+            const parametroCrujido = respuestaCrujido[0];
+            const parametroBloqueo = respuestaBloqueo[0];
+            const parametroInflamacion = respuestaInflamacion[0];
+
+            const validarRX = () => {
+                if (parametroRx) {
+                    const Rx = true;
+
+                    return Rx;
+                } else {
+                    const Rx = false;
+
+                    return Rx;
+                }
+            }
+
+            const validarDolor = () => {
+                if (parametroDolor) {
+                    const Dolor = parametroDolor;
+
+                    return Dolor;
+                } else {
+                    const Dolor = 0;
+
+                    return Dolor;
+                }
+            }
+
+            const validarCrujido = () => {
+                if (parametroCrujido) {
+                    const Crujido = parametroCrujido;
+
+                    return Crujido;
+                } else {
+                    const Crujido = 0;
+
+                    return Crujido;
+                }
+            }
+
+            const validarBloqueo = () => {
+                if (parametroBloqueo) {
+                    const Bloqueo = parametroBloqueo;
+
+                    return Bloqueo;
+                } else {
+                    const Bloqueo = 0;
+
+                    return Bloqueo;
+                }
+            }
+
+            const validarInflamacion = () => {
+                if (parametroInflamacion) {
+                    const Inflamacion = parametroInflamacion;
+
+                    return Inflamacion;
+                } else {
+                    const Inflamacion = 0;
+
+                    return Inflamacion;
+                }
+            }
+
+
+            const Rx = validarRX();
+            const D = validarDolor();
+            const C = validarCrujido();
+            const B = validarBloqueo();
+            const I = validarInflamacion();
+
+            const PTJEArtrosis = D + C + B + I;
+
+            const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
+            console.log("Artrosis: "+resultado);
+            return {resultado};
+
+        }else if(props.enfermedad === 'Epoc'){
+
+            const respuestaPTJEEpoc = compensacionn.filter(com=> com.nombre_param === 'PTJEEpoc');
+
+            const parametroPTJEpoc = respuestaPTJEEpoc[0];
+
+            const validarPTJEEpoc = () => {
+                if(parametroPTJEpoc) {
+                    const {valor:PTJEEpoc} = parametroPTJEpoc;
+
+                    return PTJEEpoc;
+
+                }else{
+                    const PTJEEpoc = 0;
+
+                    return PTJEEpoc;
+                }
+            }
+
+            const PTJEEpoc = validarPTJEEpoc();
+
+            const resultado = calcCompensacionEpoc(PTJEEpoc);
+            console.log("Epoc: "+resultado);
+            return {resultado};
         }
     }   
 
@@ -409,6 +631,8 @@ export const MedicalVainas = ({...props}) => {
 
     const {resultado:resultadoCompensacion} = calCompensacion;
 
+    console.log(resultadoCompensacion);
+
     // const dispatch = useDispatch();
 
     // // Activar modal
@@ -429,7 +653,7 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p>Compensación <i  className={`fas ${ resultadoCompensacion  }`}></i></p>
+                                <p>Compensación <i  className={`fas ${ resultIconizacion  }`}></i></p>
                                 <p>Laboratorio <i className="far fa-question-circle text-primary"></i></p>
                                 <p>Sintomas <i className="fas fa-times text-danger"></i></p>
                                 <p>Avisos:   <span className="text-success">Ninguno</span></p>
