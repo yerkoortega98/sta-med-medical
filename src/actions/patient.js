@@ -24,21 +24,25 @@ export const startLoadInfoPaciente = (rutPaciente) => {
         await axios({
             method:'GET',
             url:'http://localhost:4000/getInfoPaciente'
-        }).then(res =>{
+        }).then (res =>{
 
             const respuesta = res.data;
 
             const infoPaciente = respuesta.filter(info => info.rut === rutPaciente)
 
+            dispatch(setInfoPaciente(infoPaciente));   
            
-            dispatch(setInfoPaciente(infoPaciente));     
-            dispatch(startLoadEnfermedad(rutPaciente));
-            dispatch(startLoadCompensacion(rutPaciente));
 
 
         }).catch(e => {
             Swal.fire('Error',e.message,'error');
         })
+        
+          
+        await dispatch(startLoadEnfermedad(rutPaciente));
+        await dispatch(startLoadCompensacion(rutPaciente));
+        await dispatch(startLoadLaboratorio());
+        
         setTimeout(() => {
             dispatch(patientIsCheckingTrue());
             Swal.close();
@@ -51,6 +55,11 @@ export const startLoadInfoPaciente = (rutPaciente) => {
 export const setInfoPaciente = (infoPaciente)=>({
     type:types.setInfoPaciente,
     payload:infoPaciente
+})
+
+// Action para limpiar el estado de infoPaciente del store.
+export const clearInfoPaciente = ()=>({
+    type:types.clearInfoPaciente
 })
 
 // Action para comenzar a cargar enfermedades del paciente respectivo
@@ -77,6 +86,11 @@ export const setEnfermedad = (enfermedades)=>({
     payload:enfermedades
 })
 
+// Action para limpiar el estado de enfermedades del store.
+export const clearActiveEnfermedad = ()=>({
+    type:types.clearActiveEnfermedad
+})
+
 //action oara cargar datos relevantes para la compensación. Luego hay que borrar una "N".
 export const startLoadCompensacion = (rutPaciente) => {
     return async(dispatch) => {
@@ -90,7 +104,6 @@ export const startLoadCompensacion = (rutPaciente) => {
 
             dispatch(setCompensacion(compensacion));
 
-            
         })
     }
 }
@@ -104,15 +117,34 @@ export const clearCompensacion = ()=>({
     type:types.clearCompensacion
 }) 
 
-// Action para limpiar el estado de enfermedades del store.
-export const clearActiveEnfermedad = ()=>({
-    type:types.clearActiveEnfermedad
+export const startLoadLaboratorio = ()=>{
+    return async(dispatch)=>{
+
+        await axios({
+            method:'GET',
+            url:'http://localhost:4000/getLaboratorio'
+        }).then(res =>{
+            const laboratorio = res.data;
+
+            dispatch(setLaboratorio(laboratorio));
+
+        }).catch(e =>{
+            console.log(e);
+        })
+
+    }
+}
+
+export const setLaboratorio = (laboratorio)=>({
+    type:types.setLaboratorio,
+    payload: laboratorio
 })
 
-// Action para limpiar el estado de infoPaciente del store.
-export const clearInfoPaciente = ()=>({
-    type:types.clearInfoPaciente
+export const clearLaboratorio = ()=>({
+    type:types.clearLaboratorio
 })
+
+
 
 export const patientIsCheckingTrue = ()=>({
     type:types.patientIsCheckingTrue

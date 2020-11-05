@@ -17,15 +17,22 @@ export const MedicalVainas = ({...props}) => {
     
     const { infoPaciente } = useSelector(state => state.pacienteActivo);
 
-    const { compensacion } = useSelector(state => state.pacienteActivo);
+    const { compensacion,laboratorio } = useSelector(state => state.pacienteActivo);
 
     const { peso,edad }= infoPaciente[0];
+
    
     const iconizacion=()=>{
        
         if(props.enfermedad === 'DM'){
             const respuesta = compensacion.filter(com => com.nombre_param === 'Hemoglobina glicosilada')
             const respuesta2 = compensacion.filter(com => com => com.nombre_param === 'Glicemia')
+
+            const respLab = laboratorio.filter(lab => lab.condicion_cr === 'DM');
+
+            console.log(respLab);
+
+            
             
             const parametroHemoglobina = respuesta[0];
             

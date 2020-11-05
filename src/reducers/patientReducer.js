@@ -60,6 +60,18 @@ export const patientReducer = ( state=initialState, action )=>{
                 ...state,
                 compensacion:[]
             }
+
+        case types.setLaboratorio:
+            return{
+                ...state,
+                laboratorio:[...action.payload]
+            }
+
+        case types.clearLaboratorio:
+            return{
+                ...state,
+                laboratorio:[]
+            }
         
         
         default:
