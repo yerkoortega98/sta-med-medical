@@ -307,6 +307,32 @@ export const MedicalVainas = ({...props}) => {
             const resultado = calcCompesacionHTA(PAS,PAD);
             console.log('HTA:',resultado)
             return { resultado }; 
+
+        }else if(props.enfermedad === 'Epi'){
+
+            const respuestPTJEEpilepsia = compensacionn.filter(com=> com.nombre_param === 'PTJEEpilepsia');
+
+            const parametroPTJEEpilepsia = respuestPTJEEpilepsia[0];
+
+            const validarPTJEEpilepsia = () => {
+                if(parametroPTJEEpilepsia) {
+                    const {valor:PTJEEpilepsia} = parametroPTJEEpilepsia;
+
+                    return PTJEEpilepsia;
+
+                }else{
+                    const PTJEEpilepsia = 0;
+
+                    return PTJEEpilepsia;
+                }
+            }
+
+            const PTJEEpilepsia = validarPTJEEpilepsia();
+
+            const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
+            console.log("epilepsia: "+resultado);
+            return {resultado};
+
         }
     }   
 
