@@ -5,25 +5,25 @@ export const calcCompesacionHTA = (PAS,PAD)=>{
     if( PAS < 90 && PAS> 60){
         
         const resultado = "fa-arrow-down text-danger";
-        console.log("dentro de if fa-arrow_down",PAS,PAD);
+        
         
         return resultado;
 
     }else if ( (PAS >= 140 && PAS < 140) || ( PAD >= 60 &&  PAD < 90) ) {
         // Verde
         const resultado = "fa-check text-success";
-        console.log("dentro de fa-check text-success",PAS,PAD);
+       
         return resultado;
 
     } else if( (PAS >= 150 && PAS < 180) || PAS < 90){
         const resultado = "fa-times text-danger";
-        console.log("dentro de fa-times text-danger",PAS,PAD);
+      
         return resultado;
 
     } else if ( PAS >= 180 || PAD >=110 ){
         // Alarma
         const resultado = "fa-exclamation-triangle text-warning";
-        console.log("dentro de fa-exclamation",PAS,PAD);
+       
         
         return resultado;
     }

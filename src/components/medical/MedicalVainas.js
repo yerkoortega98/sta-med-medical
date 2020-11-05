@@ -10,6 +10,7 @@ import {
     calcCompensacionParkinson,
     calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia
  } from '../../helpers/compensacion';
+import { evaluacionDireccionSube } from '../../helpers/laboratorio';
 // import { VainasModal } from './VainasModal';
 
 
@@ -30,9 +31,68 @@ export const MedicalVainas = ({...props}) => {
 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'DM');
 
-            console.log(respLab);
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Calculo de laboratorio
+
+            const examen1 = respLab[0];
+
+            // Validamos la prioridad del examen
+            const validacionExamen1 =()=>{
+                if(examen1.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen1.nombre_examen);
+                    
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        if(respuestaValidacionUno === 'bueno'){
+                            console.log("Entro al if")
+                            const resultado = evaluacionDireccionSube(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                            console.log("ValidacionDireccion:",resultado)
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+
+                            const resultado = "malo";
+                            return resultado;
+                        }
+                    }
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    console.log("Resultado Validacion Direccion Fuera del if: ",resultadoValidacionDireccion)
+
+
+                    return respuestaValidacionUno;
+                }
+            }
+
+            const dataExamen1 = validacionExamen1();
+
+            console.log("dataExamen1: ",dataExamen1);
 
             
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Calculo para la compensacion
             
             const parametroHemoglobina = respuesta[0];
             
