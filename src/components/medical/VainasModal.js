@@ -20,15 +20,12 @@ Modal.setAppElement('#root')
 
 export const VainasModal = ( parametros ) => {
 
-    const {parametros:parametrosGenerales} =parametros;
-
     const { modalOpen } = useSelector(state => state.ui)
 
     const dispatch = useDispatch();
 
     
-    const closeModal = () => {
-        
+    const closeModal = () => {  
         dispatch(uiCloseModal());
     }
     return (
@@ -46,14 +43,14 @@ export const VainasModal = ( parametros ) => {
             </div>
             <div>
                 <ol>
-                    {
+                    {/* {
                         
                         parametrosGenerales.map(parm => (
                             <li key={parm.id}>{parm.nombreParametro} : {parm.valor} </li> 
                         ))
                             
                         
-                    }
+                    } */}
                 </ol>
                     
                 

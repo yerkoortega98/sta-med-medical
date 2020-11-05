@@ -4,17 +4,15 @@ import { Redirect } from 'react-router-dom';
 
 
 import { MedicalVainas } from './MedicalVainas';
-import { clearActiveEnfermedad, clearCompensacion, clearCompensacionn, clearInfoPaciente, patientIsCheckingFalse}from '../../actions/patient';
-import { diaryClearActiveDiary } from '../../actions/diary';
+import { clearActiveEnfermedad, clearCompensacion, clearInfoPaciente, patientIsCheckingFalse}from '../../actions/patient';
+// import { diaryClearActiveDiary } from '../../actions/diary';
 
 
 
 export const MedicalScreen = () => {
 
     const dispatch = useDispatch();
-    
-    const  { activePatient }  = useSelector(state => state.diary)
-    
+     
     const { enfermedades,isChecking } = useSelector(state => state.pacienteActivo);
 
     const {  infoPaciente } = useSelector(state => state.pacienteActivo);
@@ -26,11 +24,9 @@ export const MedicalScreen = () => {
 
         await dispatch(patientIsCheckingFalse());
 
-        dispatch(diaryClearActiveDiary());
         dispatch(clearInfoPaciente());
         dispatch(clearActiveEnfermedad());
         dispatch(clearCompensacion());
-        dispatch(clearCompensacionn());
         
     }
     
@@ -58,7 +54,7 @@ export const MedicalScreen = () => {
     
             <div className="Vainas">
             { 
-                    (activePatient)
+                    (isChecking)
                     ?
                     (enfermedades.map( enfermedad => (
                         <MedicalVainas

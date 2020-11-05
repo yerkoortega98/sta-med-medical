@@ -11,7 +11,6 @@ export const startLoadingDiary = ( uid ) =>{
             
             const respuesta  = res.data;
             
-            
             const agendaSnap = respuesta.filter( agenda => agenda.medicoRut === uid);
             const agenda=[];
     
@@ -41,14 +40,5 @@ export const setDiary = ( diary ) =>({
 
 export const diaryLogoutCleaning =()=> ({
     type: types.diaryLogoutCleaning
-})
-
-export const diarySetActive = ( diary )=>({
-    type:types.diarySetActive,
-    payload:diary
-})
-
-export const diaryClearActiveDiary=()=>({
-    type: types.diaryClearActiveDiary
 })
 

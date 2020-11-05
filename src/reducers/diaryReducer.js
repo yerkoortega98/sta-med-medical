@@ -3,18 +3,13 @@ import {types} from '../types/types';
 
 const initialState={
     diary:[],
-    activePatient:[]
+    // activePatient:[]
 }
 
 export const diaryReducer = ( state=initialState, action )=>{
     
     switch (action.type) {
         
-        case types.diarySetActive:
-            return{
-                ...state,
-                activePatient:action.payload
-            }
         case types.diaryLoad:
             return {
                 ...state,
@@ -25,12 +20,6 @@ export const diaryReducer = ( state=initialState, action )=>{
             return {
                 ...state,
                 diary:[]
-            }
-
-        case types.diaryClearActiveDiary:
-            return {
-                ...state,
-                activePatient:null
             }
       
         default:

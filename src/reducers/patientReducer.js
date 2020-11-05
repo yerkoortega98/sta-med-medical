@@ -5,9 +5,8 @@ const initialState={
     isChecking:false,
     infoPaciente:null,
     enfermedades:[],
-    compensacion:null,
-    laboratorio:null,
-    compensacionn:[]
+    compensacion:[],
+    laboratorio:[],
 }
 
 export const patientReducer = ( state=initialState, action )=>{
@@ -32,12 +31,6 @@ export const patientReducer = ( state=initialState, action )=>{
                 infoPaciente:[...action.payload]
             }
         
-        case types.setCompensacion:
-            return{
-                ...state,
-                compensacion:action.payload
-            }
-        
         case types.clearInfoPaciente:
             return{
                 ...state,
@@ -56,23 +49,18 @@ export const patientReducer = ( state=initialState, action )=>{
                 isChecking:false
             }
         
-        case types.setCompensacionn:
+        case types.setCompensacion:
             return{
                 ...state,
-                compensacionn:[...action.payload]
+                compensacion:[...action.payload]
             }
         
-        case types.clearCompensacionn:
+        case types.clearCompensacion:
             return{
                 ...state,
-                compensacionn:[]
+                compensacion:[]
             }
         
-            case types.clearCompensacion:
-                return{
-                    ...state,
-                    compensacion:[]
-                }
         
         default:
             return state;

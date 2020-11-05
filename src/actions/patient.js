@@ -1,8 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
 import {types} from '../types/types';
-import { Agenda } from '../data/AgendaPacientes'
+
 
 
 // Primero realizamos una peticion al BackEnd para buscar el rut en la lista de pacientes existentes
@@ -31,16 +30,11 @@ export const startLoadInfoPaciente = (rutPaciente) => {
 
             const infoPaciente = respuesta.filter(info => info.rut === rutPaciente)
 
-            // Disparamos el action para cargar la informacion en el store.
-            dispatch(setInfoPaciente(infoPaciente));
-            // Disparamos el action para comenzar a cargar las enfermedades del paciente.
+           
+            dispatch(setInfoPaciente(infoPaciente));     
             dispatch(startLoadEnfermedad(rutPaciente));
-
-            // Disparamos el action para comenzar a cargar la compensacion del paciente
             dispatch(startLoadCompensacion(rutPaciente));
 
-            // Disparamos el action para comenzar a cargar la compensacion del paciente con datos no en duro
-            dispatch(startLoadCompensacionn(rutPaciente));
 
         }).catch(e => {
             Swal.fire('Error',e.message,'error');
@@ -69,12 +63,11 @@ export const startLoadEnfermedad = (rutPaciente) => {
         }).then(res =>{
             const respuesta = res.data;
             
-
             const enfermedades = respuesta.filter( enf => enf.rut === rutPaciente)
 
             dispatch( setEnfermedad(enfermedades));  
 
-            // dispatch(patientIsCheckingTrue());
+            
         })
     }
 }
@@ -84,25 +77,8 @@ export const setEnfermedad = (enfermedades)=>({
     payload:enfermedades
 })
 
-// ------------------------------------------------------------------\\
-// Action para cargar compensacion estatica
-
-export const startLoadCompensacion = (rutPaciente)=> {
-    return (dispatch)=>{
-        
-        const compensacionSnap =  Agenda.filter( agenda => agenda.rutPaciente === rutPaciente); 
-
-        dispatch(setCompensacion(compensacionSnap));
-    }  
-}
-
-export const setCompensacion = (compensacion)=>({
-    type:types.setCompensacion,
-    payload:compensacion
-})
-
 //action oara cargar datos relevantes para la compensación. Luego hay que borrar una "N".
-export const startLoadCompensacionn = (rutPaciente) => {
+export const startLoadCompensacion = (rutPaciente) => {
     return async(dispatch) => {
         await axios({
             method:'GET',
@@ -112,20 +88,20 @@ export const startLoadCompensacionn = (rutPaciente) => {
             
             const compensacion = respuesta.filter( compensacion => compensacion.rut === rutPaciente )
 
-            dispatch(setCompensacionn(compensacion));
+            dispatch(setCompensacion(compensacion));
 
             
         })
     }
 }
 
-export const setCompensacionn = (compensacion)=>({
-    type: types.setCompensacionn,
+export const setCompensacion = (compensacion)=>({
+    type: types.setCompensacion,
     payload: compensacion
 })
 
-export const clearCompensacionn = ()=>({
-    type:types.clearCompensacionn
+export const clearCompensacion = ()=>({
+    type:types.clearCompensacion
 }) 
 
 // Action para limpiar el estado de enfermedades del store.
@@ -136,10 +112,6 @@ export const clearActiveEnfermedad = ()=>({
 // Action para limpiar el estado de infoPaciente del store.
 export const clearInfoPaciente = ()=>({
     type:types.clearInfoPaciente
-})
-
-export const clearCompensacion = ()=>({
-    type:types.clearCompensacion
 })
 
 export const patientIsCheckingTrue = ()=>({

@@ -1,6 +1,6 @@
 // los actions, son simplemente funciones parecidas a los helpers
 import { finishLoading, startLoading } from "./ui"
-import { diaryClearActiveDiary, diaryLogoutCleaning } from "./diary";
+import {  diaryLogoutCleaning } from "./diary";
 import { types } from "../types/types"
 
 import axios from 'axios';
@@ -20,11 +20,6 @@ export const startLoginEmailPassword =( email,password ) =>{
                 Swal.showLoading();
             }
         });
-
-        axios({
-            method:'GET',
-            url:`http://localhost:4000/getUsers/${ email }`
-        })
 
         axios({
             method:'GET',
@@ -68,7 +63,7 @@ export const startLogout =()=>{
     return async(dispatch)=>{
         dispatch(logout());
         dispatch(diaryLogoutCleaning())
-        dispatch(diaryClearActiveDiary());
+        
     }
 }
 

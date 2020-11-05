@@ -17,15 +17,15 @@ export const MedicalVainas = ({...props}) => {
     
     const { infoPaciente } = useSelector(state => state.pacienteActivo);
 
-    const { compensacionn } = useSelector(state => state.pacienteActivo);
+    const { compensacion } = useSelector(state => state.pacienteActivo);
 
     const { peso,edad }= infoPaciente[0];
    
     const iconizacion=()=>{
        
         if(props.enfermedad === 'DM'){
-            const respuesta = compensacionn.filter(com => com.nombre_param === 'Hemoglobina glicosilada')
-            const respuesta2 = compensacionn.filter(com => com => com.nombre_param === 'Glicemia')
+            const respuesta = compensacion.filter(com => com.nombre_param === 'Hemoglobina glicosilada')
+            const respuesta2 = compensacion.filter(com => com => com.nombre_param === 'Glicemia')
             
             const parametroHemoglobina = respuesta[0];
             
@@ -71,8 +71,8 @@ export const MedicalVainas = ({...props}) => {
         }else if(props.enfermedad === 'Hipotir'){
 
 
-            const respuestaTSH = compensacionn.filter(com => com.nombre_param === 'TSH')
-            const respuestaT4L = compensacionn.filter(com => com => com.nombre_param === 'T4 libre')
+            const respuestaTSH = compensacion.filter(com => com.nombre_param === 'TSH')
+            const respuestaT4L = compensacion.filter(com => com => com.nombre_param === 'T4 libre')
 
 
             const parametroTSH = respuestaTSH[0];
@@ -111,11 +111,11 @@ export const MedicalVainas = ({...props}) => {
 
         }else if(props.enfermedad === 'IRC'){
 
-            const respuestaMicroalb = compensacionn.filter(com => com.nombre_param === 'Microalbuminuria')
-            const respuestaUremia = compensacionn.filter(com => com.nombre_param === 'Uremia')
-            const respuestaHombre = compensacionn.filter(com => com.nombre_param === 'Creatinina hombre')
-            const respuestaMujer = compensacionn.filter(com => com.nombre_param === 'Creatinina mujer')
-            const respuestaNureico = compensacionn.filter(com => com.nombre_param === 'Nitrogeno ureico')
+            const respuestaMicroalb = compensacion.filter(com => com.nombre_param === 'Microalbuminuria')
+            const respuestaUremia = compensacion.filter(com => com.nombre_param === 'Uremia')
+            const respuestaHombre = compensacion.filter(com => com.nombre_param === 'Creatinina hombre')
+            const respuestaMujer = compensacion.filter(com => com.nombre_param === 'Creatinina mujer')
+            const respuestaNureico = compensacion.filter(com => com.nombre_param === 'Nitrogeno ureico')
 
 
 
@@ -180,11 +180,11 @@ export const MedicalVainas = ({...props}) => {
             return{resultado};   
         }else if(props.enfermedad === 'Dis/ATE'){
 
-            const respuestaHombre = compensacionn.filter(com => com.nombre_param === 'HDL hombres')
-            const respuestaMujer = compensacionn.filter(com => com.nombre_param === 'HDL mujeres')
-            const respuestaLDL = compensacionn.filter(com => com.nombre_param === 'LDL');
-            const respuestaTG = compensacionn.filter(com => com.nombre_param === 'Trigliceridos')
-            const respuestaCT = compensacionn.filter(com => com.nombre_param === 'Colesterol')
+            const respuestaHombre = compensacion.filter(com => com.nombre_param === 'HDL hombres')
+            const respuestaMujer = compensacion.filter(com => com.nombre_param === 'HDL mujeres')
+            const respuestaLDL = compensacion.filter(com => com.nombre_param === 'LDL');
+            const respuestaTG = compensacion.filter(com => com.nombre_param === 'Trigliceridos')
+            const respuestaCT = compensacion.filter(com => com.nombre_param === 'Colesterol')
             
 
             const validacionSexoHombre = respuestaHombre[0];
@@ -271,8 +271,8 @@ export const MedicalVainas = ({...props}) => {
         }else if(props.enfermedad === 'HTA'){
             
 
-            const respuestaPAS = compensacionn.filter(com=> com.nombre_param === 'pa_sist');
-            const respuestaPAD = compensacionn.filter(com=> com.nombre_param === 'pa_dist');
+            const respuestaPAS = compensacion.filter(com=> com.nombre_param === 'pa_sist');
+            const respuestaPAD = compensacion.filter(com=> com.nombre_param === 'pa_dist');
             
             const parametroPAS = respuestaPAS[0];
             const parametroPAD = respuestaPAD[0];
@@ -303,6 +303,8 @@ export const MedicalVainas = ({...props}) => {
             };
 
             const PAD = validacionPAD();
+            console.log("PAD: ",PAD);
+            console.log("PAS: ",PAS);
 
             const resultado = calcCompesacionHTA(PAS,PAD);
             console.log('HTA:',resultado)
@@ -310,7 +312,7 @@ export const MedicalVainas = ({...props}) => {
 
         }else if(props.enfermedad === 'Epi'){
 
-            const respuestPTJEEpilepsia = compensacionn.filter(com=> com.nombre_param === 'PTJEEpilepsia');
+            const respuestPTJEEpilepsia = compensacion.filter(com=> com.nombre_param === 'PTJEEpilepsia');
 
             const parametroPTJEEpilepsia = respuestPTJEEpilepsia[0];
 
@@ -335,11 +337,11 @@ export const MedicalVainas = ({...props}) => {
 
         }else if(props.enfermedad === 'Park'){
 
-            const respuestaTemblor = compensacionn.filter(com => com.nombre_param === 'Temblor');
-            const respuestaEquilibrio = compensacionn.filter(com => com.nombre_param === 'Problema de equilibrio');
-            const respuestaRigidez = compensacionn.filter(com => com.nombre_param === 'Rigidez muscular');
-            const respuestaLento = compensacionn.filter(com => com.nombre_param === 'Movimiento lento');
-            const respuestaArrastre = compensacionn.filter(com => com.nombre_param === 'Arrastre de los pies');
+            const respuestaTemblor = compensacion.filter(com => com.nombre_param === 'Temblor');
+            const respuestaEquilibrio = compensacion.filter(com => com.nombre_param === 'Problema de equilibrio');
+            const respuestaRigidez = compensacion.filter(com => com.nombre_param === 'Rigidez muscular');
+            const respuestaLento = compensacion.filter(com => com.nombre_param === 'Movimiento lento');
+            const respuestaArrastre = compensacion.filter(com => com.nombre_param === 'Arrastre de los pies');
 
             const parametroTemblor = respuestaTemblor[0];
             const parametroEquilibrio = respuestaEquilibrio[0];
@@ -421,7 +423,7 @@ export const MedicalVainas = ({...props}) => {
 
         }else if(props.enfermedad === 'Asma'){
 
-            const respuestaPTJEAsma = compensacionn.filter(com=> com.nombre_param === 'PTJEAsma');
+            const respuestaPTJEAsma = compensacion.filter(com=> com.nombre_param === 'PTJEAsma');
 
             const parametroPTJEAsma = respuestaPTJEAsma[0];
 
@@ -446,11 +448,11 @@ export const MedicalVainas = ({...props}) => {
 
         }else if(props.enfermedad === 'Artrosis'){
 
-            const respuestaRx = compensacionn.filter(com => com.nombre_param === 'Rx');
-            const respuestaDolor = compensacionn.filter(com => com.nombre_param === 'Dolor articular');
-            const respuestaCrujido = compensacionn.filter(com => com.nombre_param === 'Crujido articular');
-            const respuestaBloqueo = compensacionn.filter(com => com.nombre_param === 'Bloqueo articular');
-            const respuestaInflamacion = compensacionn.filter(com => com.nombre_param === 'Inflamación articular');
+            const respuestaRx = compensacion.filter(com => com.nombre_param === 'Rx');
+            const respuestaDolor = compensacion.filter(com => com.nombre_param === 'Dolor articular');
+            const respuestaCrujido = compensacion.filter(com => com.nombre_param === 'Crujido articular');
+            const respuestaBloqueo = compensacion.filter(com => com.nombre_param === 'Bloqueo articular');
+            const respuestaInflamacion = compensacion.filter(com => com.nombre_param === 'Inflamación articular');
 
             const parametroRx = respuestaRx[0];
             const parametroDolor = respuestaDolor[0];
@@ -533,7 +535,7 @@ export const MedicalVainas = ({...props}) => {
 
         }else if(props.enfermedad === 'EPOC'){
 
-            const respuestaPTJEEpoc = compensacionn.filter(com=> com.nombre_param === 'PTJEEpoc');
+            const respuestaPTJEEpoc = compensacion.filter(com=> com.nombre_param === 'PTJEEpoc');
 
             const parametroPTJEpoc = respuestaPTJEEpoc[0];
 
