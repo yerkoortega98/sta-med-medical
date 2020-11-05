@@ -15,7 +15,7 @@ import {
 
 export const MedicalVainas = ({...props}) => {
     
-    const { compensacion,infoPaciente } = useSelector(state => state.pacienteActivo);
+    const { infoPaciente } = useSelector(state => state.pacienteActivo);
 
     const { compensacionn } = useSelector(state => state.pacienteActivo);
 
@@ -531,7 +531,7 @@ export const MedicalVainas = ({...props}) => {
             console.log("Artrosis: "+resultado);
             return {resultado};
 
-        }else if(props.enfermedad === 'Epoc'){
+        }else if(props.enfermedad === 'EPOC'){
 
             const respuestaPTJEEpoc = compensacionn.filter(com=> com.nombre_param === 'PTJEEpoc');
 
@@ -542,7 +542,6 @@ export const MedicalVainas = ({...props}) => {
                     const {valor:PTJEEpoc} = parametroPTJEpoc;
 
                     return PTJEEpoc;
-
                 }else{
                     const PTJEEpoc = 0;
 
@@ -554,86 +553,13 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionEpoc(PTJEEpoc);
             console.log("Epoc: "+resultado);
-            return {resultado};
+            return { resultado };
         }
     }   
 
     const resultIconizacion = iconizacion();
 
-
-
-   if(resultIconizacion){
-        const {resultado:result} = resultIconizacion;
-        console.log("Resultado vaina: ",result);
-   }
-
-    //Algoritmo con informacion estatica, que luego será reemplazado por el codigo de arriba.    
-    // Algortimo para colocar parametros en codigos dependiendo de la enfermedadad
-        
-    const { ParametrosCompensacion } = compensacion[0];
-
-  
-
-    const { PAS, PAD,hbglic, glicemia,TSH, T4L, uremia, VFG, microalbuminuria, nureico,PTJEEpilepsia,temblor,equilibrio,rigidez,lento,arrastre,suma,PTJEAsma,PTJEArtrosis,Rx,D,C,B,I,PTJEEpoc,CT,TG,LDL,HDL,Sexo } = ParametrosCompensacion;
-   
-    const compensacionPrueba = ()=>{
-        
-        if(props.enfermedad === 'HTA'){
-
-            const resultado = calcCompesacionHTA(PAS,PAD);
-            return {resultado};
-
-        }else if(props.enfermedad ==='DM'){
-            
-            const resultado = calcCompensacionDiabetes(hbglic, glicemia);
-            return {resultado};
-
-        }else if (props.enfermedad === 'Hipotir'){
-            
-            const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
-            
-            return {resultado};
-        }else if (props.enfermedad === 'IRC'){
-
-            const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
-            return {resultado};
-
-        }else if(props.enfermedad === 'Epi'){
-
-            const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
-            return {resultado};
-
-        }else if(props.enfermedad === 'Park'){
-
-            const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
-            return {resultado};
-
-        } else if ( props.enfermedad === 'Asma') {
-
-            const resultado = calcCompensacionAsma(PTJEAsma);
-            return {resultado};
-
-        }else if(props.enfermedad === 'Artrosis'){
-            const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
-            return {resultado};
-        }
-        else if(props.enfermedad === 'Epoc'){
-            const resultado = calcCompensacionEpoc(PTJEEpoc);
-            return {resultado};
-        }else if( props.enfermedad === 'Dis/ATE'){
-
-            const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,Sexo);
-            return {resultado};
-        }
-    }
-
-    const calCompensacion = compensacionPrueba();
-
-    const {resultado:resultadoCompensacion} = calCompensacion;
-
-    console.log(resultadoCompensacion);
-
-    // const dispatch = useDispatch();
+    const { resultado:result } = resultIconizacion;
 
     // // Activar modal
     // const handleClick = ()=>{
@@ -653,7 +579,7 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p>Compensación <i  className={`fas ${ resultIconizacion  }`}></i></p>
+                                <p>Compensación <i  className={`fas ${ result }`}></i></p>
                                 <p>Laboratorio <i className="far fa-question-circle text-primary"></i></p>
                                 <p>Sintomas <i className="fas fa-times text-danger"></i></p>
                                 <p>Avisos:   <span className="text-success">Ninguno</span></p>
