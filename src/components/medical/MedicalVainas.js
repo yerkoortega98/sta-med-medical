@@ -1191,6 +1191,7 @@ export const MedicalVainas = ({...props}) => {
             const parametroCrujido = respuestaCrujido[0];
             const parametroBloqueo = respuestaBloqueo[0];
             const parametroInflamacion = respuestaInflamacion[0];
+            console.log(parametroRx);
 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Artrosis');
 
@@ -1205,7 +1206,6 @@ export const MedicalVainas = ({...props}) => {
                     return resultado;
                 }else{
                     const resultado = "malo";
-                    console.log("entro aqui");
                     return resultado;
                 }
             }
@@ -1218,22 +1218,21 @@ export const MedicalVainas = ({...props}) => {
 
             //Calcular compensacion
             
-
             const validarRX = () => {
                 if (parametroRx) {
                     const Rx = true;
-
+                    
                     return Rx;
                 } else {
                     const Rx = false;
-
+                    
                     return Rx;
                 }
             }
 
             const validarDolor = () => {
                 if (parametroDolor) {
-                    const Dolor = parametroDolor;
+                    const {valor:Dolor} = parametroDolor;
 
                     return Dolor;
                 } else {
@@ -1245,7 +1244,7 @@ export const MedicalVainas = ({...props}) => {
 
             const validarCrujido = () => {
                 if (parametroCrujido) {
-                    const Crujido = parametroCrujido;
+                    const {valor:Crujido} = parametroCrujido;
 
                     return Crujido;
                 } else {
@@ -1257,7 +1256,7 @@ export const MedicalVainas = ({...props}) => {
 
             const validarBloqueo = () => {
                 if (parametroBloqueo) {
-                    const Bloqueo = parametroBloqueo;
+                    const {valor:Bloqueo} = parametroBloqueo;
 
                     return Bloqueo;
                 } else {
@@ -1269,7 +1268,7 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInflamacion = () => {
                 if (parametroInflamacion) {
-                    const Inflamacion = parametroInflamacion;
+                    const {valor:Inflamacion} = parametroInflamacion;
 
                     return Inflamacion;
                 } else {
@@ -1287,8 +1286,10 @@ export const MedicalVainas = ({...props}) => {
             const I = validarInflamacion();
 
             const PTJEArtrosis = D + C + B + I;
-
+            console.log(D,C,B,I,Rx);
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
+
+            console.log("resultado Artrosis:",resultado)
            
             return {resultado, resultadoLaboratorio};
 
