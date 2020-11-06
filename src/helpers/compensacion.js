@@ -1,6 +1,6 @@
 export const calcCompesacionHTA = (PAS,PAD)=>{
 
-    console.log(PAS,PAD);
+    
 
     if( PAS < 90 && PAS> 60){
         

@@ -10,7 +10,7 @@ import {
     calcCompensacionParkinson,
     calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia
  } from '../../helpers/compensacion';
-import { evaluacionDireccionSube } from '../../helpers/laboratorio';
+import { evaluacionDireccionSube, evaluacionDireccionBaja } from '../../helpers/laboratorio';
 // import { VainasModal } from './VainasModal';
 
 
@@ -37,13 +37,22 @@ export const MedicalVainas = ({...props}) => {
             // Calculo de laboratorio
 
             const examen1 = respLab[0];
+            const examen2 = respLab[1];
+            // const examen3 = respLab[2]; es nivel prioridad 4
+            const examen4 = respLab[3];
+            const examen5 = respLab[4];
+            // const examen6 = respLab[5];
+            // const examen7 = respLab[6];
 
             // Validamos la prioridad del examen
             const validacionExamen1 =()=>{
                 if(examen1.nivel_prioridad === 1){
                     
                     const [respData] = compensacion.filter(com => com.nombre_param === examen1.nombre_examen);
-                    
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
                     const validacionPasoUno =()=>{
                         if(respData){
                             const paso1 = "bueno";
@@ -64,29 +73,230 @@ export const MedicalVainas = ({...props}) => {
                     // corte_E2: D
 
                     const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
                         if(respuestaValidacionUno === 'bueno'){
-                            console.log("Entro al if")
-                            const resultado = evaluacionDireccionSube(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
-                            console.log("ValidacionDireccion:",resultado)
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen1.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
                             return resultado;
                         }else if(respuestaValidacionUno === 'malo'){
-
-                            const resultado = "malo";
+                            const resultado = "malo";                            
                             return resultado;
                         }
                     }
+
                     const resultadoValidacionDireccion = validacionDireccion();
 
-                    console.log("Resultado Validacion Direccion Fuera del if: ",resultadoValidacionDireccion)
-
-
-                    return respuestaValidacionUno;
+                    return resultadoValidacionDireccion;
                 }
             }
 
             const dataExamen1 = validacionExamen1();
 
-            console.log("dataExamen1: ",dataExamen1);
+            console.log(examen1.nombre_examen,": ",dataExamen1);
+
+            // Validacion Examen 2
+            const validacionExamen2 =()=>{
+                if(examen1.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen2.nombre_examen);
+                    
+                  
+
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen2.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen2 = validacionExamen2();
+
+            console.log(examen2.nombre_examen,": ",dataExamen2);
+
+            // Examen 4
+            
+            const validacionExamen4 =()=>{
+                if(examen1.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen4.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen4.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen4.corte_sub,examen4.corte_normal,examen4.corte_E1,examen4.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen4.corte_sub,examen4.corte_normal,examen4.corte_E1,examen4.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen4 = validacionExamen4();
+
+            console.log(examen4.nombre_examen,": ",dataExamen4);
+
+            // Examen numero 5
+            const validacionExamen5 =()=>{
+                if(examen5.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen5.nombre_examen);
+
+                    
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen5.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen5.corte_sub,examen5.corte_normal,examen5.corte_E1,examen5.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen5.corte_sub,examen5.corte_normal,examen5.corte_E1,examen5.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen5 = validacionExamen5();
+
+            console.log(examen5.nombre_examen,": ",dataExamen5);
+
+
 
             
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -132,14 +342,145 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
             
-            console.log('DM:  ',resultado);
+           
             return {resultado};
             
         }else if(props.enfermedad === 'Hipotir'){
 
 
-            const respuestaTSH = compensacion.filter(com => com.nombre_param === 'TSH')
-            const respuestaT4L = compensacion.filter(com => com => com.nombre_param === 'T4 libre')
+            const respuestaTSH = compensacion.filter(com => com.nombre_param === 'TSH');
+            const respuestaT4L = compensacion.filter(com => com => com.nombre_param === 'T4 libre');
+
+            
+            const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Hipotir');
+
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Calculo de laboratorio
+
+            const examen1 = respLab[2];
+            const examen2 = respLab[3];
+
+            // Validamos la prioridad del examen
+            const validacionExamen1 =()=>{
+                if(examen1.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen1.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen1.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen1 = validacionExamen1();
+
+            console.log(examen1.nombre_examen,": ",dataExamen1);
+
+            // Validacion Examen 2
+            const validacionExamen2 =()=>{
+                if(examen2.nivel_prioridad === 2){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen2.nombre_examen);
+                  
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = true;
+                            return paso1;
+                        }else{
+                            const paso1 = "bueno";
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === true){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen2.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'bueno'){
+                            const resultado = "bueno";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen2 = validacionExamen2();
+
+            console.log(examen2.nombre_examen,": ",dataExamen2);
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // calculoCompensacion.
+
 
 
             const parametroTSH = respuestaTSH[0];
@@ -173,7 +514,7 @@ export const MedicalVainas = ({...props}) => {
             const T4L = validacionT4L();
 
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
-            console.log('Hipotir:  ',resultado)
+           
             return{resultado};
 
         }else if(props.enfermedad === 'IRC'){
@@ -183,6 +524,389 @@ export const MedicalVainas = ({...props}) => {
             const respuestaHombre = compensacion.filter(com => com.nombre_param === 'Creatinina hombre')
             const respuestaMujer = compensacion.filter(com => com.nombre_param === 'Creatinina mujer')
             const respuestaNureico = compensacion.filter(com => com.nombre_param === 'Nitrogeno ureico')
+
+            const respLab = laboratorio.filter(lab => lab.condicion_cr === 'IRC');
+
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Calculo de laboratorio
+
+            const examen1 = respLab[1];
+            const examen2 = respLab[2];
+            const examen3 = respLab[3];
+            const examen4 = respLab[4];
+            const examen5 = respLab[5];
+            const examen6 = respLab[6];
+
+             // Validamos la prioridad del examen
+             const validacionExamen1 =()=>{
+                if(examen1.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen1.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen1.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen1 = validacionExamen1();
+
+            console.log(examen1.nombre_examen,": ",dataExamen1);
+
+
+             // Validamos la prioridad del examen
+             const validacionExamen2 =()=>{
+                if(examen2.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen2.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen2.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen2 = validacionExamen2();
+
+            console.log(examen2.nombre_examen,": ",dataExamen2);
+
+             // Validamos la prioridad del examen
+             const validacionExamen3 =()=>{
+                if(examen1.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen3.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen3.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen3.corte_sub,examen3.corte_normal,examen3.corte_E1,examen3.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen3.corte_sub,examen3.corte_normal,examen3.corte_E1,examen3.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen3 = validacionExamen3();
+
+            console.log(examen3.nombre_examen,": ",dataExamen3);
+
+             // Validamos la prioridad del examen
+             const validacionExamen4 =()=>{
+                if(examen1.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen4.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen4.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen4.corte_sub,examen4.corte_normal,examen4.corte_E1,examen4.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen4.corte_sub,examen4.corte_normal,examen4.corte_E1,examen4.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen4 = validacionExamen4();
+
+            console.log(examen4.nombre_examen,": ",dataExamen4);
+
+             // Validamos la prioridad del examen
+             const validacionExamen5 =()=>{
+                if(examen5.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen5.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen5.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen5.corte_sub,examen5.corte_normal,examen5.corte_E1,examen5.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen5.corte_sub,examen5.corte_normal,examen5.corte_E1,examen5.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen5 = validacionExamen5();
+
+            console.log(examen5.nombre_examen,": ",dataExamen5);
+
+             // Validamos la prioridad del examen
+             const validacionExamen6 =()=>{
+                if(examen6.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen6.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen6.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen6.corte_sub,examen6.corte_normal,examen6.corte_E1,examen6.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen6.corte_sub,examen6.corte_normal,examen6.corte_E1,examen6.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen6 = validacionExamen6();
+
+            console.log(examen6.nombre_examen,": ",dataExamen6);
+
+            
+
+             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // calculoCompensacion.
 
 
 
@@ -243,15 +967,353 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
        
-            console.log('IRC:  ',resultado)
+          
             return{resultado};   
         }else if(props.enfermedad === 'Dis/ATE'){
-
             const respuestaHombre = compensacion.filter(com => com.nombre_param === 'HDL hombres')
             const respuestaMujer = compensacion.filter(com => com.nombre_param === 'HDL mujeres')
             const respuestaLDL = compensacion.filter(com => com.nombre_param === 'LDL');
             const respuestaTG = compensacion.filter(com => com.nombre_param === 'Trigliceridos')
             const respuestaCT = compensacion.filter(com => com.nombre_param === 'Colesterol')
+
+            
+            const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Dis/ATE');
+            console.log(respLab)
+
+
+            const examen1 = respLab[1];
+            const examen2 = respLab[2];
+            const examen3 = respLab[3];
+            const examen4 = respLab[4];
+            const examen5 = respLab[6];
+             // Validamos la prioridad del examen
+             const validacionExamen1 =()=>{
+                if(examen1.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen1.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen1.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen1 = validacionExamen1();
+
+            console.log(examen1.nombre_examen,": ",dataExamen1);
+
+            // Validamos la prioridad del examen
+            const validacionExamen2 =()=>{
+                if(examen2.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen2.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen2.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen2 = validacionExamen2();
+
+            console.log(examen2.nombre_examen,": ",dataExamen2);
+
+            // Validamos la prioridad del examen
+            const validacionExamen3 =()=>{
+                if(examen3.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen3.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen3.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen3.corte_sub,examen3.corte_normal,examen3.corte_E1,examen3.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen3.corte_sub,examen3.corte_normal,examen3.corte_E1,examen3.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen3 = validacionExamen3();
+
+            console.log(examen3.nombre_examen,": ",dataExamen3);
+
+            // Validamos la prioridad del examen
+            const validacionExamen4 =()=>{
+                if(examen4.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen4.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen1.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen4.corte_sub,examen4.corte_normal,examen4.corte_E1,examen4.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen4.corte_sub,examen4.corte_normal,examen4.corte_E1,examen4.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen4 = validacionExamen4();
+
+            console.log(examen4.nombre_examen,": ",dataExamen4);
+
+            // Validamos la prioridad del examen
+            const validacionExamen5 =()=>{
+                if(examen5.nivel_prioridad === 1){
+                    
+                    const [respData] = compensacion.filter(com => com.nombre_param === examen5.nombre_examen);
+
+                  
+
+                    // Se valida si encuentra el examen correspondiente.
+                    const validacionPasoUno =()=>{
+                        if(respData){
+                            const paso1 = "bueno";
+
+                            return paso1;
+                        }else{
+                            const paso1 = "malo";
+
+                            return paso1;
+                        }
+                    }
+
+                    const respuestaValidacionUno = validacionPasoUno();
+
+                    // corte_sub: A
+                    // corte_normal: B
+                    // corte_E1: C
+                    // corte_E2: D
+
+                    const validacionDireccion = ()=>{
+                        // Si se encuentra el examen, se pasa a validar la direccion.
+                        if(respuestaValidacionUno === 'bueno'){
+
+
+                            // Se valida cual es la direccion de el examen
+                            const respDir = () =>{
+                                if(examen1.direccion === "sube"){
+                                    const resultado = evaluacionDireccionSube(respData.valor,examen5.corte_sub,examen5.corte_normal,examen5.corte_E1,examen5.corte_E2);
+                                    return resultado;
+                                }else{
+                                    const resultado = evaluacionDireccionBaja(respData.valor,examen5.corte_sub,examen5.corte_normal,examen5.corte_E1,examen5.corte_E2);
+                                    return resultado;
+                                }
+                            }
+
+                            const resultado = respDir();
+
+                            return resultado;
+                        }else if(respuestaValidacionUno === 'malo'){
+                            const resultado = "malo";                            
+                            return resultado;
+                        }
+                    }
+
+                    const resultadoValidacionDireccion = validacionDireccion();
+
+                    return resultadoValidacionDireccion;
+                }
+            }
+
+            const dataExamen5 = validacionExamen5();
+
+            console.log(examen5.nombre_examen,": ",dataExamen5);
+
+
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Calculo de laboratorio
+
+
+
+
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // calculoCompensacion.
             
 
             const validacionSexoHombre = respuestaHombre[0];
@@ -260,12 +1322,12 @@ export const MedicalVainas = ({...props}) => {
                 if(validacionSexoHombre){
                     const {valor:HDL} = validacionSexoHombre;
                     const sexo = 'Masculino'
-                    console.log('hombre respuesta:',HDL)
+                  
                     return {HDL,sexo};
                 }else if(validacionSexoMujer){
                     const {valor:HDL} = validacionSexoMujer;
                     const sexo = 'Femenino'
-                    console.log('mujer respuesta:',HDL)
+                    
                     return {HDL,sexo};
                 }else{
                     const HDL=0;
@@ -301,11 +1363,8 @@ export const MedicalVainas = ({...props}) => {
 
                     return TG;
                 } else {
-
                     const TG = 0;
-
-                    return TG;
-                    
+                    return TG; 
                 }
             }
 
@@ -318,26 +1377,20 @@ export const MedicalVainas = ({...props}) => {
             const validacionCT = ()=>{
                 if (parametroCT) {
                     const {valor:CT} = parametroCT;
-
                     return CT;
                 } else {
-
                     const CT = 0;
-
-                    return CT;
-                    
+                    return CT; 
                 }
             }
 
             const CT = validacionCT();
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
-
-            console.log('Dis/ATE:  ',resultado)
             return {resultado};
+
         }else if(props.enfermedad === 'HTA'){
             
-
             const respuestaPAS = compensacion.filter(com=> com.nombre_param === 'pa_sist');
             const respuestaPAD = compensacion.filter(com=> com.nombre_param === 'pa_dist');
             
@@ -349,7 +1402,6 @@ export const MedicalVainas = ({...props}) => {
                     const { valor:PAS } = parametroPAS;
                     return PAS;
                 }else{
-
                     const PAS = 0;
                     return PAS;
                 }
@@ -360,21 +1412,16 @@ export const MedicalVainas = ({...props}) => {
             const validacionPAD = ()=>{
                 if(parametroPAD){
                     const {valor:PAD} = parametroPAD;
-
                     return PAD;
                 }else{
                     const PAD = 0;
-
                     return PAD;
                 }
             };
 
             const PAD = validacionPAD();
-            console.log("PAD: ",PAD);
-            console.log("PAS: ",PAS);
-
             const resultado = calcCompesacionHTA(PAS,PAD);
-            console.log('HTA:',resultado)
+         
             return { resultado }; 
 
         }else if(props.enfermedad === 'Epi'){
@@ -386,20 +1433,16 @@ export const MedicalVainas = ({...props}) => {
             const validarPTJEEpilepsia = () => {
                 if(parametroPTJEEpilepsia) {
                     const {valor:PTJEEpilepsia} = parametroPTJEEpilepsia;
-
                     return PTJEEpilepsia;
-
                 }else{
                     const PTJEEpilepsia = 0;
-
                     return PTJEEpilepsia;
                 }
             }
 
             const PTJEEpilepsia = validarPTJEEpilepsia();
-
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
-            console.log("epilepsia: "+resultado);
+          
             return {resultado};
 
         }else if(props.enfermedad === 'Park'){
@@ -485,7 +1528,7 @@ export const MedicalVainas = ({...props}) => {
             const suma = temblor + equilibrio + rigidez + lento + arrastre;
 
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
-            console.log("Park: "+resultado);
+            
             return {resultado};
 
         }else if(props.enfermedad === 'Asma'){
@@ -510,7 +1553,7 @@ export const MedicalVainas = ({...props}) => {
             const PTJEAsma = validarPTJEAsma();
 
             const resultado = calcCompensacionAsma(PTJEAsma);
-            console.log("Asma: "+resultado);
+          
             return {resultado};
 
         }else if(props.enfermedad === 'Artrosis'){
@@ -597,7 +1640,7 @@ export const MedicalVainas = ({...props}) => {
             const PTJEArtrosis = D + C + B + I;
 
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
-            console.log("Artrosis: "+resultado);
+           
             return {resultado};
 
         }else if(props.enfermedad === 'EPOC'){
@@ -621,7 +1664,6 @@ export const MedicalVainas = ({...props}) => {
             const PTJEEpoc = validarPTJEEpoc();
 
             const resultado = calcCompensacionEpoc(PTJEEpoc);
-            console.log("Epoc: "+resultado);
             return { resultado };
         }
     }   
