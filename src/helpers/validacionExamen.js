@@ -48,7 +48,7 @@ export const validacionExamen =( examen,compensacion )=>{
 
         const resultadoValidacionDireccion = validacionDireccion();
 
-        console.log("Resultado prioridad 1: ",resultadoValidacionDireccion);
+     
         return resultadoValidacionDireccion;
     }else if(examen.nivel_prioridad === 2){
                     
@@ -93,19 +93,19 @@ export const validacionExamen =( examen,compensacion )=>{
         }
 
         const resultadoValidacionDireccion = validacionDireccion();
-        console.log("Resultado prioridad 2: ",resultadoValidacionDireccion);
+      
         return resultadoValidacionDireccion;
 
     }else if(examen.nivel_prioridad === 3){
     
         const resultadoValidacionDireccion = "malo";
-        console.log("Resultado prioridad 3: ",resultadoValidacionDireccion);
+        
         return resultadoValidacionDireccion;
 
     }else if(examen.nivel_prioridad === 4){
 
         const resultadoValidacionDireccion = "malo";
-        console.log("Resultado prioridad 4: ",resultadoValidacionDireccion);
+       
         return resultadoValidacionDireccion;
 
     }

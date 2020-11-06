@@ -10,6 +10,7 @@ import {
     calcCompensacionParkinson,
     calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia
  } from '../../helpers/compensacion';
+import { iconizacionDM } from '../../helpers/laboratorio';
 
 
 
@@ -56,7 +57,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
+         
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
@@ -72,7 +73,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen2 = validarInfoExamen2();
-            console.log("Segunda prueba: ",examen2.nombre_examen,": ",dataExamen2);
+        
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
             const examen3 = respLab[2];
@@ -87,7 +88,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen3 = validarInfoExamen3();
-            console.log("Tercera prueba: ",examen3.nombre_examen,": ",dataExamen3);
+        
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
 
@@ -103,7 +104,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen4 = validarInfoExamen4();
-            console.log("Cuarta prueba: ",examen4.nombre_examen,": ",dataExamen4);
+           
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 5
@@ -120,7 +121,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen5 = validarInfoExamen5();
-            console.log("Quinta prueba: ",examen5.nombre_examen,": ",dataExamen5);
+          
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 6
@@ -136,7 +137,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen6 = validarInfoExamen6();
-            console.log("Sexta Prueba: ",examen6.nombre_examen,": ",dataExamen6);
+            
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 7
@@ -152,11 +153,13 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen7 = validarInfoExamen7();
-            console.log("Septima prueba: ",examen7.nombre_examen,": ",dataExamen7);
-
            
 
+            const resultadoLaboratorio = iconizacionDM(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6,dataExamen7)
+
             console.log("Resultado Laboratorio: ",resultadoLaboratorio);
+
+            
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -226,7 +229,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1= validarInfoExamen1();
-            console.log("Primera prueba: ",examen1.nombre_examen,": ",dataExamen1);
+           
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
@@ -247,7 +250,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen2= validarInfoExamen2();
-            console.log("Segunda prueba: ",examen2.nombre_examen,": ",dataExamen2);
+          
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
 
@@ -266,7 +269,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen3= validarInfoExamen3();
-            console.log("Tercera prueba: ",examen3.nombre_examen,": ",dataExamen3);
+           
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
 
@@ -284,7 +287,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen4= validarInfoExamen4();
-            console.log("Cuarta prueba: ",examen4.nombre_examen,": ",dataExamen4);
+           
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
@@ -303,12 +306,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen5= validarInfoExamen5();
-            console.log("Quinta prueba: ",examen5.nombre_examen,": ",dataExamen5);
-
-
-          
-
-          
+           
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -381,7 +379,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
+           
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
@@ -397,7 +395,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen2 = validarInfoExamen2();
-            console.log("Segunda prueba: ",examen2.nombre_examen,": ",dataExamen2);
+           
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
             const examen3 = respLab[2];
@@ -412,7 +410,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen3 = validarInfoExamen3();
-            console.log("Tercera prueba: ",examen3.nombre_examen,": ",dataExamen3);
+         
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
 
@@ -428,7 +426,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen4 = validarInfoExamen4();
-            console.log("Cuarta prueba: ",examen4.nombre_examen,": ",dataExamen4);
+           
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 5
@@ -445,7 +443,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen5 = validarInfoExamen5();
-            console.log("Quinta prueba: ",examen5.nombre_examen,": ",dataExamen5);
+           
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 6
@@ -461,7 +459,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen6 = validarInfoExamen6();
-            console.log("Sexta Prueba: ",examen6.nombre_examen,": ",dataExamen6);                
+                       
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -554,7 +552,6 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
@@ -570,7 +567,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen2 = validarInfoExamen2();
-            console.log("Segunda prueba: ",examen2.nombre_examen,": ",dataExamen2);
+           
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
             const examen3 = respLab[2];
@@ -585,7 +582,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen3 = validarInfoExamen3();
-            console.log("Tercera prueba: ",examen3.nombre_examen,": ",dataExamen3);
+          
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
 
@@ -601,7 +598,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen4 = validarInfoExamen4();
-            console.log("Cuarta prueba: ",examen4.nombre_examen,": ",dataExamen4);
+          
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 5
@@ -618,7 +615,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen5 = validarInfoExamen5();
-            console.log("Quinta prueba: ",examen5.nombre_examen,": ",dataExamen5);
+          
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 6
@@ -634,7 +631,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen6 = validarInfoExamen6();
-            console.log("Sexta Prueba: ",examen6.nombre_examen,": ",dataExamen6);
+           
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 7
@@ -650,8 +647,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen7 = validarInfoExamen7();
-            console.log("Septima prueba: ",examen7.nombre_examen,": ",dataExamen7);
-
+         
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -766,7 +762,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
+         
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
@@ -782,7 +778,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen2 = validarInfoExamen2();
-            console.log("Segunda prueba: ",examen2.nombre_examen,": ",dataExamen2);
+            
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
             const examen3 = respLab[2];
@@ -797,7 +793,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen3 = validarInfoExamen3();
-            console.log("Tercera prueba: ",examen3.nombre_examen,": ",dataExamen3);
+         
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
 
@@ -813,7 +809,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen4 = validarInfoExamen4();
-            console.log("Cuarta prueba: ",examen4.nombre_examen,": ",dataExamen4);
+           
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 5
@@ -830,7 +826,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen5 = validarInfoExamen5();
-            console.log("Quinta prueba: ",examen5.nombre_examen,": ",dataExamen5);
+            
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 6
@@ -846,8 +842,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen6 = validarInfoExamen6();
-            console.log("Sexta Prueba: ",examen6.nombre_examen,": ",dataExamen6);
-
+           
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 7
 
@@ -861,12 +856,7 @@ export const MedicalVainas = ({...props}) => {
                     return resultado;
                 }
             }
-            const dataExamen7 = validarInfoExamen7();
-            console.log("Septima prueba: ",examen7.nombre_examen,": ",dataExamen7);
-
-
-
-
+            const dataExamen7 = validarInfoExamen7();          
             
             //------------------------------------------------------------------------------------//
 
@@ -927,7 +917,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
+            
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
@@ -943,7 +933,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen2 = validarInfoExamen2();
-            console.log("Segunda prueba: ",examen2.nombre_examen,": ",dataExamen2);
+          
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
             const examen3 = respLab[2];
@@ -958,7 +948,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen3 = validarInfoExamen3();
-            console.log("Tercera prueba: ",examen3.nombre_examen,": ",dataExamen3);
+         
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
 
@@ -974,10 +964,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
             const dataExamen4 = validarInfoExamen4();
-            console.log("Cuarta prueba: ",examen4.nombre_examen,": ",dataExamen4);
-
-            
-
+           
             const validarPTJEEpilepsia = () => {
                 if(parametroPTJEEpilepsia) {
                     const {valor:PTJEEpilepsia} = parametroPTJEEpilepsia;
@@ -1026,7 +1013,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",dataExamen1);
+         
 
             //calculo de compensación
 
@@ -1127,9 +1114,6 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",dataExamen1);
-
-
             //Calcular compensacion
 
 
@@ -1185,7 +1169,6 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
 
             //Calcular compensacion
             
@@ -1288,10 +1271,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba: ", dataExamen1);
-
-            
-
+           
             //calcular compensación 
 
             const validarPTJEEpoc = () => {
