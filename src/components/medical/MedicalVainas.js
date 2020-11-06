@@ -158,6 +158,7 @@ export const MedicalVainas = ({...props}) => {
             // Calculo para la compensacion
             
             const parametroHemoglobina = respuesta[0];
+            const parametroGlicemia = respuesta2[0];
             
             const validacionHBGLIC = ()=>{
                 if (parametroHemoglobina) {
@@ -171,31 +172,20 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
 
-            const hbglic = validacionHBGLIC();
-            
-
-            const parametroGlicemia = respuesta2[0];
-
-            const validacionGlicemia = ()=>{
-                
+            const validacionGlicemia = ()=>{                
                 if (parametroGlicemia) {
-                    
                     const { valor:glicemia} = parametroGlicemia;        
-
                     return glicemia;
                 } else {
                     const glicemia = 0;
                     return glicemia;
                 }
             }
-
+            const hbglic = validacionHBGLIC();
             const glicemia = validacionGlicemia();
             
-            
-
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
-            
-           
+        
             return {resultado};
             
         }else if(props.enfermedad === 'Hipotir'){
@@ -212,126 +202,107 @@ export const MedicalVainas = ({...props}) => {
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Calculo de laboratorio
 
-            console.log(respLab);
+             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Validacion examen 1
 
 
-            const examen1 = respLab[2];
-            const examen2 = respLab[3];
+            const examen1 = respLab[0];
 
-            // Validamos la prioridad del examen
-            const validacionExamen1 =()=>{
-                if(examen1.nivel_prioridad === 1){
-                    
-                    const [respData] = compensacion.filter(com => com.nombre_param === examen1.nombre_examen);
-
-                  
-
-                    // Se valida si encuentra el examen correspondiente.
-                    const validacionPasoUno =()=>{
-                        if(respData){
-                            const paso1 = "bueno";
-                            return paso1;
-                        }else{
-                            const paso1 = "malo";
-                            return paso1;
-                        }
+            const validarInfoExamen1 =() =>{
+                    if(examen1){
+                        const resultado = validacionExamen(examen1,compensacion);
+                        return resultado;
+                    }else{
+                        const resultado = "malo";
+                        console.log("entro aqui");
+                        return resultado;
                     }
+            }
 
-                    const respuestaValidacionUno = validacionPasoUno();
+            const dataExamen1= validarInfoExamen1();
+            console.log("Primera prueba: ",examen1.nombre_examen,": ",dataExamen1);
 
-                    // corte_sub: A
-                    // corte_normal: B
-                    // corte_E1: C
-                    // corte_E2: D
-
-                    const validacionDireccion = ()=>{
-                        // Si se encuentra el examen, se pasa a validar la direccion.
-                        if(respuestaValidacionUno === 'bueno'){
+             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Validacion examen 2
 
 
-                            // Se valida cual es la direccion de el examen
-                            const respDir = () =>{
-                                if(examen1.direccion === "sube"){
-                                    const resultado = evaluacionDireccionSube(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
-                                    return resultado;
-                                }else{
-                                    const resultado = evaluacionDireccionBaja(respData.valor,examen1.corte_sub,examen1.corte_normal,examen1.corte_E1,examen1.corte_E2);
-                                    return resultado;
-                                }
-                            }
 
-                            const resultado = respDir();
+            const examen2 = respLab[1];
 
-                            return resultado;
-                        }else if(respuestaValidacionUno === 'malo'){
-                            const resultado = "malo";                            
-                            return resultado;
-                        }
-                    }
-
-                    const resultadoValidacionDireccion = validacionDireccion();
-
-                    return resultadoValidacionDireccion;
+            const validarInfoExamen2 =() =>{
+                if(examen2){
+                    const resultado = validacionExamen(examen2,compensacion);
+                    return resultado;
+                }else{
+                    const resultado = "malo";
+                    console.log("entro aqui");
+                    return resultado;
                 }
             }
 
-            const dataExamen1 = validacionExamen1();
-
-            console.log(examen1.nombre_examen,": ",dataExamen1);
-
-            // Validacion Examen 2
-            const validacionExamen2 =()=>{
-                if(examen2.nivel_prioridad === 2){
-                    
-                    const [respData] = compensacion.filter(com => com.nombre_param === examen2.nombre_examen);
-                  
-                    // Se valida si encuentra el examen correspondiente.
-                    const validacionPasoUno =()=>{
-                        if(respData){
-                            const paso1 = true;
-                            return paso1;
-                        }else{
-                            const paso1 = "bueno";
-                            return paso1;
-                        }
-                    }
-
-                    const respuestaValidacionUno = validacionPasoUno();
-
-                    const validacionDireccion = ()=>{
-                        // Si se encuentra el examen, se pasa a validar la direccion.
-                        if(respuestaValidacionUno === true){
+            const dataExamen2= validarInfoExamen2();
+            console.log("Segunda prueba: ",examen2.nombre_examen,": ",dataExamen2);
+             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Validacion examen 3
 
 
-                            // Se valida cual es la direccion de el examen
-                            const respDir = () =>{
-                                if(examen2.direccion === "sube"){
-                                    const resultado = evaluacionDireccionSube(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
-                                    return resultado;
-                                }else{
-                                    const resultado = evaluacionDireccionBaja(respData.valor,examen2.corte_sub,examen2.corte_normal,examen2.corte_E1,examen2.corte_E2);
-                                    return resultado;
-                                }
-                            }
+            const examen3 = respLab[2];
 
-                            const resultado = respDir();
-
-                            return resultado;
-                        }else if(respuestaValidacionUno === 'bueno'){
-                            const resultado = "bueno";                            
-                            return resultado;
-                        }
-                    }
-
-                    const resultadoValidacionDireccion = validacionDireccion();
-
-                    return resultadoValidacionDireccion;
+            const validarInfoExamen3 =() =>{
+                if(examen3){
+                    const resultado = validacionExamen(examen3,compensacion);
+                    return resultado;
+                }else{
+                    const resultado = "malo";
+                    console.log("entro aqui");
+                    return resultado;
                 }
             }
 
-            const dataExamen2 = validacionExamen2();
+            const dataExamen3= validarInfoExamen3();
+            console.log("Tercera prueba: ",examen3.nombre_examen,": ",dataExamen3);
+             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Validacion examen 4
 
-            console.log(examen2.nombre_examen,": ",dataExamen2);
+            const examen4 = respLab[3];
+
+            const validarInfoExamen4 =() =>{
+                if(examen4){
+                    const resultado = validacionExamen(examen4,compensacion);
+                    return resultado;
+                }else{
+                    const resultado = "malo";
+                    console.log("entro aqui");
+                    return resultado;
+                }
+            }
+
+            const dataExamen4= validarInfoExamen4();
+            console.log("Cuarta prueba: ",examen4.nombre_examen,": ",dataExamen4);
+
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Validacion examen 4
+
+            const examen5 = respLab[4];
+
+            const validarInfoExamen5 =() =>{
+                if(examen5){
+                    const resultado = validacionExamen(examen5,compensacion);
+                    return resultado;
+                }else{
+                    const resultado = "malo";
+                    console.log("entro aqui");
+                    return resultado;
+                }
+            }
+
+            const dataExamen5= validarInfoExamen5();
+            console.log("Quinta prueba: ",examen5.nombre_examen,": ",dataExamen5);
+
+
+          
+
+          
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
