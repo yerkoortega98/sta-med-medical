@@ -10,7 +10,7 @@ import {
     calcCompensacionParkinson,
     calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia
  } from '../../helpers/compensacion';
-import { evaluacionDireccionSube, evaluacionDireccionBaja } from '../../helpers/laboratorio';
+import { evaluacionDireccionSube, evaluacionDireccionBaja, iconizacionDM } from '../../helpers/laboratorio';
 import { validacionExamen } from '../../helpers/validacionExamen';
 // import { VainasModal } from './VainasModal';
 
@@ -151,6 +151,10 @@ export const MedicalVainas = ({...props}) => {
             }
             const dataExamen7 = validarInfoExamen7();
             console.log("Septima prueba: ",examen7.nombre_examen,": ",dataExamen7);
+
+            const resultadoLaboratorio = iconizacionDM(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6,dataExamen7)
+
+            console.log("Resultado Laboratorio: ",resultadoLaboratorio);
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
