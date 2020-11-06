@@ -73,6 +73,8 @@ export const iconizacionDM = (examen1,examen2,examen3,examen4)=>{
 
     }else if(examen1 === "mediocre" || examen2 === "mediocre" || examen3 === "mediocre" || examen4 === "mediocre"){
         const resultado = "fa-plus fa-minus text-warning "
+
+        return resultado;
     }else{
         const resultado = "fa-check text-success";
        
