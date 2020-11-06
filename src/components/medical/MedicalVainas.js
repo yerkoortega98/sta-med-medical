@@ -1019,7 +1019,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
+            console.log("Primera Prueba:",dataExamen1);
 
             //calculo de compensación
 
@@ -1120,7 +1120,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
+            console.log("Primera Prueba:",dataExamen1);
 
 
             //Calcular compensacion
@@ -1281,7 +1281,7 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const dataExamen1 = validarInfoExamen1();
-            console.log("Primera Prueba:",examen1.nombre_examen,": ",dataExamen1);
+            console.log("Primera Prueba: ", dataExamen1);
 
             
 
