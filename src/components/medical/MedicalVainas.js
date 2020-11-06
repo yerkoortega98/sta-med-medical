@@ -1272,12 +1272,12 @@ export const MedicalVainas = ({...props}) => {
 
                     return Inflamacion;
                 } else {
+
                     const Inflamacion = 0;
 
                     return Inflamacion;
                 }
             }
-
 
             const Rx = validarRX();
             const D = validarDolor();
