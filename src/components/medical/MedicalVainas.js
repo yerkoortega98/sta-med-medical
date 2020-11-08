@@ -365,7 +365,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
            
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
 
         }else if(props.enfermedad === 'IRC'){
 
