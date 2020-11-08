@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
-import {  useSelector } from 'react-redux';
-// import { uiOpenModal } from '../../actions/ui';
+import {  useSelector, useDispatch } from 'react-redux';
+import { uiOpenModal } from '../../actions/ui';
 import { 
     calcCompensacionDiabetes, 
     calcCompensacionEpilepsia, 
@@ -26,14 +26,16 @@ import {
 
 
 import { validacionExamen } from '../../helpers/validacionExamen';
-// import { VainasModal } from './VainasModal';
+import { VainasModal } from './VainasModal';
 
 
 export const MedicalVainas = ({...props}) => {
+
+    const dispatch = useDispatch();
     
     const { infoPaciente } = useSelector(state => state.pacienteActivo);
 
-    const { compensacion,laboratorio } = useSelector(state => state.pacienteActivo);
+    const { compensacion,laboratorio, tratamiento } = useSelector(state => state.pacienteActivo);
 
     const { peso,edad }= infoPaciente[0];
 
@@ -46,6 +48,8 @@ export const MedicalVainas = ({...props}) => {
 
             // arreglo de examenes correspondientes a la condicion cronica DM
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'DM');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'DM');
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -168,8 +172,6 @@ export const MedicalVainas = ({...props}) => {
 
             const resultadoLaboratorio = iconizacionDM(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6,dataExamen7)
 
-            console.log("Resultado Laboratorio: ",resultadoLaboratorio);
-
             
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -206,7 +208,7 @@ export const MedicalVainas = ({...props}) => {
             
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
         
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
             
         }else if(props.enfermedad === 'Hipotir'){
 
@@ -216,6 +218,8 @@ export const MedicalVainas = ({...props}) => {
 
             
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Hipotir');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Hipotir');
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -372,6 +376,10 @@ export const MedicalVainas = ({...props}) => {
             const respuestaNureico = compensacion.filter(com => com.nombre_param === 'Nitrogeno ureico')
 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'IRC');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'IRC');
+
+            
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -545,7 +553,7 @@ export const MedicalVainas = ({...props}) => {
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
        
           
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
 
         }else if(props.enfermedad === 'Dis/ATE'){
             const respuestaHombre = compensacion.filter(com => com.nombre_param === 'HDL hombres')
@@ -556,6 +564,8 @@ export const MedicalVainas = ({...props}) => {
 
             
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Dis/ATE');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Dis/ATE');
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -759,7 +769,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
 
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
 
         }else if(props.enfermedad === 'HTA'){
             
@@ -767,6 +777,8 @@ export const MedicalVainas = ({...props}) => {
             const respuestaPAD = compensacion.filter(com=> com.nombre_param === 'pa_dist');
 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'HTA');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'HTA');
 
             //-----------------------------------------------------------------------------------//
 
@@ -919,7 +931,7 @@ export const MedicalVainas = ({...props}) => {
             const PAD = validacionPAD();
             const resultado = calcCompesacionHTA(PAS,PAD);
          
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
 
         }else if(props.enfermedad === 'Epi'){
 
@@ -928,6 +940,8 @@ export const MedicalVainas = ({...props}) => {
             const parametroPTJEEpilepsia = respuestPTJEEpilepsia[0];
 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Epi');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Epi');
 
             //Validacion de laboratorio
             
@@ -1013,7 +1027,7 @@ export const MedicalVainas = ({...props}) => {
             const PTJEEpilepsia = validarPTJEEpilepsia();
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
           
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
 
         }else if(props.enfermedad === 'Park'){
 
@@ -1030,6 +1044,11 @@ export const MedicalVainas = ({...props}) => {
             const parametroArrastre = respuestaArrastre[0];
 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Park');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Park');
+
+
+            //console.log(resTratamiento);
 
             //Validacion de laboratorio
             
@@ -1126,7 +1145,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
             
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
 
         }else if(props.enfermedad === 'Asma'){
 
@@ -1135,6 +1154,8 @@ export const MedicalVainas = ({...props}) => {
             const parametroPTJEAsma = respuestaPTJEAsma[0];
 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Asma');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Asma');
 
             //validacion laboratorio 
 
@@ -1176,7 +1197,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionAsma(PTJEAsma);
           
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
 
         }else if(props.enfermedad === 'Artrosis'){
 
@@ -1194,6 +1215,8 @@ export const MedicalVainas = ({...props}) => {
             console.log(parametroRx);
 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Artrosis');
+
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Artrosis');
 
             //validacion laboratorio 
 
@@ -1291,7 +1314,7 @@ export const MedicalVainas = ({...props}) => {
 
             console.log("resultado Artrosis:",resultado)
            
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
 
         }else if(props.enfermedad === 'EPOC'){
 
@@ -1299,7 +1322,9 @@ export const MedicalVainas = ({...props}) => {
 
             const parametroPTJEpoc = respuestaPTJEEpoc[0];
 
-            const respLab = laboratorio.filter(lab => lab.condicion_cr === 'EPOC');            
+            const respLab = laboratorio.filter(lab => lab.condicion_cr === 'EPOC');
+            
+            const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'EPOC');
 
             //validacion laboratorio 
 
@@ -1340,18 +1365,18 @@ export const MedicalVainas = ({...props}) => {
             const PTJEEpoc = validarPTJEEpoc();
 
             const resultado = calcCompensacionEpoc(PTJEEpoc);
-            return {resultado, resultadoLaboratorio};
+            return {resultado, resultadoLaboratorio, resTratamiento};
         }
     }   
 
     const resultIconizacion = iconizacion();
 
-    const { resultado:result, resultadoLaboratorio } = resultIconizacion;
+    const { resultado:result, resultadoLaboratorio, resTratamiento } = resultIconizacion;
 
-    // // Activar modal
-    // const handleClick = ()=>{
-    //     dispatch( uiOpenModal() );
-    // }
+    // Activar modal
+    const handleClick = ()=>{
+        dispatch( uiOpenModal() );
+    }
 
 
     return (
@@ -1366,7 +1391,7 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p>Compensación <i  className={`fas ${ result }`}></i></p>
+                                <p>Compensación <i  onClick={handleClick} className={`fas ${ result }`}></i></p>
                                 <p>Laboratorio <i className={`fas ${resultadoLaboratorio}`}></i></p>
                                 <p>Sintomas <i className="fas fa-times text-danger"></i></p>
                                 <p>Avisos:   <span className="text-success">Ninguno</span></p>
@@ -1376,11 +1401,15 @@ export const MedicalVainas = ({...props}) => {
                                 <p>Tratamiento:</p>
                             </div>
                             <div className="ContenidoTratamiento">
-                                <p>Losartan: <span className="text-success">1 c/12</span></p>
-                                <p>HCT:<span className="text-warning">1 c/dia</span></p>
-                                <p>Amlodipina: <span className="text-success">0.5 c/12</span></p>
-                                <p>Aspirina:<span className="text-success">1 c/dia</span></p>
-                                <p>Atenolol: <span className="text-danger">1 c/dia</span></p>
+                                {
+                                    (resTratamiento)
+                                    ?
+                                    resTratamiento.map(tra => (
+                                        <li key={tra.dosis_diaria}>{tra.dosis_diaria}</li> 
+                                    ))
+                                    :
+                                    <p>No hay tratamiento para esta enfermedad</p>
+                                }
                             </div>
                         </div>
                     </div>
@@ -1398,7 +1427,7 @@ export const MedicalVainas = ({...props}) => {
                         </p>
                     </section>
                 </div>
-                {/* <VainasModal key={props.enfermedad} parametros={parametros} /> */}
+                <VainasModal key={props.enfermedad} parametros={props.enfermedad}/>
             </div>
         </Fragment>
 

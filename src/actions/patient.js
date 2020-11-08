@@ -12,7 +12,7 @@ export const startLoadInfoPaciente = (rutPaciente) => {
 
        
              // Alerta
-            Swal.fire({
+        Swal.fire({
             title:'Cargando información...',
             text:'Por Favor espere...',
             allowOutsideClick:false,
@@ -42,6 +42,8 @@ export const startLoadInfoPaciente = (rutPaciente) => {
         await dispatch(startLoadEnfermedad(rutPaciente));
         await dispatch(startLoadCompensacion(rutPaciente));
         await dispatch(startLoadLaboratorio());
+        await dispatch(startLoadMolestia(rutPaciente));
+        await dispatch(startLoadTratamiento(rutPaciente));
         
         setTimeout(() => {
             dispatch(patientIsCheckingTrue());
@@ -142,6 +144,57 @@ export const setLaboratorio = (laboratorio)=>({
 
 export const clearLaboratorio = ()=>({
     type:types.clearLaboratorio
+})
+
+export const startLoadMolestia = (rutPaciente) => {
+    return async(dispatch) => {
+        await axios({
+            method: 'GET', 
+            url:'http://localhost:4000/getMolestias'
+        }).then(res => {
+            const respuesta = res.data;
+
+            const molestias = respuesta.filter( mol => mol.rut === rutPaciente);
+
+            dispatch(setMolestias(molestias));
+
+        })
+    }
+}
+
+export const setMolestias = (molestias)=>({
+    type:types.setMolestias,
+    payload: molestias
+})
+
+export const clearMolestias = ()=>({
+    type:types.clearMolestias
+})
+
+
+export const startLoadTratamiento = (rutPaciente) => {
+    return async(dispatch) => {
+        await axios({
+            method: 'GET', 
+            url:'http://localhost:4000/getTratamiento'
+        }).then(res => {
+            const respuesta = res.data;
+
+            const tratamientos = respuesta.filter( tra => tra.rut === rutPaciente);
+
+            dispatch(setTratamientos(tratamientos));
+
+        })
+    }
+}
+
+export const setTratamientos = (tratamientos)=>({
+    type:types.setTratamiento,
+    payload: tratamientos
+})
+
+export const clearTratamientos = ()=>({
+    type:types.clearTratamiento
 })
 
 

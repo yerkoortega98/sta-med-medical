@@ -33,6 +33,10 @@ export const types={
     clearCompensacion:'[Patient] Clear compensacion',
     setLaboratorio:'[Patient] set Laboratorio',
     clearLaboratorio:'[Patient] Clear laboratorio',
+    setMolestias: '[Patient] set Molestias',
+    clearMolestias: '[Patient] Clear Molestias',
+    setTratamiento: '[Patient] set Tratamiento',
+    clearTratamiento: '[Patient] Clear Tratamiento', 
 
     // PacienteACtivo
     patientIsCheckingTrue: '[Patient] Patient is Checking in True',

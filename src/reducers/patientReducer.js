@@ -7,6 +7,8 @@ const initialState={
     enfermedades:[],
     compensacion:[],
     laboratorio:[],
+    molestias: [],
+    tratamiento: []
 }
 
 export const patientReducer = ( state=initialState, action )=>{
@@ -71,6 +73,30 @@ export const patientReducer = ( state=initialState, action )=>{
             return{
                 ...state,
                 laboratorio:[]
+            }
+
+        case types.setMolestias:
+            return{
+                ...state,
+                molestias:[...action.payload]
+            }
+
+        case types.clearMolestias:
+            return{
+                ...state,
+                molestias:[]
+            }
+
+        case types.setTratamiento:
+            return{
+                ...state,
+                tratamiento:[...action.payload]
+            }
+
+        case types.clearTratamiento:
+            return{
+                ...state,
+                tratamiento:[]
             }
         
         

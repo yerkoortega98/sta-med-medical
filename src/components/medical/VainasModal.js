@@ -18,13 +18,15 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 
-export const VainasModal = ( parametros ) => {
+export const VainasModal = ({parametros}) => {
+
 
     const { modalOpen } = useSelector(state => state.ui)
 
+    // const { compensacion } = useSelector(state => state.pacienteActivo);
+
     const dispatch = useDispatch();
 
-    
     const closeModal = () => {  
         dispatch(uiCloseModal());
     }
@@ -39,18 +41,20 @@ export const VainasModal = ( parametros ) => {
           >
         <div>
             <div>
-                <h1 className="justify-content-center">Compensacion</h1>
+                <h1 className="justify-content-center">Compensación</h1>
             </div>
             <div>
                 <ol>
                     {/* {
-                        
-                        parametrosGenerales.map(parm => (
-                            <li key={parm.id}>{parm.nombreParametro} : {parm.valor} </li> 
+                        (parametro)
+                        ?
+                        parametro.map(parm => (
+                            <li key={parm.nombre_param}>{parm.nombre_param} : {parm.valor} </li> 
                         ))
-                            
-                        
-                    } */}
+                        :
+                        console.log("debo jdajjajad")
+                    }     */}
+                    
                 </ol>
                     
                 
