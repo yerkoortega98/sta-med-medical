@@ -39,12 +39,18 @@ export const startLoginEmailPassword =( email,password ) =>{
                 }, 1000);
                 
             }else{
-                dispatch(finishLoading());
-                Swal.fire('Error','Usuario y/o Contraseña incorrecto','error');   
+                setTimeout(() => {
+                    dispatch(finishLoading());
+                    Swal.fire('Error','Usuario y/o Contraseña incorrecto','error');   
+                }, 1000);
+               
             }
         }).catch(e => {
-            dispatch(finishLoading());
-            Swal.fire('Error',e.message,'error');
+            setTimeout(() => {
+                dispatch(finishLoading());
+                Swal.fire('Error',e.message,'error');
+            }, 1000);
+            
         })
         
     }

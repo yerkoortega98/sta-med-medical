@@ -19,7 +19,7 @@ export const LoginScreen = () => {
 
     const handleLogin = (e)=>{
        e.preventDefault();
-       if( isValid ){
+       if( !!isValid ){
         dispatch( startLoginEmailPassword( email,password ) );
        }
        
