@@ -1,11 +1,33 @@
 .Vaina{
-    border: 3px solid red;
+    border: 3px solid #9e9e9e;
     background: #000000;
     border-radius: 30px;
     display: inline-block;
-    margin: 20px;
-    padding: 3em 3.2em;
+    margin: 5px;
+    padding: 3em 3em;
     margin-top: 1em;
+    height: 550px;
+    width: 240px;
+}
+
+.parrafo-compensacion{
+    margin-left: 10px;
+}
+
+.parrafo-laboratorio{
+    margin-left: 35px;
+}
+
+.parrafo-nutricion{
+    margin-left: 53px;
+}
+
+.parrafo-sintomas{
+    margin-left: 49px;
+}
+
+.parrafo-avisos{
+    margin-left: 10px;
 }
 
 .fas{
@@ -19,6 +41,7 @@
 .ContenidoTratamiento{
     text-align: justify;
     margin-left: -15px;
+    font-size: small;
 }
 
 .nombre_enfermedad { 
@@ -40,7 +63,7 @@
 
 .tituloTratamiento{
     text-align: left;
-    margin-left: -35px;
+    margin-left: -25px;
     margin-top: 10px;
 }
 
