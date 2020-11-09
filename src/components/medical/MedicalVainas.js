@@ -1391,9 +1391,10 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p>Compensación <i  onClick={handleClick} className={`fas ${ result }`}></i></p>
-                                <p>Laboratorio <i className={`fas ${resultadoLaboratorio}`}></i></p>
-                                <p>Sintomas <i className="fas fa-times text-danger"></i></p>
+                                <p>Compensación: <i  onClick={handleClick} className={`fas ${ result } fa-lg`}></i></p>
+                                <p>Laboratorio: <i className={`fas ${resultadoLaboratorio} fa-lg`}></i></p>
+                                <p>Nutrición:</p>
+                                <p>Sintomas: <i className="fas fa-times text-danger fa-lg"></i></p>
                                 <p>Avisos:   <span className="text-success">Ninguno</span></p>
                                 <br/>
                             </div>
@@ -1405,7 +1406,7 @@ export const MedicalVainas = ({...props}) => {
                                     (resTratamiento)
                                     ?
                                     resTratamiento.map(tra => (
-                                        <li key={tra.dosis_diaria}>{tra.dosis_diaria}</li> 
+                                    <li className="list-tratamiento" key={tra.nombre_breve}>{tra.nombre_breve}: {tra.dosis_diaria}</li> 
                                     ))
                                     :
                                     <p>No hay tratamiento para esta enfermedad</p>
