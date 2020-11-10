@@ -22,6 +22,7 @@ export const VainasModal = ({parametros}) => {
 
 
     const { modalOpen } = useSelector(state => state.ui)
+    
 
 
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export const VainasModal = ({parametros}) => {
     return (
 
         <Modal
-          isOpen={modalOpen}
+          isOpen={ modalOpen }
           onRequestClose={closeModal}
           style={customStyles}
           className="modal"

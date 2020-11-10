@@ -1446,6 +1446,7 @@ export const MedicalVainas = ({...props}) => {
         dispatch( uiOpenModal() );
     }
 
+    console.log(parametrosCompensacion)
     
 
     return (
@@ -1460,7 +1461,7 @@ export const MedicalVainas = ({...props}) => {
                         </div>
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
-                                <p className="parrafo-compensacion">Compensación: <i  onClick={handleClick} className={`fas ${ result } fa-lg`}></i></p>
+                                <p className="parrafo-compensacion">Compensación: <i  onClick={ handleClick } className={`fas ${ result } fa-lg`}></i></p>
                                 <p className="parrafo-laboratorio">Laboratorio: <i className={`fas ${resultadoLaboratorio} fa-lg`}></i></p>
                                 <p className="parrafo-nutricion">Nutrición: <i className="fas fa-times text-danger fa-lg"></i></p>
                                 <p className="parrafo-sintomas">Sintomas: <i className="fas fa-times text-danger fa-lg"></i></p>

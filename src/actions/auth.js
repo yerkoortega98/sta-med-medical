@@ -21,6 +21,10 @@ export const startLoginEmailPassword =( email,password ) =>{
             }
         });
 
+        axios.post('/api/getUser',{
+            email
+        })
+        
         axios({
             method:'GET',
             url:`http://localhost:4000/getUsuario/${ email }`
