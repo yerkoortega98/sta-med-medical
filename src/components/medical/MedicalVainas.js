@@ -207,8 +207,13 @@ export const MedicalVainas = ({...props}) => {
             const glicemia = validacionGlicemia();
 
             const parametrosCompensacion = [
-                parametroGlicemia,
-                parametroHemoglobina
+                {
+                    nombre_param:'Glicemia',
+                    valor:glicemia
+                },{
+                    nombre_param:'Hemoglobica Glicosilada',
+                    valor:hbglic
+                }
             ]
 
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
@@ -566,16 +571,20 @@ export const MedicalVainas = ({...props}) => {
 
             const nureico = validacionNureico();
 
-            const examenVFG ={
-                nombre_param:'VFG',
-                valor:VFG
-            }
-
             const parametrosCompensacion = [
-                parametroMicroalb,
-                parametroNureico,
-                parametroUremia,
-                examenVFG
+                {
+                    nombre_param:'Microalbuminuria',
+                    valor:microalbuminuria
+                },{
+                    nombre_param:'Nitrogeno Ureico',
+                    valor:nureico
+                },{
+                    nombre_param:'Uremia',
+                    valor:uremia
+                },{
+                    nombre_param:'VFG',
+                    valor:VFG
+                }
             ]
 
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
@@ -791,10 +800,19 @@ export const MedicalVainas = ({...props}) => {
             const CT = validacionCT();
 
             const parametrosCompensacion = [
-                parametroCT,
-                parametroLDL,
-                parametroTG,
-                parametroTG
+               {
+                   nombre_param:'Colesterol',
+                   valor:CT
+               },{
+                   nombre_param:'Trigliceridos',
+                   valor:TG
+               },{
+                   nombre_param:'LDL',
+                   valor:LDL
+               },{
+                   nombre_param: 'HDL',
+                    valor:HDL
+               }  
             ]
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
@@ -958,8 +976,14 @@ export const MedicalVainas = ({...props}) => {
 
             const PAD = validacionPAD();
             const parametrosCompensacion =[
-                parametroPAD,
-                parametroPAS
+                {
+                    nombre_param:'Presion Sistolica',
+                    valor:PAS
+                },
+                {
+                    nombre_param:'Presión Distolica',
+                    valor:PAD
+                }
             ]
             const resultado = calcCompesacionHTA(PAS,PAD);
          
@@ -1057,7 +1081,10 @@ export const MedicalVainas = ({...props}) => {
             const PTJEEpilepsia = validarPTJEEpilepsia();
 
             const parametrosCompensacion = [
-                PTJEEpilepsia
+                {
+                    nombre_param:'Puntaje Epilepsia',
+                    valor:PTJEEpilepsia
+                }
             ]
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
           
@@ -1226,11 +1253,16 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
 
-            const parametrosCompensacion =[
-                parametroPTJEAsma
-            ]
+          
 
             const PTJEAsma = validarPTJEAsma();
+
+            const parametrosCompensacion =[
+                {
+                    nombre_param:'PTJEAsma',
+                    valor:PTJEAsma
+                }
+            ]
 
             const resultado = calcCompensacionAsma(PTJEAsma);
           
@@ -1347,9 +1379,21 @@ export const MedicalVainas = ({...props}) => {
 
             const PTJEArtrosis = D + C + B + I;
             
-            const parametrosCompensacion =[
-                parametroBloqueo,
-                parametroCrujido,parametroDolor,parametroInflamacion
+            const parametrosCompensacion = [
+                {
+                    nombre_param:'Bloqueo',
+                    valor: B
+                },
+                {
+                    nombre_param:'Crujido',
+                    valor:C
+                },{
+                    nombre_param:'Dolor',
+                    valor:D
+                },{
+                    nombre_param:'Inflamación',
+                    valor:I
+                }
             ]
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
 
@@ -1405,8 +1449,11 @@ export const MedicalVainas = ({...props}) => {
 
             const PTJEEpoc = validarPTJEEpoc();
 
-            const parametrosCompensacion =[
-                parametroPTJEpoc
+            const parametrosCompensacion = [
+                {
+                    nombre_param:'Puntaje Epoc',
+                    valor:PTJEEpoc
+                }
             ];
 
             const resultado = calcCompensacionEpoc(PTJEEpoc);
