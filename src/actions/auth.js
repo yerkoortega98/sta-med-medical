@@ -21,9 +21,9 @@ export const startLoginEmailPassword =( email,password ) =>{
             }
         });
 
-        axios.post('/api/getUser',{
-            email
-        })
+        // axios.post('/api/getUser',{
+        //     email
+        // })
         
         axios({
             method:'GET',

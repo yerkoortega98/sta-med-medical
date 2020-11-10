@@ -1,7 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal';
-import { useDispatch, useSelector } from 'react-redux';
-import { uiCloseModal } from '../../actions/ui';
 
 const customStyles = {
     content : {
@@ -11,7 +9,7 @@ const customStyles = {
       bottom                : 'auto',
       marginRight           : '-50%',
       transform             : 'translate(-50%, -50%)',
-      opacity               :'100%'
+      opacity               :'100%',
     }
   };
 
@@ -20,20 +18,27 @@ Modal.setAppElement('#root')
 
 export const VainasModal = ({parametros}) => {
 
-
-    const { modalOpen } = useSelector(state => state.ui)
+    const [openModal, setOpenModal] = useState(false);
     
 
-
-    const dispatch = useDispatch();
-
+    useEffect(() => {
+        if(!!parametros){
+            console.log("Hola mi gente, entro aqui",true);
+            setOpenModal(true);
+        }else{
+            setOpenModal(false);
+        }
+    }, [parametros])
+    
+    console.log("Parametros: ",parametros);
     const closeModal = () => {  
-        dispatch(uiCloseModal());
+        setOpenModal(false)
     }
-    return (
 
+    return (
+       
         <Modal
-          isOpen={ modalOpen }
+          isOpen={ openModal }
           onRequestClose={closeModal}
           style={customStyles}
           className="modal"
@@ -47,12 +52,11 @@ export const VainasModal = ({parametros}) => {
                 <ol>
                     {
                         (parametros)
-                        ?
-                        parametros.map(parm => (
-                            <li key={parm.nombre_param}>{parm.nombre_param} : {parm.valor} </li> 
+                        &&
+                        parametros.map(( parm , index)=> (
+                            <li className="list-tratamiento" key={index + 43}>{parm.nombre_param} : {parm.valor} </li> 
                         ))
-                        :
-                        console.log("debo jdajjajad")
+                        
                     }    
                     
                 </ol>
