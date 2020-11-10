@@ -23,7 +23,6 @@ export const VainasModal = ({parametros}) => {
 
     const { modalOpen } = useSelector(state => state.ui)
 
-    // const { compensacion } = useSelector(state => state.pacienteActivo);
 
     const dispatch = useDispatch();
 
@@ -45,15 +44,15 @@ export const VainasModal = ({parametros}) => {
             </div>
             <div>
                 <ol>
-                    {/* {
-                        (parametro)
+                    {
+                        (parametros)
                         ?
-                        parametro.map(parm => (
+                        parametros.map(parm => (
                             <li key={parm.nombre_param}>{parm.nombre_param} : {parm.valor} </li> 
                         ))
                         :
                         console.log("debo jdajjajad")
-                    }     */}
+                    }    
                     
                 </ol>
                     
@@ -61,6 +60,5 @@ export const VainasModal = ({parametros}) => {
             </div>
         </div>
         </Modal>
-        
     )
 }

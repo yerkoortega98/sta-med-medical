@@ -69,6 +69,8 @@ export const MedicalScreen = () => {
             }         
             </div>
 
+            
+
             { !isChecking && <Redirect to='/'/>}
 
         </div>

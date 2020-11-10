@@ -205,10 +205,27 @@ export const MedicalVainas = ({...props}) => {
             }
             const hbglic = validacionHBGLIC();
             const glicemia = validacionGlicemia();
+
+            const examenHGBLIC ={
+                nombre: 'Hemoglobina Glicosilada',
+                valor: hbglic
+            }
+
+            const examenGlicemia = {
+                nombre:'Glicemia',
+                valor:glicemia
+            }
+
+            const parametrosCompensacion = [
+                examenHGBLIC,
+                examenGlicemia
+            ]
+
+            
             
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
         
-            return {resultado, resultadoLaboratorio, resTratamiento};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
             
         }else if(props.enfermedad === 'Hipotir'){
 
@@ -363,9 +380,16 @@ export const MedicalVainas = ({...props}) => {
 
             const T4L = validacionT4L();
 
+            
+
+            const parametrosCompensacion=[
+                parametroT4L,
+                parametroTSH
+            ]
+
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
            
-            return {resultado, resultadoLaboratorio, resTratamiento};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
 
         }else if(props.enfermedad === 'IRC'){
 
@@ -485,7 +509,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultadoLaboratorio = iconizacionIRC(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6);
 
-            console.log(resultadoLaboratorio);
+            
                        
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -550,10 +574,22 @@ export const MedicalVainas = ({...props}) => {
 
             const nureico = validacionNureico();
 
+            const examenVFG ={
+                nombre_param:'VFG',
+                valor:VFG
+            }
+
+            const parametrosCompensacion = [
+                parametroMicroalb,
+                parametroNureico,
+                parametroUremia,
+                examenVFG
+            ]
+
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
        
           
-            return {resultado, resultadoLaboratorio, resTratamiento};
+            return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion};
 
         }else if(props.enfermedad === 'Dis/ATE'){
             const respuestaHombre = compensacion.filter(com => com.nombre_param === 'HDL hombres')
@@ -561,6 +597,12 @@ export const MedicalVainas = ({...props}) => {
             const respuestaLDL = compensacion.filter(com => com.nombre_param === 'LDL');
             const respuestaTG = compensacion.filter(com => com.nombre_param === 'Trigliceridos')
             const respuestaCT = compensacion.filter(com => com.nombre_param === 'Colesterol')
+
+              // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // Calculo de laboratorio
+
 
             
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Dis/ATE');
@@ -680,14 +722,10 @@ export const MedicalVainas = ({...props}) => {
 
             const resultadoLaboratorio = iconizacionDisAte(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6, dataExamen7);
 
-            console.log(resultadoLaboratorio);
+            
          
 
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
-            // Calculo de laboratorio
-
+          
 
 
 
@@ -767,9 +805,18 @@ export const MedicalVainas = ({...props}) => {
 
             const CT = validacionCT();
 
+            const parametrosCompensacion = [
+                parametroCT,
+                parametroLDL,
+                parametroTG,
+                parametroTG
+            ]
+
+
+
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
 
-            return {resultado, resultadoLaboratorio, resTratamiento};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
 
         }else if(props.enfermedad === 'HTA'){
             
@@ -929,9 +976,13 @@ export const MedicalVainas = ({...props}) => {
             };
 
             const PAD = validacionPAD();
+            const parametrosCompensacion =[
+                parametroPAD,
+                parametroPAS
+            ]
             const resultado = calcCompesacionHTA(PAS,PAD);
          
-            return {resultado, resultadoLaboratorio, resTratamiento};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
 
         }else if(props.enfermedad === 'Epi'){
 
@@ -1025,9 +1076,13 @@ export const MedicalVainas = ({...props}) => {
             }
 
             const PTJEEpilepsia = validarPTJEEpilepsia();
+
+            const parametrosCompensacion = [
+                PTJEEpilepsia
+            ]
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
           
-            return {resultado, resultadoLaboratorio, resTratamiento};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
 
         }else if(props.enfermedad === 'Park'){
 
@@ -1143,9 +1198,17 @@ export const MedicalVainas = ({...props}) => {
 
             const suma = temblor + equilibrio + rigidez + lento + arrastre;
 
+            const parametrosCompensacion = [
+                parametroArrastre,
+                parametroEquilibrio,
+                parametroLento,
+                parametroRigidez,
+                parametroTemblor
+            ]
+
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
             
-            return {resultado, resultadoLaboratorio, resTratamiento};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
 
         }else if(props.enfermedad === 'Asma'){
 
@@ -1177,9 +1240,6 @@ export const MedicalVainas = ({...props}) => {
 
             const resultadoLaboratorio = iconizacionAsma(dataExamen1);
 
-            console.log(resultadoLaboratorio);
-
-
             const validarPTJEAsma = () => {
                 if(parametroPTJEAsma) {
                     const {valor:PTJEAsma} = parametroPTJEAsma;
@@ -1193,11 +1253,15 @@ export const MedicalVainas = ({...props}) => {
                 }
             }
 
+            const parametrosCompensacion =[
+                parametroPTJEAsma
+            ]
+
             const PTJEAsma = validarPTJEAsma();
 
             const resultado = calcCompensacionAsma(PTJEAsma);
           
-            return {resultado, resultadoLaboratorio, resTratamiento};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
 
         }else if(props.enfermedad === 'Artrosis'){
 
@@ -1309,12 +1373,16 @@ export const MedicalVainas = ({...props}) => {
             const I = validarInflamacion();
 
             const PTJEArtrosis = D + C + B + I;
-            console.log(D,C,B,I,Rx);
+            
+            const parametrosCompensacion =[
+                parametroBloqueo,
+                parametroCrujido,parametroDolor,parametroInflamacion
+            ]
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
 
-            console.log("resultado Artrosis:",resultado)
            
-            return {resultado, resultadoLaboratorio, resTratamiento};
+           
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
 
         }else if(props.enfermedad === 'EPOC'){
 
@@ -1371,13 +1439,14 @@ export const MedicalVainas = ({...props}) => {
 
     const resultIconizacion = iconizacion();
 
-    const { resultado:result, resultadoLaboratorio, resTratamiento } = resultIconizacion;
+    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion } = resultIconizacion;
 
     // Activar modal
     const handleClick = ()=>{
         dispatch( uiOpenModal() );
     }
 
+    
 
     return (
         <Fragment>
@@ -1427,7 +1496,7 @@ export const MedicalVainas = ({...props}) => {
                         </p>
                     </section>
                 </div>
-                <VainasModal key={props.enfermedad} parametros={props.enfermedad}/>
+                <VainasModal key={props.enfermedad} parametros={parametrosCompensacion}/>
             </div>
         </Fragment>
 
