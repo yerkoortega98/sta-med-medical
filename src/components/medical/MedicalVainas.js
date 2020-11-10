@@ -1485,7 +1485,7 @@ export const MedicalVainas = ({...props}) => {
                         <div className="ContenidoCompleto">
                             <div className="CheckParametros">
                                 <p className="parrafo-compensacion">Compensación: <i  onClick={ handleClick } className={`${ result } fa-lg`}></i></p>
-                                <p className="parrafo-laboratorio">Laboratorio: <i className={`fas ${resultadoLaboratorio} fa-lg`}></i></p>
+                                <p className="parrafo-laboratorio">Laboratorio: <i className={`${resultadoLaboratorio} fa-lg`}></i></p>
                                 <p className="parrafo-nutricion">Nutrición: <i className="fas fa-times text-danger fa-lg"></i></p>
                                 <p className="parrafo-sintomas">Sintomas: <i className="fas fa-times text-danger fa-lg"></i></p>
                                 <p className="parrafo-avisos">Avisos:   <span className="text-success">Ninguno</span></p>
