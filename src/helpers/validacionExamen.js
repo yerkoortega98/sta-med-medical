@@ -8,6 +8,8 @@ export const validacionExamen =( examen,compensacion )=>{
         
         const [respData] = compensacion.filter(com => com.nombre_param === examen.nombre_examen);
 
+        console.log("ValidacionExamen: ",respData);
+
         // Se valida si encuentra el examen correspondiente.
         const validacionPasoUno =()=>{
             if(respData){
@@ -49,7 +51,11 @@ export const validacionExamen =( examen,compensacion )=>{
         const resultadoValidacionDireccion = validacionDireccion();
 
      
-        return resultadoValidacionDireccion;
+        const infoLaboratorio = {
+            nombre_param: respData.nombre_param,
+            valor: respData.valor
+        }
+        return {resultadoValidacionDireccion,infoLaboratorio};
     }else if(examen.nivel_prioridad === 2){
                     
         const [respData] = compensacion.filter(com => com.nombre_param === examen.nombre_examen);
@@ -94,19 +100,31 @@ export const validacionExamen =( examen,compensacion )=>{
 
         const resultadoValidacionDireccion = validacionDireccion();
       
-        return resultadoValidacionDireccion;
+        const infoLaboratorio = {
+            nombre_param: respData.nombre_param,
+            valor: respData.valor
+        }
+        return {resultadoValidacionDireccion,infoLaboratorio};
 
     }else if(examen.nivel_prioridad === 3){
     
         const resultadoValidacionDireccion = "malo";
         
-        return resultadoValidacionDireccion;
+        const infoLaboratorio = {
+            nombre_param: 'Examen inexistente',
+            valor: 0
+        }
+        return {resultadoValidacionDireccion,infoLaboratorio};
 
     }else if(examen.nivel_prioridad === 4){
 
         const resultadoValidacionDireccion = "malo";
        
-        return resultadoValidacionDireccion;
+        const infoLaboratorio = {
+            nombre_param: 'Examen inexistente',
+            valor: 0
+        }
+        return {resultadoValidacionDireccion,infoLaboratorio};
 
     }
     

@@ -23,14 +23,13 @@ export const VainasModal = ({parametros}) => {
 
     useEffect(() => {
         if(!!parametros){
-            console.log("Hola mi gente, entro aqui",true);
+        
             setOpenModal(true);
         }else{
             setOpenModal(false);
         }
     }, [parametros])
     
-    console.log("Parametros: ",parametros);
     const closeModal = () => {  
         setOpenModal(false)
     }
