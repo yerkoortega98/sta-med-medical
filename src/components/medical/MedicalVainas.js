@@ -1,6 +1,5 @@
 import React, {Fragment, useState} from 'react';
 import {  useSelector } from 'react-redux';
-// import { uiOpenModal } from '../../actions/ui';
 import { 
     calcCompensacionDiabetes, 
     calcCompensacionEpilepsia, 
@@ -22,6 +21,7 @@ import {
     iconizacionAsma, 
     iconizacionArtrosis
 } from '../../helpers/laboratorio';
+import {validarInfoExamen, validarParametrosComp} from '../../helpers/validarParametrosComp'
 
 
 
@@ -45,7 +45,7 @@ export const MedicalVainas = ({...props}) => {
        
         if(props.enfermedad === 'DM'){
             const respuesta = compensacion.filter(com => com.nombre_param === 'Hemoglobina glicosilada')
-            const respuesta2 = compensacion.filter(com => com => com.nombre_param === 'Glicemia')
+            const respuesta2 = compensacion.filter(com => com.nombre_param === 'Glicemia')
 
             // arreglo de examenes correspondientes a la condicion cronica DM
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'DM');
@@ -57,149 +57,33 @@ export const MedicalVainas = ({...props}) => {
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Calculo de laboratorio
 
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 1
             const examen1 = respLab[0];
-
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-
-
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
-    
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
+            console.log("DataExamen1:",dataExamen1)
+           
             // Validacion examen 2
             const examen2 = respLab[1];
-
-            const validarInfoExamen2 = () =>{
-                if(examen2){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
-        
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen(examen2,compensacion);
+            console.log("DataExamen2:",dataExamen2)
             // Validacion examen 3
-            const examen3 = respLab[2];
-
-            const validarInfoExamen3 = () =>{
-                if(examen3){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-            
-            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
-        
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const examen3 = respLab[2];            
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen(examen3,compensacion);
+            console.log("DataExamen3:",dataExamen3)
             // Validacion examen 4
-
             const examen4 = respLab[3];
-
-            const validarInfoExamen4 = () =>{
-                if(examen4){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
-           
-
-             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen(examen4,compensacion);
             // Validacion examen 5
-
             const examen5 = respLab[4];
-
-            const validarInfoExamen5 = () =>{
-                if(examen5){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen5,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen5();
+            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen(examen5,compensacion);
           
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 6
             const examen6 = respLab[5];
-
-            const validarInfoExamen6 = () =>{
-                if(examen6){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen6,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen6();
+            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen(examen6,compensacion);
             
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 7
-
             const examen7 = respLab[6];
-            const validarInfoExamen7 = () =>{
-                if(examen7){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen7,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-            const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen7();
+            const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen(examen7,compensacion);
            
 
             const resultadoLaboratorio = iconizacionDM(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6,dataExamen7)
@@ -210,33 +94,12 @@ export const MedicalVainas = ({...props}) => {
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Calculo para la compensacion
-            
+            // Validacion de parametro Hemoglobina
             const parametroHemoglobina = respuesta[0];
-            const parametroGlicemia = respuesta2[0];
-            
-            const validacionHBGLIC = ()=>{
-                if (parametroHemoglobina) {
-                    
-                    const { valor:hbglic } = parametroHemoglobina
-                    return hbglic
-                }else{
-                    
-                    const hbglic=0;
-                    return hbglic;
-                }
-            }
+            const hbglic = validarParametrosComp(parametroHemoglobina);
 
-            const validacionGlicemia = ()=>{                
-                if (parametroGlicemia) {
-                    const { valor:glicemia} = parametroGlicemia;        
-                    return glicemia;
-                } else {
-                    const glicemia = 0;
-                    return glicemia;
-                }
-            }
-            const hbglic = validacionHBGLIC();
-            const glicemia = validacionGlicemia();
+            const parametroGlicemia = respuesta2[0];
+            const glicemia = validarParametrosComp(parametroGlicemia);
 
             const parametrosCompensacion = [
                 {
@@ -247,16 +110,8 @@ export const MedicalVainas = ({...props}) => {
                     valor:hbglic
                 }
             ]
-
-            const parametrosLaboratorio=[
-                laboratorio1,
-                laboratorio2,
-                laboratorio3,
-                laboratorio4,
-                laboratorio5,
-                laboratorio6,
-                laboratorio7
-            ]
+    
+            const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5,laboratorio6,laboratorio7]
 
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
         
@@ -405,34 +260,10 @@ export const MedicalVainas = ({...props}) => {
 
 
             const parametroTSH = respuestaTSH[0];
-
-            const validacionTSH = ()=>{
-                if (parametroTSH) {
-                    const { valor:TSH } = parametroTSH;
-
-                    return TSH; 
-                } else {
-                    const TSH = 0;
-                    return TSH;
-                    
-                }
-            }
-            const TSH = validacionTSH();
-
-            const parametroT4L = respuestaT4L[0];
-            const validacionT4L = ()=>{
-                if (parametroT4L) {
-                    const { valor:T4L} = parametroT4L;
-                    return T4L;
-                } else {
-                    
-                    const T4L = 0;
-
-                    return T4L;
-                }
-            }
-
-            const T4L = validacionT4L();
+            const TSH = validarParametrosComp(parametroTSH);
+          
+            const parametroT4L = respuestaT4L[0];   
+            const T4L = validarParametrosComp(parametroT4L);
 
             const parametrosCompensacion=[
                 {
@@ -444,16 +275,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             ]
 
-            const parametrosLaboratorio=[
-                laboratorio1,
-                laboratorio2,
-                laboratorio3,
-                laboratorio4,
-                laboratorio5
-            ]
-
-
-           
+            const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5];
 
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
            
@@ -654,39 +476,18 @@ export const MedicalVainas = ({...props}) => {
             const VFG = sexo();
 
             // Validacion de parametro microAlbuminuria
-            const parametroMicroalb = respuestaMicroalb[0]
-
-            const validacionMicroalb = ()=>{
-                if(parametroMicroalb){
-                    const {valor:microalbuminuria} = parametroMicroalb;
-                    return microalbuminuria;
-                }
-            }
-            const microalbuminuria = validacionMicroalb();
+            const parametroMicroalb = respuestaMicroalb[0]           
+            const microalbuminuria =  validarParametrosComp(parametroMicroalb);
 
             // Validacion de parametros Uremia
             const parametroUremia = respuestaUremia[0]
-           
-            const validacionUremia = ()=>{
-                if (parametroUremia) {
-                    const {valor:uremia} = parametroUremia;
-                    return uremia;
-                }
-            }
-
-            const uremia = validacionUremia();
+            const uremia =  validarParametrosComp(parametroUremia);
 
             // Validacion de parametros Nureico.
 
             const parametroNureico = respuestaNureico[0];
-            const validacionNureico = ()=>{
-                if(parametroNureico){
-                    const {valor:nureico} = parametroNureico;
-                    return nureico
-                }
-            }
 
-            const nureico = validacionNureico();
+            const nureico =  validarParametrosComp(parametroNureico);
 
             const parametrosCompensacion = [
                 {
@@ -704,16 +505,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             ]
 
-            const parametrosLaboratorio=[
-                laboratorio1,
-                laboratorio2,
-                laboratorio3,
-                laboratorio4,
-                laboratorio5,
-                laboratorio6
-            ]
-
-            console.log(parametrosLaboratorio);
+            const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5,laboratorio6]
 
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
        
@@ -936,50 +728,13 @@ export const MedicalVainas = ({...props}) => {
 
 
             const parametroLDL = respuestaLDL[0];
-
-            const validacionLDL = ()=>{
-                if (parametroLDL) {
-                    const {valor:LDL} = parametroLDL;
-
-                    return LDL;
-
-                } else {
-                    const LDL = 0;
-                    return LDL;   
-                }
-            }
-            const LDL = validacionLDL();
-
+            const LDL =  validarParametrosComp(parametroLDL);
 
             const parametroTG = respuestaTG[0];
-            const validacionTG = ()=>{
-                if (parametroTG) {
-                    const {valor:TG} = parametroTG;
-
-                    return TG;
-                } else {
-                    const TG = 0;
-                    return TG; 
-                }
-            }
-
-            const TG = validacionTG();
-           
-           
-
+            const TG =  validarParametrosComp(parametroTG);
+        
             const parametroCT = respuestaCT[0]
-
-            const validacionCT = ()=>{
-                if (parametroCT) {
-                    const {valor:CT} = parametroCT;
-                    return CT;
-                } else {
-                    const CT = 0;
-                    return CT; 
-                }
-            }
-
-            const CT = validacionCT();
+            const CT =  validarParametrosComp(parametroCT);
 
             const parametrosCompensacion = [
                {
@@ -997,17 +752,7 @@ export const MedicalVainas = ({...props}) => {
                }  
             ]
 
-            const parametrosLaboratorio=[
-                laboratorio1,
-                laboratorio2,
-                laboratorio3,
-                laboratorio4,
-                laboratorio5, 
-                laboratorio6,
-                laboratorio7
-            ]
-
-            console.log(parametrosLaboratorio);
+            const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5, laboratorio6,laboratorio7]
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
 
@@ -1198,31 +943,11 @@ export const MedicalVainas = ({...props}) => {
             //Calculo de compensacion.
 
             const parametroPAS = respuestaPAS[0];
+            const PAS =  validarParametrosComp(parametroPAS);
+            
             const parametroPAD = respuestaPAD[0];
-
-            const validacionPAS = ()=>{
-                if(parametroPAS){
-                    const { valor:PAS } = parametroPAS;
-                    return PAS;
-                }else{
-                    const PAS = 0;
-                    return PAS;
-                }
-            };
-
-            const PAS = validacionPAS();
-
-            const validacionPAD = ()=>{
-                if(parametroPAD){
-                    const {valor:PAD} = parametroPAD;
-                    return PAD;
-                }else{
-                    const PAD = 0;
-                    return PAD;
-                }
-            };
-
-            const PAD = validacionPAD();
+            const PAD =  validarParametrosComp(parametroPAD);
+            
             const parametrosCompensacion =[
                 {
                     nombre_param:'Presion Sistolica',
@@ -1234,15 +959,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             ]
 
-            const parametrosLaboratorio=[
-                laboratorio1,
-                laboratorio2,
-                laboratorio3,
-                laboratorio4,
-                laboratorio5, 
-                laboratorio6,
-                laboratorio7
-            ]
+            const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5, laboratorio6,laboratorio7]
 
             const resultado = calcCompesacionHTA(PAS,PAD);
          
@@ -1251,11 +968,7 @@ export const MedicalVainas = ({...props}) => {
         }else if(props.enfermedad === 'Epi'){
 
             const respuestPTJEEpilepsia = compensacion.filter(com=> com.nombre_param === 'PTJEEpilepsia');
-
-            const parametroPTJEEpilepsia = respuestPTJEEpilepsia[0];
-
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Epi');
-
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Epi');
 
             //Validacion de laboratorio
@@ -1357,31 +1070,16 @@ export const MedicalVainas = ({...props}) => {
 
             //Calcular comendacion
            
-            const validarPTJEEpilepsia = () => {
-                if(parametroPTJEEpilepsia) {
-                    const {valor:PTJEEpilepsia} = parametroPTJEEpilepsia;
-                    return PTJEEpilepsia;
-                }else{
-                    const PTJEEpilepsia = 0;
-                    return PTJEEpilepsia;
-                }
-            }
-
-            const PTJEEpilepsia = validarPTJEEpilepsia();
-
+            const parametroPTJEEpilepsia = respuestPTJEEpilepsia[0];
+            const PTJEEpilepsia =  validarParametrosComp(parametroPTJEEpilepsia);
+            
             const parametrosCompensacion = [
                 {
                     nombre_param:'Puntaje Epilepsia',
                     valor:PTJEEpilepsia
                 }
             ]
-
-            const parametrosLaboratorio=[
-                laboratorio1,
-                laboratorio2,
-                laboratorio3,
-                laboratorio4
-            ]
+            const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4]
 
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
           
@@ -1431,87 +1129,41 @@ export const MedicalVainas = ({...props}) => {
 
             const resultadoLaboratorio = iconizacionPark(dataExamen1);
 
+            // --------------------------------------------------------------------------------------------------------------------------------------\\
+            // --------------------------------------------------------------------------------------------------------------------------------------\\
             //calculo de compensación
-
-            const validarTemblor = () => {
-                if(parametroTemblor) {
-                    const {valor:temblor} = parametroTemblor;
-
-                    return temblor;
-                }else{
-                    const temblor = 0;
-                    
-                    return temblor;
-                }
-            }
-
-            const validarEquilibrio = () => {
-                if(parametroEquilibrio) {
-                    const {valor:equilibrio} = parametroEquilibrio;
-
-                    return equilibrio;
-                }else{
-                    const equilibrio = 0;
-                    
-                    return equilibrio;
-                }
-            }
-
-            const validarRigidez = () => {
-                if(parametroRigidez) {
-                    const {valor:rigidez} = parametroRigidez;
-
-                    return rigidez;
-                }else{
-                    const rigidez = 0;
-                    
-                    return rigidez;
-                }
-            }
-
-            const validarLento = () => {
-                if(parametroLento) {
-                    const {valor:lento} = parametroLento;
-
-                    return lento;
-                }else{
-                    const lento = 0;
-                    
-                    return lento;
-                }
-            }
-
-            const validarArrastre = () => {
-                if(parametroArrastre) {
-                    const {valor:arrastre} = parametroArrastre;
-
-                    return arrastre;
-                }else{
-                    const arrastre = 0;
-                    
-                    return arrastre;
-                }
-            }
-
-            const temblor = validarTemblor();
-            const equilibrio = validarEquilibrio(); 
-            const rigidez = validarRigidez();
-            const lento = validarLento();
-            const arrastre = validarArrastre();
+            // --------------------------------------------------------------------------------------------------------------------------------------\\
+            // --------------------------------------------------------------------------------------------------------------------------------------\\
+            
+            
+            const temblor = validarParametrosComp(parametroTemblor);
+            const equilibrio = validarParametrosComp(parametroEquilibrio);
+            const rigidez = validarParametrosComp(parametroRigidez);     
+            const lento = validarParametrosComp(parametroLento); 
+            const arrastre = validarParametrosComp(parametroArrastre); 
 
             const suma = temblor + equilibrio + rigidez + lento + arrastre;
 
             const parametrosCompensacion = [
-                parametroArrastre,
-                parametroEquilibrio,
-                parametroLento,
-                parametroRigidez,
-                parametroTemblor
+                {
+                    nombre_param:'Arrastre',
+                    valor:arrastre
+                },{
+                    nombre_param:'Temblor',
+                    valor:temblor
+                },{
+                    nombre_param:'Equilibrio',
+                    valor:equilibrio
+                },{
+                    nombre_param:'Lento',
+                    valor:lento
+                },{
+                    nombre_param:'Rigidez',
+                    valor:rigidez
+                }
             ]
 
-            const parametrosLaboratorio=[
-                laboratorio1
-            ]
+            const parametrosLaboratorio=[laboratorio1]
 
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
             
@@ -1554,22 +1206,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultadoLaboratorio = iconizacionAsma(dataExamen1);
 
-            const validarPTJEAsma = () => {
-                if(parametroPTJEAsma) {
-                    const {valor:PTJEAsma} = parametroPTJEAsma;
-
-                    return PTJEAsma;
-
-                }else{
-                    const PTJEAsma = 0;
-
-                    return PTJEAsma;
-                }
-            }
-
-          
-
-            const PTJEAsma = validarPTJEAsma();
+            const PTJEAsma = validarParametrosComp(parametroPTJEAsma);
 
             const parametrosCompensacion =[
                 {
@@ -1578,9 +1215,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             ]
 
-            const parametrosLaboratorio=[
-                laboratorio1
-            ]
+            const parametrosLaboratorio=[laboratorio1]
 
             const resultado = calcCompensacionAsma(PTJEAsma);
           
@@ -1608,8 +1243,6 @@ export const MedicalVainas = ({...props}) => {
 
             // Validacion examen 1
             const examen1 = respLab[0];
-
-            
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
@@ -1646,62 +1279,13 @@ export const MedicalVainas = ({...props}) => {
                     return Rx;
                 }
             }
-
-            const validarDolor = () => {
-                if (parametroDolor) {
-                    const {valor:Dolor} = parametroDolor;
-
-                    return Dolor;
-                } else {
-                    const Dolor = 0;
-
-                    return Dolor;
-                }
-            }
-
-            const validarCrujido = () => {
-                if (parametroCrujido) {
-                    const {valor:Crujido} = parametroCrujido;
-
-                    return Crujido;
-                } else {
-                    const Crujido = 0;
-
-                    return Crujido;
-                }
-            }
-
-            const validarBloqueo = () => {
-                if (parametroBloqueo) {
-                    const {valor:Bloqueo} = parametroBloqueo;
-
-                    return Bloqueo;
-                } else {
-                    const Bloqueo = 0;
-
-                    return Bloqueo;
-                }
-            }
-
-            const validarInflamacion = () => {
-                if (parametroInflamacion) {
-                    const {valor:Inflamacion} = parametroInflamacion;
-
-                    return Inflamacion;
-                } else {
-
-                    const Inflamacion = 0;
-
-                    return Inflamacion;
-                }
-            }
-
+            
             const Rx = validarRX();
-            const D = validarDolor();
-            const C = validarCrujido();
-            const B = validarBloqueo();
-            const I = validarInflamacion();
-
+            const D = validarParametrosComp(parametroDolor);
+            const C = validarParametrosComp(parametroCrujido);
+            const B = validarParametrosComp(parametroBloqueo);
+            const I = validarParametrosComp(parametroInflamacion);
+            
             const PTJEArtrosis = D + C + B + I;
             
             const parametrosCompensacion = [
@@ -1721,14 +1305,10 @@ export const MedicalVainas = ({...props}) => {
                 }
             ]
 
-            const parametrosLaboratorio=[
-                laboratorio1
-            ]
+            const parametrosLaboratorio=[laboratorio1]
 
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
 
-           
-           
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio};
 
         }else if(props.enfermedad === 'EPOC'){
@@ -1767,23 +1347,8 @@ export const MedicalVainas = ({...props}) => {
 
             const resultadoLaboratorio = iconizacionEpoc(dataExamen1);
 
-            
-           
             //calcular compensación 
-
-            const validarPTJEEpoc = () => {
-                if(parametroPTJEpoc) {
-                    const {valor:PTJEEpoc} = parametroPTJEpoc;
-
-                    return PTJEEpoc;
-                }else{
-                    const PTJEEpoc = 0;
-
-                    return PTJEEpoc;
-                }
-            }
-
-            const PTJEEpoc = validarPTJEEpoc();
+            const PTJEEpoc = validarParametrosComp(parametroPTJEpoc);
 
             const parametrosCompensacion = [
                 {
@@ -1792,9 +1357,7 @@ export const MedicalVainas = ({...props}) => {
                 }
             ];
 
-            const parametrosLaboratorio=[
-                laboratorio1
-            ]
+            const parametrosLaboratorio=[laboratorio1]
 
             const resultado = calcCompensacionEpoc(PTJEEpoc);
             return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio };
@@ -1868,8 +1431,6 @@ export const MedicalVainas = ({...props}) => {
                 <VainasModalLab key={props.enfermedad+91212} parametros={infoLaboratorio}/>
             </div>
         </Fragment>
-
-        
     );
 }
 
