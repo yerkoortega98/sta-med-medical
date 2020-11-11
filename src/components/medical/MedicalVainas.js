@@ -258,8 +258,6 @@ export const MedicalVainas = ({...props}) => {
                 laboratorio7
             ]
 
-            console.log("ParametrosLaboratorio: ",parametrosLaboratorio);
-
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
         
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio};
@@ -455,7 +453,7 @@ export const MedicalVainas = ({...props}) => {
             ]
 
 
-           console.log("ParametrosLaboratorio",parametrosLaboratorio);
+           
 
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
            
@@ -1611,6 +1609,8 @@ export const MedicalVainas = ({...props}) => {
             // Validacion examen 1
             const examen1 = respLab[0];
 
+            
+
             const validarInfoExamen1 =() =>{
                 if(examen1){
                     const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
@@ -1632,7 +1632,6 @@ export const MedicalVainas = ({...props}) => {
 
             const resultadoLaboratorio = iconizacionArtrosis(dataExamen1);
 
-            console.log(resultadoLaboratorio);
 
             //Calcular compensacion
             
