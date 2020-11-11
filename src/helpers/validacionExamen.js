@@ -20,7 +20,7 @@ export const validacionExamen =( examen,compensacion )=>{
             }else{
                 const paso1 = "malo";
                 const infoLaboratorio = {
-                    nombre_param: "No hay examen",
+                    nombre_param: "Examen inexistente",
                     valor: 0
                 }
                 return {paso1, infoLaboratorio};
@@ -74,7 +74,7 @@ export const validacionExamen =( examen,compensacion )=>{
             }else{
                 const paso1 = "bueno";
                 const infoLaboratorio = {
-                    nombre_param: "No hay examen",
+                    nombre_param: "Examen inexistente",
                     valor: 0
                 }
                 return {paso1,infoLaboratorio};

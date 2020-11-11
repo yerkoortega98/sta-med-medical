@@ -1866,7 +1866,7 @@ export const MedicalVainas = ({...props}) => {
                 </div>
 
                 <VainasModal key={props.enfermedad} parametros={infoCompensacion}/>
-                <VainasModalLab key={props.enfermedad} parametros={infoLaboratorio}/>
+                <VainasModalLab key={props.enfermedad+91212} parametros={infoLaboratorio}/>
             </div>
         </Fragment>
 

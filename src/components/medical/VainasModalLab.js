@@ -23,14 +23,12 @@ export const VainasModalLab = ({parametros}) => {
 
     useEffect(() => {
         if(!!parametros){
-            console.log("Hola mi gente, entro aqui",true);
             setOpenModal(true);
         }else{
             setOpenModal(false);
         }
     }, [parametros])
     
-    console.log("Parametros: ",parametros);
     const closeModal = () => {  
         setOpenModal(false)
     }
@@ -56,12 +54,8 @@ export const VainasModalLab = ({parametros}) => {
                         parametros.map(( parm , index)=> (
                             <li className="list-tratamiento" key={index + 43}>{parm.nombre_param} : {parm.valor} </li> 
                         ))
-                        
                     }    
-                    
                 </ol>
-                    
-                
             </div>
         </div>
         </Modal>
