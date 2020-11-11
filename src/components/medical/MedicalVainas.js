@@ -486,16 +486,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
-                    const resultado = validacionExamen(examen1,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    console.log("entro aqui");
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
 
-            const dataExamen1 = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
            
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -504,14 +510,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen2 = () =>{
                 if(examen2){
-                    const resultado = validacionExamen(examen2,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen2 = validarInfoExamen2();
+
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
            
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
@@ -519,14 +533,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen3 = () =>{
                 if(examen3){
-                    const resultado = validacionExamen(examen3,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen3 = validarInfoExamen3();
+
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
          
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
@@ -535,14 +557,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen4 = () =>{
                 if(examen4){
-                    const resultado = validacionExamen(examen4,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen4 = validarInfoExamen4();
+
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
            
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -552,14 +582,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen5 = () =>{
                 if(examen5){
-                    const resultado = validacionExamen(examen5,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen5,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen5 = validarInfoExamen5();
+
+            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen5();
            
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -568,14 +606,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen6 = () =>{
                 if(examen6){
-                    const resultado = validacionExamen(examen6,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen6,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen6 = validarInfoExamen6();
+
+            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen6();
 
             const resultadoLaboratorio = iconizacionIRC(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6);
 
@@ -660,6 +706,17 @@ export const MedicalVainas = ({...props}) => {
                 }
             ]
 
+            const parametrosLaboratorio=[
+                laboratorio1,
+                laboratorio2,
+                laboratorio3,
+                laboratorio4,
+                laboratorio5,
+                laboratorio6
+            ]
+
+            console.log(parametrosLaboratorio);
+
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
        
           
@@ -688,16 +745,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
-                    const resultado = validacionExamen(examen1,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    console.log("entro aqui");
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
 
-            const dataExamen1 = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
@@ -705,14 +768,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen2 = () =>{
                 if(examen2){
-                    const resultado = validacionExamen(examen2,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen2 = validarInfoExamen2();
+
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
            
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
@@ -720,14 +791,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen3 = () =>{
                 if(examen3){
-                    const resultado = validacionExamen(examen3,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen3 = validarInfoExamen3();
+
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
           
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
@@ -736,14 +815,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen4 = () =>{
                 if(examen4){
-                    const resultado = validacionExamen(examen4,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen4 = validarInfoExamen4();
+
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
           
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -753,14 +840,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen5 = () =>{
                 if(examen5){
-                    const resultado = validacionExamen(examen5,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen5,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen5 = validarInfoExamen5();
+
+            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen5();
           
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -769,14 +864,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen6 = () =>{
                 if(examen6){
-                    const resultado = validacionExamen(examen6,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen6,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen6 = validarInfoExamen6();
+
+            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen6();
            
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -785,14 +888,22 @@ export const MedicalVainas = ({...props}) => {
             const examen7 = respLab[6];
             const validarInfoExamen7 = () =>{
                 if(examen7){
-                    const resultado = validacionExamen(examen7,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen7,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen7 = validarInfoExamen7();
+
+            const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen7();
 
             const resultadoLaboratorio = iconizacionDisAte(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6, dataExamen7);
 
@@ -888,6 +999,18 @@ export const MedicalVainas = ({...props}) => {
                }  
             ]
 
+            const parametrosLaboratorio=[
+                laboratorio1,
+                laboratorio2,
+                laboratorio3,
+                laboratorio4,
+                laboratorio5, 
+                laboratorio6,
+                laboratorio7
+            ]
+
+            console.log(parametrosLaboratorio);
+
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
 
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
@@ -910,16 +1033,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
-                    const resultado = validacionExamen(examen1,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    console.log("entro aqui");
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
 
-            const dataExamen1 = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
          
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -928,14 +1057,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen2 = () =>{
                 if(examen2){
-                    const resultado = validacionExamen(examen2,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen2 = validarInfoExamen2();
+
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
             
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
@@ -943,14 +1080,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen3 = () =>{
                 if(examen3){
-                    const resultado = validacionExamen(examen3,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen3 = validarInfoExamen3();
+
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
          
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
@@ -959,14 +1104,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen4 = () =>{
                 if(examen4){
-                    const resultado = validacionExamen(examen4,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen4 = validarInfoExamen4();
+
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
            
 
              // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -976,14 +1129,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen5 = () =>{
                 if(examen5){
-                    const resultado = validacionExamen(examen5,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen5,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen5 = validarInfoExamen5();
+
+            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen5();
             
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -992,14 +1153,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen6 = () =>{
                 if(examen6){
-                    const resultado = validacionExamen(examen6,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen6,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen6 = validarInfoExamen6();
+
+            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen6();
            
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 7
@@ -1007,14 +1176,22 @@ export const MedicalVainas = ({...props}) => {
             const examen7 = respLab[6];
             const validarInfoExamen7 = () =>{
                 if(examen7){
-                    const resultado = validacionExamen(examen7,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen7,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen7 = validarInfoExamen7();      
+
+            const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen7();      
             
             const resultadoLaboratorio = iconizacionHTA(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6,dataExamen7);
             
@@ -1058,6 +1235,19 @@ export const MedicalVainas = ({...props}) => {
                     valor:PAD
                 }
             ]
+
+            const parametrosLaboratorio=[
+                laboratorio1,
+                laboratorio2,
+                laboratorio3,
+                laboratorio4,
+                laboratorio5, 
+                laboratorio6,
+                laboratorio7
+            ]
+
+            console.log(parametrosLaboratorio);
+
             const resultado = calcCompesacionHTA(PAS,PAD);
          
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
@@ -1079,16 +1269,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
-                    const resultado = validacionExamen(examen1,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    console.log("entro aqui");
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
 
-            const dataExamen1 = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
             
 
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -1097,14 +1293,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen2 = () =>{
                 if(examen2){
-                    const resultado = validacionExamen(examen2,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen2 = validarInfoExamen2();
+
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
           
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
@@ -1112,14 +1316,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen3 = () =>{
                 if(examen3){
-                    const resultado = validacionExamen(examen3,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen3 = validarInfoExamen3();
+
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
          
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
@@ -1128,14 +1340,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen4 = () =>{
                 if(examen4){
-                    const resultado = validacionExamen(examen4,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
-            const dataExamen4 = validarInfoExamen4();
+
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
 
             const resultadoLaboratorio = iconizacionEpi(dataExamen1,dataExamen2,dataExamen3,dataExamen4);
 
@@ -1159,6 +1379,16 @@ export const MedicalVainas = ({...props}) => {
                     valor:PTJEEpilepsia
                 }
             ]
+
+            const parametrosLaboratorio=[
+                laboratorio1,
+                laboratorio2,
+                laboratorio3,
+                laboratorio4
+            ]
+
+            console.log(parametrosLaboratorio);
+
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
           
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
@@ -1188,16 +1418,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
-                    const resultado = validacionExamen(examen1,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    console.log("entro aqui");
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
 
-            const dataExamen1 = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
 
             const resultadoLaboratorio = iconizacionPark(dataExamen1);
 
@@ -1279,6 +1515,12 @@ export const MedicalVainas = ({...props}) => {
                 parametroTemblor
             ]
 
+            const parametrosLaboratorio=[
+                laboratorio1
+            ]
+
+            console.log(parametrosLaboratorio);
+
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
             
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion};
@@ -1300,15 +1542,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
-                    const resultado = validacionExamen(examen1,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
 
-            const dataExamen1 = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
             //Calcular compensacion
 
             const resultadoLaboratorio = iconizacionAsma(dataExamen1);
@@ -1336,6 +1585,12 @@ export const MedicalVainas = ({...props}) => {
                     valor:PTJEAsma
                 }
             ]
+
+            const parametrosLaboratorio=[
+                laboratorio1
+            ]
+
+            console.log(parametrosLaboratorio);
 
             const resultado = calcCompensacionAsma(PTJEAsma);
           
@@ -1367,15 +1622,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
-                    const resultado = validacionExamen(examen1,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
 
-            const dataExamen1 = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
 
             const resultadoLaboratorio = iconizacionArtrosis(dataExamen1);
 
@@ -1468,6 +1730,13 @@ export const MedicalVainas = ({...props}) => {
                     valor:I
                 }
             ]
+
+            const parametrosLaboratorio=[
+                laboratorio1
+            ]
+
+            console.log(parametrosLaboratorio);
+
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
 
            
@@ -1491,16 +1760,22 @@ export const MedicalVainas = ({...props}) => {
 
             const validarInfoExamen1 =() =>{
                 if(examen1){
-                    const resultado = validacionExamen(examen1,compensacion);
-                    return resultado;
+                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
+
+                    return {resultado,infoLaboratorio};
                 }else{
                     const resultado = "malo";
-                    console.log("entro aqui");
-                    return resultado;
+                        
+                    const infoLaboratorio = {
+                        nombre_param: 'Examen inexistente',
+                        valor: 0
+                    }
+                        
+                    return {resultado,infoLaboratorio};
                 }
             }
 
-            const dataExamen1 = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
 
             const resultadoLaboratorio = iconizacionEpoc(dataExamen1);
 
@@ -1528,6 +1803,12 @@ export const MedicalVainas = ({...props}) => {
                     valor:PTJEEpoc
                 }
             ];
+
+            const parametrosLaboratorio=[
+                laboratorio1
+            ]
+
+            console.log(parametrosLaboratorio);
 
             const resultado = calcCompensacionEpoc(PTJEEpoc);
             return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion };
