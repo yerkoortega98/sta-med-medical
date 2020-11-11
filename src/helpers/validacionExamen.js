@@ -6,21 +6,27 @@ export const validacionExamen =( examen,compensacion )=>{
 
     if(examen.nivel_prioridad === 1){
         
-        const [respData] = compensacion.filter(com => com.nombre_param === examen.nombre_examen);
-
-        console.log("ValidacionExamen: ",respData);
+        const [respData] = compensacion.filter(com => com.nombre_param === examen.nombre_examen);   
 
         // Se valida si encuentra el examen correspondiente.
         const validacionPasoUno =()=>{
             if(respData){
                 const paso1 = "bueno";
-                return paso1;
+                const infoLaboratorio = {
+                    nombre_param: respData.nombre_param,
+                    valor: respData.valor
+                }
+                return {paso1, infoLaboratorio};
             }else{
                 const paso1 = "malo";
-                return paso1;
+                const infoLaboratorio = {
+                    nombre_param: "No hay examen",
+                    valor: 0
+                }
+                return {paso1, infoLaboratorio};
             }
         }
-        const respuestaValidacionUno = validacionPasoUno();
+        const {paso1:respuestaValidacionUno, infoLaboratorio} = validacionPasoUno();
 
         const validacionDireccion = ()=>{
             // Si se encuentra el examen, se pasa a validar la direccion.
@@ -51,10 +57,6 @@ export const validacionExamen =( examen,compensacion )=>{
         const resultadoValidacionDireccion = validacionDireccion();
 
      
-        const infoLaboratorio = {
-            nombre_param: respData.nombre_param,
-            valor: respData.valor
-        }
         return {resultadoValidacionDireccion,infoLaboratorio};
     }else if(examen.nivel_prioridad === 2){
                     
@@ -64,14 +66,22 @@ export const validacionExamen =( examen,compensacion )=>{
         const validacionPasoUno =()=>{
             if(respData){
                 const paso1 = true;
-                return paso1;
+                const infoLaboratorio = {
+                    nombre_param: respData.nombre_param,
+                    valor: respData.valor
+                }
+                return {paso1,infoLaboratorio};
             }else{
                 const paso1 = "bueno";
-                return paso1;
+                const infoLaboratorio = {
+                    nombre_param: "No hay examen",
+                    valor: 0
+                }
+                return {paso1,infoLaboratorio};
             }
         }
 
-        const respuestaValidacionUno = validacionPasoUno();
+        const {paso1:respuestaValidacionUno, infoLaboratorio} = validacionPasoUno();
 
         const validacionDireccion = ()=>{
             // Si se encuentra el examen, se pasa a validar la direccion.
@@ -100,10 +110,7 @@ export const validacionExamen =( examen,compensacion )=>{
 
         const resultadoValidacionDireccion = validacionDireccion();
       
-        const infoLaboratorio = {
-            nombre_param: respData.nombre_param,
-            valor: respData.valor
-        }
+    
         return {resultadoValidacionDireccion,infoLaboratorio};
 
     }else if(examen.nivel_prioridad === 3){

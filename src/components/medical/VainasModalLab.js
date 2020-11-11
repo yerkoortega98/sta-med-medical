@@ -16,7 +16,7 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 
-export const VainasModal = ({parametros}) => {
+export const VainasModalLab = ({parametros}) => {
 
     const [openModal, setOpenModal] = useState(false);
     
