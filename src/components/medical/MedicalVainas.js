@@ -23,9 +23,7 @@ import {
 } from '../../helpers/laboratorio';
 import {validarInfoExamen, validarParametrosComp} from '../../helpers/validarParametrosComp'
 
-
-
-import { validacionExamen } from '../../helpers/validacionExamen';
+// Modal
 import { VainasModal } from './VainasModal';
 import { VainasModalLab } from './VainasModalLab';
 
@@ -134,128 +132,28 @@ export const MedicalVainas = ({...props}) => {
 
 
             const examen1 = respLab[0];
-
-            const validarInfoExamen1 =() =>{
-                    if(examen1){
-                        const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-                        return {resultado,infoLaboratorio};
-                    }else{
-                        const resultado = "malo";
-                        
-                        const infoLaboratorio = {
-                            nombre_param: 'Examen inexistente',
-                            valor: 0
-                        }
-                        
-                        return {resultado,infoLaboratorio};
-                    }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
-           
-
-             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
+    
             // Validacion examen 2
-
-
-
             const examen2 = respLab[1];
-
-            const validarInfoExamen2 =() =>{
-                if(examen2){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen(examen2,compensacion);
           
-             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 3
-
-
             const examen3 = respLab[2];
-
-            const validarInfoExamen3 =() =>{
-                if(examen3){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen(examen3,compensacion);
            
-             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 4
-
             const examen4 = respLab[3];
-
-            const validarInfoExamen4 =() =>{
-                if(examen4){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};                }
-            }
-
-            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
-           
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen(examen4,compensacion);
+    
             // Validacion examen 4
-
             const examen5 = respLab[4];
+            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen(examen5,compensacion);
 
-            const validarInfoExamen5 =() =>{
-                if(examen5){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen5,compensacion);
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                    
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen5();
-
-            const resultadoLaboratorio = iconizacionHipotir(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5);
-
-            
+            const resultadoLaboratorio = iconizacionHipotir(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5);   
            
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // calculoCompensacion.
-
-
-
             const parametroTSH = respuestaTSH[0];
             const TSH = validarParametrosComp(parametroTSH);
           
@@ -297,161 +195,32 @@ export const MedicalVainas = ({...props}) => {
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Calculo de laboratorio
 
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 1
             const examen1 = respLab[0];
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
 
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
-           
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
             const examen2 = respLab[1];
-
-            const validarInfoExamen2 = () =>{
-                if(examen2){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
-           
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen(examen2,compensacion);
+            
             // Validacion examen 3
             const examen3 = respLab[2];
-
-            const validarInfoExamen3 = () =>{
-                if(examen3){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
-         
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen(examen3,compensacion);
+                     
             // Validacion examen 4
-
             const examen4 = respLab[3];
-
-            const validarInfoExamen4 = () =>{
-                if(examen4){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
-           
-
-             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen(examen4,compensacion);
             // Validacion examen 5
-
             const examen5 = respLab[4];
-
-            const validarInfoExamen5 = () =>{
-                if(examen5){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen5,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen5();
+            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen(examen5,compensacion);
            
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 6
             const examen6 = respLab[5];
-
-            const validarInfoExamen6 = () =>{
-                if(examen6){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen6,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen6();
+            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen(examen6,compensacion);
 
             const resultadoLaboratorio = iconizacionIRC(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6);
 
-            
-                       
-
-             // ------------------------------------------------------------------------------------------------------------------------------------------\\
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // calculoCompensacion.
-
-
-
             const validacionSexoHombre = respuestaHombre[0];
             const validacionSexoMujer = respuestaMujer[0];
             const sexo = ()=>{
@@ -516,181 +285,38 @@ export const MedicalVainas = ({...props}) => {
             const respuestaTG = compensacion.filter(com => com.nombre_param === 'Trigliceridos')
             const respuestaCT = compensacion.filter(com => com.nombre_param === 'Colesterol')
 
-              // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Calculo de laboratorio
 
-
-            
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Dis/ATE');
 
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Dis/ATE');
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+
             // Validacion examen 1
             const examen1 = respLab[0];
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
 
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 2
             const examen2 = respLab[1];
-
-            const validarInfoExamen2 = () =>{
-                if(examen2){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
-           
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen(examen2,compensacion);
             // Validacion examen 3
             const examen3 = respLab[2];
-
-            const validarInfoExamen3 = () =>{
-                if(examen3){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
-          
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen(examen3,compensacion);
             // Validacion examen 4
-
             const examen4 = respLab[3];
-
-            const validarInfoExamen4 = () =>{
-                if(examen4){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
-          
-
-             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen(examen4,compensacion);
             // Validacion examen 5
-
             const examen5 = respLab[4];
-
-            const validarInfoExamen5 = () =>{
-                if(examen5){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen5,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen5();
-          
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen(examen5,compensacion);
             // Validacion examen 6
             const examen6 = respLab[5];
-
-            const validarInfoExamen6 = () =>{
-                if(examen6){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen6,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen6();
+            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen(examen6,compensacion);
            
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
             // Validacion examen 7
-
             const examen7 = respLab[6];
-            const validarInfoExamen7 = () =>{
-                if(examen7){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen7,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen7();
+            const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen(examen7,compensacion);
 
             const resultadoLaboratorio = iconizacionDisAte(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6, dataExamen7);
 
@@ -770,168 +396,25 @@ export const MedicalVainas = ({...props}) => {
             
             // Validacion examen 1
             const examen1 = respLab[0];
-
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
-         
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
             // Validacion examen 2
             const examen2 = respLab[1];
-
-            const validarInfoExamen2 = () =>{
-                if(examen2){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
-            
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen(examen2,compensacion);
             // Validacion examen 3
             const examen3 = respLab[2];
-
-            const validarInfoExamen3 = () =>{
-                if(examen3){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
-         
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen(examen3,compensacion);
             // Validacion examen 4
-
             const examen4 = respLab[3];
-
-            const validarInfoExamen4 = () =>{
-                if(examen4){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
-           
-
-             // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen(examen4,compensacion);
             // Validacion examen 5
-
             const examen5 = respLab[4];
-
-            const validarInfoExamen5 = () =>{
-                if(examen5){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen5,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen5();
-            
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen(examen5,compensacion);
             // Validacion examen 6
             const examen6 = respLab[5];
-
-            const validarInfoExamen6 = () =>{
-                if(examen6){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen6,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen6();
-           
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen6,infoLaboratorio:laboratorio6} = validarInfoExamen(examen6,compensacion);
             // Validacion examen 7
-
             const examen7 = respLab[6];
-            const validarInfoExamen7 = () =>{
-                if(examen7){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen7,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen7();      
+            const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen(examen7,compensacion); 
             
             const resultadoLaboratorio = iconizacionHTA(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6,dataExamen7);
             
@@ -972,101 +455,20 @@ export const MedicalVainas = ({...props}) => {
             
             // Validacion examen 1
             const examen1 = respLab[0];
-
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
-            
-
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
             // Validacion examen 2
             const examen2 = respLab[1];
-
-            const validarInfoExamen2 = () =>{
-                if(examen2){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen2,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen2();
-          
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen2,infoLaboratorio:laboratorio2} = validarInfoExamen(examen2,compensacion);
             // Validacion examen 3
             const examen3 = respLab[2];
-
-            const validarInfoExamen3 = () =>{
-                if(examen3){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen3,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen3();
-         
-            // ------------------------------------------------------------------------------------------------------------------------------------------\\
+            const {resultado:dataExamen3,infoLaboratorio:laboratorio3} = validarInfoExamen(examen3,compensacion);
             // Validacion examen 4
-
             const examen4 = respLab[3];
-
-            const validarInfoExamen4 = () =>{
-                if(examen4){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen4,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen4();
+            const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen(examen4,compensacion);
 
             const resultadoLaboratorio = iconizacionEpi(dataExamen1,dataExamen2,dataExamen3,dataExamen4);
 
             //Calcular comendacion
-           
             const parametroPTJEEpilepsia = respuestPTJEEpilepsia[0];
             const PTJEEpilepsia =  validarParametrosComp(parametroPTJEEpilepsia);
             
@@ -1104,25 +506,7 @@ export const MedicalVainas = ({...props}) => {
             
             // Validacion examen 1
             const examen1 = respLab[0];
-
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
 
             const resultadoLaboratorio = iconizacionPark(dataExamen1);
 
@@ -1130,9 +514,7 @@ export const MedicalVainas = ({...props}) => {
             // --------------------------------------------------------------------------------------------------------------------------------------\\
             //calculo de compensación
             // --------------------------------------------------------------------------------------------------------------------------------------\\
-            // --------------------------------------------------------------------------------------------------------------------------------------\\
-            
-            
+            // --------------------------------------------------------------------------------------------------------------------------------------\\        
             const temblor = validarParametrosComp(parametroTemblor);
             const equilibrio = validarParametrosComp(parametroEquilibrio);
             const rigidez = validarParametrosComp(parametroRigidez);     
@@ -1180,25 +562,7 @@ export const MedicalVainas = ({...props}) => {
 
             // Validacion examen 1
             const examen1 = respLab[0];
-
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
             //Calcular compensacion
 
             const resultadoLaboratorio = iconizacionAsma(dataExamen1);
@@ -1240,25 +604,7 @@ export const MedicalVainas = ({...props}) => {
 
             // Validacion examen 1
             const examen1 = respLab[0];
-
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
 
             const resultadoLaboratorio = iconizacionArtrosis(dataExamen1);
 
@@ -1322,25 +668,7 @@ export const MedicalVainas = ({...props}) => {
 
             // Validacion examen 1
             const examen1 = respLab[0];
-
-            const validarInfoExamen1 =() =>{
-                if(examen1){
-                    const {resultadoValidacionDireccion:resultado,infoLaboratorio} = validacionExamen(examen1,compensacion);
-
-                    return {resultado,infoLaboratorio};
-                }else{
-                    const resultado = "malo";
-                        
-                    const infoLaboratorio = {
-                        nombre_param: 'Examen inexistente',
-                        valor: 0
-                    }
-                        
-                    return {resultado,infoLaboratorio};
-                }
-            }
-
-            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen1();
+            const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
 
             const resultadoLaboratorio = iconizacionEpoc(dataExamen1);
 
