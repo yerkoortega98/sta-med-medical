@@ -1055,12 +1055,19 @@ export const MedicalVainas = ({...props}) => {
                             <div className="tituloTratamiento">
                                 <p>Tratamiento:</p>
                             </div>
-                            <div className="ContenidoTratamiento">
-                                {
+                            <div className="ContenidoTratamiento" >
+                                {   
                                     (resTratamiento)
                                     &&
                                     resTratamiento.map(tra => (
-                                        <li className="list-tratamiento" key={tra.nombre_breve}>{tra.nombre_breve} : {tra.dosis_diaria}</li> 
+                                        <li 
+                                            className="list-tratamiento" 
+                                            key={tra.nombre_breve}
+                                        >
+                                            
+                                            <strong className="nombre_breve">{tra.nombre_breve}: </strong> <span className={`${tra.consumo_medicamento === 1 && "text-success-consumo"} ${tra.consumo_medicamento === 2 && "text-warning-consumo"} ${tra.consumo_medicamento === 3 && "text-danger-consumo"} `}>{tra.dosis_diaria}</span>
+
+                                        </li> 
                                     ))
                                 }
                             </div>

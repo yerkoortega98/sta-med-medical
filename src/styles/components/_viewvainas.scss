@@ -10,6 +10,22 @@
     width: 260px;
 }
 
+.nombre_breve{
+    color: white;
+}
+
+.text-success-consumo{
+    color: green;
+}
+
+.text-warning-consumo{
+    color: yellow;
+}
+
+.text-danger-consumo{
+    color: red;
+}
+
 .parrafo-compensacion{
     margin-left: 10px;
 }
@@ -109,6 +125,9 @@ section {
     cursor: pointer;
 }
 
+.list-tratamiento {
+    list-style: none;
+}
 
 
 // Modal
@@ -153,8 +172,4 @@ section {
     outline: none;
     padding: 10px;
     border: 3px solid #d0ff00;
-}
-
-.list-tratamiento {
-    list-style: none;
 }
