@@ -35,6 +35,7 @@ export const MedicalVainas = ({...props}) => {
     // Activar modal
     const [infoCompensacion, setInfoCompensacion] = useState();
     const [infoLaboratorio, setInfoLaboratorio] = useState();
+    const [infoSintomas, setInfoSintomas] = useState();
 
     const { compensacion,laboratorio, tratamiento, preguntas, avisos } = useSelector(state => state.pacienteActivo);
     const { infoPaciente } = useSelector(state => state.pacienteActivo);
@@ -746,8 +747,6 @@ export const MedicalVainas = ({...props}) => {
     const handleClickLaboratorio = ()=>{        
         setInfoLaboratorio(parametrosLaboratorio);
     }
-
-    const [infoSintomas, setInfoSintomas] = useState();
 
     const handleClickPreguntas = ()=>{        
         setInfoSintomas(resPreguntas);

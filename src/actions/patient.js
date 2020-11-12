@@ -46,6 +46,7 @@ export const startLoadInfoPaciente = (rutPaciente) => {
         await dispatch(startLoadTratamiento(rutPaciente));
         await dispatch(startLoadPreguntas(rutPaciente));
         await dispatch(startLoadAvisos(rutPaciente));
+        await dispatch(startLoadSintomas());
         
         setTimeout(() => {
             dispatch(patientIsCheckingTrue());
@@ -247,6 +248,32 @@ export const setAvisos = (avisos)=>({
 
 export const clearAvisos = ()=>({
     type:types.clearAvisos
+})
+
+export const startLoadSintomas = ()=>{
+    return async(dispatch)=>{
+
+        await axios({
+            method:'GET',
+            url:'http://localhost:4000/getSintomas'
+        }).then(res =>{
+            const sintomas = res.data;
+            dispatch(setSintomas(sintomas));
+
+        }).catch(e =>{
+            console.log(e);
+        })
+
+    }
+}
+
+export const setSintomas = (sintomas)=>({
+    type:types.setSintomas,
+    payload: sintomas
+})
+
+export const clearSintomas = ()=>({
+    type:types.clearSintomas
 })
 
 export const patientIsCheckingTrue = ()=>({
