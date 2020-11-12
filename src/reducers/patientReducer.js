@@ -8,7 +8,8 @@ const initialState={
     compensacion:[],
     laboratorio:[],
     molestias: [],
-    tratamiento: []
+    tratamiento: [],
+    preguntas: []
 }
 
 export const patientReducer = ( state=initialState, action )=>{
@@ -99,6 +100,18 @@ export const patientReducer = ( state=initialState, action )=>{
                 tratamiento:[]
             }
         
+        case types.setPreguntas:
+            return{
+                ...state,
+                preguntas:[...action.payload]
+            }
+
+        case types.clearPreguntas:
+            return{
+                ...state,
+                preguntas:[]
+            }
+    
         
         default:
             return state;

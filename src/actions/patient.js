@@ -44,6 +44,7 @@ export const startLoadInfoPaciente = (rutPaciente) => {
         await dispatch(startLoadLaboratorio());
         await dispatch(startLoadMolestia(rutPaciente));
         await dispatch(startLoadTratamiento(rutPaciente));
+        await dispatch(startLoadPreguntas(rutPaciente));
         
         setTimeout(() => {
             dispatch(patientIsCheckingTrue());
@@ -197,7 +198,30 @@ export const clearTratamientos = ()=>({
     type:types.clearTratamiento
 })
 
+export const startLoadPreguntas = (rutPaciente) => {
+    return async(dispatch) => {
+        await axios({
+            method: 'GET', 
+            url:'http://localhost:4000/getPreguntasCr'
+        }).then(res => {
+            const respuesta = res.data;
 
+            const preguntas = respuesta.filter( tra => tra.rut === rutPaciente);
+
+            dispatch(setPreguntas(preguntas));
+
+        })
+    }
+}
+
+export const setPreguntas = (preguntas)=>({
+    type:types.setPreguntas,
+    payload: preguntas
+})
+
+export const clearPreguntas = ()=>({
+    type:types.clearPreguntas
+})
 
 export const patientIsCheckingTrue = ()=>({
     type:types.patientIsCheckingTrue

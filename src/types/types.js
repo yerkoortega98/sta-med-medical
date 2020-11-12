@@ -36,7 +36,9 @@ export const types={
     setMolestias: '[Patient] set Molestias',
     clearMolestias: '[Patient] Clear Molestias',
     setTratamiento: '[Patient] set Tratamiento',
-    clearTratamiento: '[Patient] Clear Tratamiento', 
+    clearTratamiento: '[Patient] Clear Tratamiento',
+    setPreguntas: '[Patient] set Preguntas', 
+    clearPreguntas: '[Patient] Clear Preguntas', 
 
     // PacienteACtivo
     patientIsCheckingTrue: '[Patient] Patient is Checking in True',

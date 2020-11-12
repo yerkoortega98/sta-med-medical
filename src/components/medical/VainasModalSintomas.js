@@ -16,7 +16,7 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 
-export const VainasModalLab = ({parametros}) => {
+export const VainasModalSintomas = ({parametros}) => {
 
     const [openModal, setOpenModal] = useState(false);
     
@@ -44,18 +44,20 @@ export const VainasModalLab = ({parametros}) => {
           >
         <div>
             <div>
-                <h1 className="justify-content-center">Laboratorio</h1>
+                <h1 className="justify-content-center">Sintomas</h1>
             </div>
             <div>
                 <ol>
+                    <p>Nombre pregunta</p>
                     {
                         (parametros)
                         &&
                         parametros.map(( parm , index)=> (
-                            <li className="list-tratamiento" key={index + 43}>{parm.nombre_param} : {parm.valor} </li> 
+                            <li className="list-tratamiento" key={index + 43}>{parm.nombre_pregunta} : {parm.respuesta_sintoma} </li> 
                         ))
-                    }    
-                </ol>
+                        
+                    }              
+                </ol>           
             </div>
         </div>
         </Modal>
