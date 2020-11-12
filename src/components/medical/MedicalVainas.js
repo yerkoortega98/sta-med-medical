@@ -9,6 +9,7 @@ import {
     calcCompensacionParkinson,
     calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia
  } from '../../helpers/compensacion';
+import { iconizacionSintomas } from '../../helpers/iconizacionPreguntas';
 import { 
     iconizacionDM, 
     iconizacionEpoc, 
@@ -89,13 +90,10 @@ export const MedicalVainas = ({...props}) => {
             const pregunta8 = respuestaPreg[7];
             const puntajeRespuesta8 = validarInfoPreguntas(resPreguntas,pregunta8);
 
-            const puntajeSintomas = puntajeRespuesta1+puntajeRespuesta2+puntajeRespuesta3+puntajeRespuesta4+puntajeRespuesta5+puntajeRespuesta6+puntajeRespuesta7+puntajeRespuesta8;
-
-            
-            console.log("Puntaje_sintomas:",puntajeSintomas);
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6)+(puntajeRespuesta7)+(puntajeRespuesta8);
             
             // Debes retornar iconoSintomas
-            // const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
           
             // Calculo de laboratorio    
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'DM');
@@ -157,7 +155,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
         
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
             
         }else if(props.enfermedad === 'Hipotir'){
              // Obtener tratamientos de la enfermedad de artrosis.
@@ -173,6 +171,28 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Hipotir');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Hipotir');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            // Validacion pregunta 4
+            const pregunta4 = respuestaPreg[3];
+            const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -220,7 +240,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
            
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
 
         }else if(props.enfermedad === 'IRC'){
              // Obtener tratamientos de la enfermedad de artrosis.
@@ -232,6 +252,32 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'IRC');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'IRC');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            // Validacion pregunta 4
+            const pregunta4 = respuestaPreg[3];
+            const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+
+            // Validacion pregunta 5
+            const pregunta5 = respuestaPreg[4];
+            const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
 
             //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
             const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'IRC');
@@ -326,7 +372,7 @@ export const MedicalVainas = ({...props}) => {
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
        
           
-            return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
 
         }else if(props.enfermedad === 'Dis/ATE'){
              // Obtener tratamientos de la enfermedad de artrosis.
@@ -342,6 +388,24 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Dis/ATE');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Dis/ATE');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -432,7 +496,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
 
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
 
         }else if(props.enfermedad === 'HTA'){
              // Obtener tratamientos de la enfermedad de artrosis.
@@ -448,6 +512,40 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'HTA');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'HTA');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            // Validacion pregunta 4
+            const pregunta4 = respuestaPreg[3];
+            const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+
+            // Validacion pregunta 5
+            const pregunta5 = respuestaPreg[4];
+            const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+
+            // Validacion pregunta 6
+            const pregunta6 = respuestaPreg[5];
+            const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
+
+            // Validacion pregunta 7
+            const pregunta7 = respuestaPreg[6];
+            const puntajeRespuesta7 = validarInfoPreguntas(resPreguntas,pregunta7);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6)+(puntajeRespuesta7);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -497,7 +595,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompesacionHTA(PAS,PAD);
          
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
 
         }else if(props.enfermedad === 'Epi'){
 
@@ -514,6 +612,27 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Epi');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Epi');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+            console.log("puntajeRespuest1: "+respuestaPreg);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+            console.log("puntajeRespuest2: "+respuestaPreg);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+            console.log("puntajeRespuest3: "+puntajeRespuesta3);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -545,7 +664,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
           
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
 
         }else if(props.enfermedad === 'Park'){
              // Obtener tratamientos de la enfermedad de artrosis.
@@ -561,6 +680,32 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Park');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Park');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            // Validacion pregunta 4
+            const pregunta4 = respuestaPreg[3];
+            const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+
+            // Validacion pregunta 5
+            const pregunta5 = respuestaPreg[4];
+            const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -614,7 +759,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
             
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
 
         }else if(props.enfermedad === 'Asma'){
             // Obtener tratamientos de la enfermedad de artrosis.
@@ -630,6 +775,36 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Asma');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Asma');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            // Validacion pregunta 4
+            const pregunta4 = respuestaPreg[3];
+            const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+
+            // Validacion pregunta 5
+            const pregunta5 = respuestaPreg[4];
+            const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+
+            // Validacion pregunta 6
+            const pregunta6 = respuestaPreg[5];
+            const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -656,7 +831,7 @@ export const MedicalVainas = ({...props}) => {
             //Constante que obtiene el resultado del calculo de compensacion de puntaje Asma 
             const resultado = calcCompensacionAsma(PTJEAsma);
           
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
 
         }else if(props.enfermedad === 'Artrosis'){
             // Obtener tratamientos de la enfermedad de artrosis.
@@ -672,6 +847,28 @@ export const MedicalVainas = ({...props}) => {
             
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Artrosis');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Artrosis');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            // Validacion pregunta 4
+            const pregunta4 = respuestaPreg[3];
+            const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -738,7 +935,7 @@ export const MedicalVainas = ({...props}) => {
             // Variable que guarda el resultado del calculo de compensacion.
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
             // Se retorna cada variable necesaria para ser mostrada y procesada en el HTML.
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
 
         }else if(props.enfermedad === 'EPOC'){
              // Obtener tratamientos de la enfermedad de EPOC.
@@ -746,6 +943,45 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'EPOC');
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'EPOC');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            // Validacion pregunta 4
+            const pregunta4 = respuestaPreg[3];
+            const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+
+            // Validacion pregunta 5
+            const pregunta5 = respuestaPreg[4];
+            const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+
+            // Validacion pregunta 6
+            const pregunta6 = respuestaPreg[5];
+            const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
+
+            // Validacion pregunta 7
+            const pregunta7 = respuestaPreg[6];
+            const puntajeRespuesta7 = validarInfoPreguntas(resPreguntas,pregunta7);
+
+            // Validacion pregunta 8
+            const pregunta8 = respuestaPreg[7];
+            const puntajeRespuesta8 = validarInfoPreguntas(resPreguntas,pregunta8);
+
+            const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6)+(puntajeRespuesta7)+(puntajeRespuesta8);
+            
+            // Debes retornar iconoSintomas
+            const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+            
 
             //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
             const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'EPOC');
@@ -775,13 +1011,15 @@ export const MedicalVainas = ({...props}) => {
             const parametrosLaboratorio=[laboratorio1]
 
             const resultado = calcCompensacionEpoc(PTJEEpoc);
-            return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
+            return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
         }
     }   
 
     const resultIconizacion = iconizacion();
 
-    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso } = resultIconizacion;
+    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas } = resultIconizacion;
+
+    console.log(iconoSintomas);
     
     const handleClick = ()=>{        
         setInfoCompensacion(parametrosCompensacion);
@@ -810,7 +1048,7 @@ export const MedicalVainas = ({...props}) => {
                                 <p className="parrafo-compensacion">Compensación: <i  onClick={ handleClick } className={`${ result } fa-lg`}></i></p>
                                 <p className="parrafo-laboratorio">Laboratorio: <i onClick={ handleClickLaboratorio }className={`${resultadoLaboratorio} fa-lg`}></i></p>
                                 <p className="parrafo-nutricion">Nutrición: <i className="fas fa-check text-success fa-lg"></i></p>
-                                <p className="parrafo-sintomas">Sintomas: <i onClick={ handleClickPreguntas }className="fas fa-times text-danger fa-lg"></i></p>
+                                <p className="parrafo-sintomas">Sintomas: <i onClick={ handleClickPreguntas }className={`${iconoSintomas} fa-lg`}></i></p>
                                 <p className="parrafo-avisos">Avisos:</p>
                                 <p className="parrafo-avisos-resultado">{aviso}</p>
                             </div>

@@ -31,20 +31,24 @@ export const validarInfoExamen =(examen,compensacion) =>{
 }
 
 export const validarInfoPreguntas = (resPreguntas,pregunta) =>{
-    if(pregunta){
-        const respuestaValidacionSintoma = validacionSintoma(resPreguntas,pregunta);
+    if(!!pregunta){
+        if(!!resPreguntas){
+            const respuestaValidacionSintoma = validacionSintoma(resPreguntas,pregunta);
         
-        return respuestaValidacionSintoma;
+            return respuestaValidacionSintoma;
+        }else{
+            const respuestaValidacionSintoma = 0;
+
+            return respuestaValidacionSintoma;    
+        }
     }else{
         const respuestaValidacionSintoma = 0;
 
         return respuestaValidacionSintoma;
     }
-
-
 }
 
-export  const validacionSintoma = (resPreguntas,pregunta)=>{
+const validacionSintoma = (resPreguntas,pregunta)=>{
                 
     const [respData] = resPreguntas.filter(res => res.nombre_pregunta === pregunta.nombre)
 
