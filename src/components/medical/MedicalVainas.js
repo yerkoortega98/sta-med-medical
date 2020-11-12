@@ -22,7 +22,7 @@ import {
     iconizacionArtrosis
 } from '../../helpers/laboratorio';
 import { validacionAvisos } from '../../helpers/validacionAviso';
-import {validarInfoExamen, validarParametrosComp} from '../../helpers/validarParametrosComp'
+import { validarInfoExamen, validarInfoPreguntas, validarParametrosComp} from '../../helpers/validarParametrosComp'
 
 // Modal
 import { VainasModal } from './VainasModal';
@@ -37,7 +37,7 @@ export const MedicalVainas = ({...props}) => {
     const [infoLaboratorio, setInfoLaboratorio] = useState();
     const [infoSintomas, setInfoSintomas] = useState();
 
-    const { compensacion,laboratorio, tratamiento, preguntas, avisos } = useSelector(state => state.pacienteActivo);
+    const { compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas } = useSelector(state => state.pacienteActivo);
     const { infoPaciente } = useSelector(state => state.pacienteActivo);
     
     const { peso,edad }= infoPaciente[0];
@@ -45,7 +45,7 @@ export const MedicalVainas = ({...props}) => {
     const iconizacion=()=>{
        
         if(props.enfermedad === 'DM'){
-            
+             // Obtener tratamientos de la enfermedad de artrosis.
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'DM');
 
             //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
@@ -55,7 +55,48 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'DM');
-        
+            const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'DM');
+
+            // Validacion pregunta 1
+            const pregunta1 = respuestaPreg[0];
+            const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+
+            // Validacion pregunta 2
+            const pregunta2 = respuestaPreg[1];
+            const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+
+            // Validacion pregunta 3
+            const pregunta3 = respuestaPreg[2];
+            const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+
+            // Validacion pregunta 4
+            const pregunta4 = respuestaPreg[3];
+            const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+
+            // Validacion pregunta 5
+            const pregunta5 = respuestaPreg[4];
+            const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+
+            // Validacion pregunta 6
+            const pregunta6 = respuestaPreg[5];
+            const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
+
+            // Validacion pregunta 7
+            const pregunta7= respuestaPreg[6];
+            const puntajeRespuesta7 = validarInfoPreguntas(resPreguntas,pregunta7);
+
+            // Validacion pregunta 8
+            const pregunta8 = respuestaPreg[7];
+            const puntajeRespuesta8 = validarInfoPreguntas(resPreguntas,pregunta8);
+
+            const puntajeSintomas = puntajeRespuesta1+puntajeRespuesta2+puntajeRespuesta3+puntajeRespuesta4+puntajeRespuesta5+puntajeRespuesta6+puntajeRespuesta7+puntajeRespuesta8;
+
+            
+            console.log("Puntaje_sintomas:",puntajeSintomas);
+            
+            // Debes retornar iconoSintomas
+            // const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+          
             // Calculo de laboratorio    
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'DM');
             
@@ -119,7 +160,7 @@ export const MedicalVainas = ({...props}) => {
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
             
         }else if(props.enfermedad === 'Hipotir'){
-
+             // Obtener tratamientos de la enfermedad de artrosis.
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Hipotir');
 
             // Calculo de laboratorio           
@@ -182,7 +223,7 @@ export const MedicalVainas = ({...props}) => {
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'IRC'){
-
+             // Obtener tratamientos de la enfermedad de artrosis.
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'IRC');
             
             // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -288,7 +329,7 @@ export const MedicalVainas = ({...props}) => {
             return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'Dis/ATE'){
-            
+             // Obtener tratamientos de la enfermedad de artrosis.
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Dis/ATE');
             
             // Calculo de laboratorio
@@ -394,8 +435,9 @@ export const MedicalVainas = ({...props}) => {
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'HTA'){
-            
+             // Obtener tratamientos de la enfermedad de artrosis.
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'HTA');
+
             //Validacion de laboratorio
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'HTA');
 
@@ -459,6 +501,7 @@ export const MedicalVainas = ({...props}) => {
 
         }else if(props.enfermedad === 'Epi'){
 
+             // Obtener tratamientos de la enfermedad de artrosis.
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Epi');
             
             //Validacion de laboratorio
@@ -505,7 +548,7 @@ export const MedicalVainas = ({...props}) => {
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'Park'){
-            
+             // Obtener tratamientos de la enfermedad de artrosis.
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'Park');
             
             //Validacion de laboratorio
@@ -698,7 +741,7 @@ export const MedicalVainas = ({...props}) => {
             return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'EPOC'){
-
+             // Obtener tratamientos de la enfermedad de EPOC.
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'EPOC');
 
             //filtro para buscar preguntas correspondientes a la condición cronica
