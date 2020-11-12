@@ -9,7 +9,8 @@ const initialState={
     laboratorio:[],
     molestias: [],
     tratamiento: [],
-    preguntas: []
+    preguntas: [], 
+    avisos: []
 }
 
 export const patientReducer = ( state=initialState, action )=>{
@@ -110,6 +111,18 @@ export const patientReducer = ( state=initialState, action )=>{
             return{
                 ...state,
                 preguntas:[]
+            }
+
+        case types.setAvisos:
+            return{
+                ...state,
+                avisos:[...action.payload]
+            }
+
+        case types.clearAvisos:
+            return{
+                ...state,
+                avisos:[]
             }
     
         

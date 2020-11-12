@@ -48,7 +48,6 @@ export const VainasModalSintomas = ({parametros}) => {
             </div>
             <div>
                 <ol>
-                    <p>Nombre pregunta</p>
                     {
                         (parametros)
                         &&

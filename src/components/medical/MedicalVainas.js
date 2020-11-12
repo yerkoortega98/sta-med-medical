@@ -21,6 +21,7 @@ import {
     iconizacionAsma, 
     iconizacionArtrosis
 } from '../../helpers/laboratorio';
+import { validacionAvisos } from '../../helpers/validacionAviso';
 import {validarInfoExamen, validarParametrosComp} from '../../helpers/validarParametrosComp'
 
 // Modal
@@ -35,7 +36,7 @@ export const MedicalVainas = ({...props}) => {
     const [infoCompensacion, setInfoCompensacion] = useState();
     const [infoLaboratorio, setInfoLaboratorio] = useState();
 
-    const { compensacion,laboratorio, tratamiento, preguntas } = useSelector(state => state.pacienteActivo);
+    const { compensacion,laboratorio, tratamiento, preguntas, avisos } = useSelector(state => state.pacienteActivo);
     const { infoPaciente } = useSelector(state => state.pacienteActivo);
     
     const { peso,edad }= infoPaciente[0];
@@ -45,6 +46,11 @@ export const MedicalVainas = ({...props}) => {
         if(props.enfermedad === 'DM'){
             
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'DM');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'DM');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'DM');
@@ -109,7 +115,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionDiabetes(hbglic, glicemia);
         
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
             
         }else if(props.enfermedad === 'Hipotir'){
 
@@ -117,6 +123,11 @@ export const MedicalVainas = ({...props}) => {
 
             // Calculo de laboratorio           
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Hipotir');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'Hipotir');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Hipotir');
@@ -167,7 +178,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
            
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'IRC'){
 
@@ -179,6 +190,12 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'IRC');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'IRC');
+
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -267,7 +284,7 @@ export const MedicalVainas = ({...props}) => {
             const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
        
           
-            return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'Dis/ATE'){
             
@@ -275,6 +292,11 @@ export const MedicalVainas = ({...props}) => {
             
             // Calculo de laboratorio
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Dis/ATE');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'Dis/ATE');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Dis/ATE');
@@ -368,13 +390,18 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
 
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'HTA'){
             
             const resTratamiento = tratamiento.filter(tra => tra.con_cronica  === 'HTA');
             //Validacion de laboratorio
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'HTA');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'HTA');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'HTA');
@@ -427,7 +454,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompesacionHTA(PAS,PAD);
          
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'Epi'){
 
@@ -435,6 +462,11 @@ export const MedicalVainas = ({...props}) => {
             
             //Validacion de laboratorio
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Epi');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'Epi');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Epi');
@@ -469,7 +501,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
           
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'Park'){
             
@@ -477,6 +509,11 @@ export const MedicalVainas = ({...props}) => {
             
             //Validacion de laboratorio
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Park');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'Park');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Park');
@@ -533,7 +570,7 @@ export const MedicalVainas = ({...props}) => {
 
             const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
             
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'Asma'){
             // Obtener tratamientos de la enfermedad de artrosis.
@@ -541,6 +578,11 @@ export const MedicalVainas = ({...props}) => {
 
             //validacion laboratorio 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Asma');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'Asma');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Asma');
@@ -570,7 +612,7 @@ export const MedicalVainas = ({...props}) => {
             //Constante que obtiene el resultado del calculo de compensacion de puntaje Asma 
             const resultado = calcCompensacionAsma(PTJEAsma);
           
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'Artrosis'){
             // Obtener tratamientos de la enfermedad de artrosis.
@@ -578,6 +620,14 @@ export const MedicalVainas = ({...props}) => {
             
             //validacion laboratorio 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'Artrosis');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'Artrosis');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
+            
+            //filtro para buscar preguntas correspondientes a la condición cronica
+            const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Artrosis');
             
             // Validacion examen 1
             const examen1 = respLab[0];
@@ -644,7 +694,7 @@ export const MedicalVainas = ({...props}) => {
             // Variable que guarda el resultado del calculo de compensacion.
             const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
             // Se retorna cada variable necesaria para ser mostrada y procesada en el HTML.
-            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
 
         }else if(props.enfermedad === 'EPOC'){
 
@@ -652,6 +702,11 @@ export const MedicalVainas = ({...props}) => {
 
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'EPOC');
+
+            //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
+            const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'EPOC');
+            const infoAviso = resAvisos[0];
+            const aviso = validacionAvisos(infoAviso);
             
             //validacion laboratorio 
             const respLab = laboratorio.filter(lab => lab.condicion_cr === 'EPOC');
@@ -676,13 +731,13 @@ export const MedicalVainas = ({...props}) => {
             const parametrosLaboratorio=[laboratorio1]
 
             const resultado = calcCompensacionEpoc(PTJEEpoc);
-            return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas};
+            return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso};
         }
     }   
 
     const resultIconizacion = iconizacion();
 
-    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas } = resultIconizacion;
+    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso } = resultIconizacion;
     
     const handleClick = ()=>{        
         setInfoCompensacion(parametrosCompensacion);
@@ -698,8 +753,6 @@ export const MedicalVainas = ({...props}) => {
         setInfoSintomas(resPreguntas);
     }
 
-    console.log(infoSintomas);
-
     return (
         <Fragment>
             <div className="conjunto_vainas">
@@ -714,9 +767,10 @@ export const MedicalVainas = ({...props}) => {
                             <div className="CheckParametros">
                                 <p className="parrafo-compensacion">Compensación: <i  onClick={ handleClick } className={`${ result } fa-lg`}></i></p>
                                 <p className="parrafo-laboratorio">Laboratorio: <i onClick={ handleClickLaboratorio }className={`${resultadoLaboratorio} fa-lg`}></i></p>
-                                <p className="parrafo-nutricion">Nutrición: <i className="fas fa-times text-danger fa-lg"></i></p>
+                                <p className="parrafo-nutricion">Nutrición: <i className="fas fa-check text-success fa-lg"></i></p>
                                 <p className="parrafo-sintomas">Sintomas: <i onClick={ handleClickPreguntas }className="fas fa-times text-danger fa-lg"></i></p>
-                                <p className="parrafo-avisos">Avisos:   <span className="text-success">Ninguno</span></p>
+                                <p className="parrafo-avisos">Avisos:</p>
+                                <p className="parrafo-avisos-resultado">{aviso}</p>
                             </div>
                             <div className="tituloTratamiento">
                                 <p>Tratamiento:</p>

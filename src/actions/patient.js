@@ -45,6 +45,7 @@ export const startLoadInfoPaciente = (rutPaciente) => {
         await dispatch(startLoadMolestia(rutPaciente));
         await dispatch(startLoadTratamiento(rutPaciente));
         await dispatch(startLoadPreguntas(rutPaciente));
+        await dispatch(startLoadAvisos(rutPaciente));
         
         setTimeout(() => {
             dispatch(patientIsCheckingTrue());
@@ -221,6 +222,31 @@ export const setPreguntas = (preguntas)=>({
 
 export const clearPreguntas = ()=>({
     type:types.clearPreguntas
+})
+
+export const startLoadAvisos = (rutPaciente) => {
+    return async(dispatch) => {
+        await axios({
+            method: 'GET', 
+            url:'http://localhost:4000/getAvisos'
+        }).then(res => {
+            const respuesta = res.data;
+
+            const avisos = respuesta.filter( avisos => avisos.rut === rutPaciente);
+
+            dispatch(setAvisos(avisos));
+
+        })
+    }
+}
+
+export const setAvisos = (avisos)=>({
+    type:types.setAvisos,
+    payload: avisos
+})
+
+export const clearAvisos = ()=>({
+    type:types.clearAvisos
 })
 
 export const patientIsCheckingTrue = ()=>({
