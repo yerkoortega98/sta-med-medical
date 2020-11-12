@@ -613,21 +613,23 @@ export const MedicalVainas = ({...props}) => {
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Epi');
             const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Epi');
-
+            
             // Validacion pregunta 1
             const pregunta1 = respuestaPreg[0];
+            
             const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
-            console.log("puntajeRespuest1: "+respuestaPreg);
+            
 
             // Validacion pregunta 2
             const pregunta2 = respuestaPreg[1];
+            
             const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
-            console.log("puntajeRespuest2: "+respuestaPreg);
+            
 
             // Validacion pregunta 3
             const pregunta3 = respuestaPreg[2];
             const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
-            console.log("puntajeRespuest3: "+puntajeRespuesta3);
+            
 
             const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3);
             
@@ -944,7 +946,7 @@ export const MedicalVainas = ({...props}) => {
             //filtro para buscar preguntas correspondientes a la condición cronica
             const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'EPOC');
             const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'EPOC');
-
+    
             // Validacion pregunta 1
             const pregunta1 = respuestaPreg[0];
             const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
@@ -959,6 +961,7 @@ export const MedicalVainas = ({...props}) => {
 
             // Validacion pregunta 4
             const pregunta4 = respuestaPreg[3];
+            
             const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
 
             // Validacion pregunta 5
@@ -968,7 +971,7 @@ export const MedicalVainas = ({...props}) => {
             // Validacion pregunta 6
             const pregunta6 = respuestaPreg[5];
             const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
-
+           
             // Validacion pregunta 7
             const pregunta7 = respuestaPreg[6];
             const puntajeRespuesta7 = validarInfoPreguntas(resPreguntas,pregunta7);
@@ -977,6 +980,7 @@ export const MedicalVainas = ({...props}) => {
             const pregunta8 = respuestaPreg[7];
             const puntajeRespuesta8 = validarInfoPreguntas(resPreguntas,pregunta8);
 
+            
             const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6)+(puntajeRespuesta7)+(puntajeRespuesta8);
             
             // Debes retornar iconoSintomas
