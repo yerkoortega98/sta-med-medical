@@ -52,7 +52,14 @@ export const VainasModalSintomas = ({parametros}) => {
                         (parametros)
                         &&
                         parametros.map(( parm , index)=> (
-                            <li className="list-tratamiento" key={index + 43}>{parm.nombre_pregunta} : {parm.respuesta_sintoma} </li> 
+                            <li 
+                                className="list-tratamiento" 
+                                key={index + 43}
+                            >
+                                {parm.nombre_pregunta} : 
+                                { ` ${ parm.respuesta_sintoma ===0 && "Nada" || parm.respuesta_sintoma ===1 && "Leve"  ||  parm.respuesta_sintoma ===2 && "Moderado" || parm.respuesta_sintoma >=3 && "Grave"}`} 
+                            
+                            </li> 
                         ))
                         
                     }              
