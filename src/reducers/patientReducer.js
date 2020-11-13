@@ -11,7 +11,8 @@ const initialState={
     tratamiento: [],
     preguntas: [], 
     avisos: [], 
-    sintomas: []
+    sintomas: [],
+    nutricion: []
 }
 
 export const patientReducer = ( state=initialState, action )=>{
@@ -137,8 +138,19 @@ export const patientReducer = ( state=initialState, action )=>{
                 ...state,
                 sintomas:[]
             }
-    
-        
+
+        case types.setNutricion:
+            return{
+                ...state,
+                nutricion:[...action.payload]
+            }
+
+        case types.clearNutricion:
+            return{
+                ...state,
+                nutricion:[]
+            }
+
         default:
             return state;
     }

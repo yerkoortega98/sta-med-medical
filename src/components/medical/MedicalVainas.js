@@ -6,23 +6,25 @@ import { VainasModal } from './VainasModal';
 import { VainasModalLab } from './VainasModalLab';
 import { VainasModalSintomas } from './VainasModalSintomas';
 import { iconizacionEnf } from '../../helpers/ValidacionEnf'
+import { VainasModalNutricion } from './VainasModalNutricion';
 
 export const MedicalVainas = ({...props}) => {
     // Activar modal
     const [infoCompensacion, setInfoCompensacion] = useState();
     const [infoLaboratorio, setInfoLaboratorio] = useState();
     const [infoSintomas, setInfoSintomas] = useState();
+    const [infoNutricion, setInfoNutricion] = useState();
 
-    const { compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas } = useSelector(state => state.pacienteActivo);
+    const { compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas, nutricion } = useSelector(state => state.pacienteActivo);
     const { infoPaciente } = useSelector(state => state.pacienteActivo);
     
     const { peso,edad }= infoPaciente[0];
 
     const nombreEnfermedad = props.enfermedad;
    
-    const resultIconizacion = iconizacionEnf(nombreEnfermedad,compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas,peso,edad);
+    const resultIconizacion = iconizacionEnf(nombreEnfermedad,compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas,peso,edad, nutricion);
 
-    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas } = resultIconizacion;
+    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion } = resultIconizacion;
     
     const handleClick = ()=>{        
         setInfoCompensacion(parametrosCompensacion);
@@ -34,6 +36,11 @@ export const MedicalVainas = ({...props}) => {
 
     const handleClickPreguntas = ()=>{        
         setInfoSintomas(resPreguntas);
+    }
+
+    const handleClickNutricion = ()=>{        
+        setInfoNutricion(resNutricion);
+        console.log(resNutricion);
     }
 
     return (
@@ -50,7 +57,7 @@ export const MedicalVainas = ({...props}) => {
                             <div className="CheckParametros">
                                 <p className="parrafo-compensacion">Compensación: <i  onClick={ handleClick } className={`${ result } fa-lg`}></i></p>
                                 <p className="parrafo-laboratorio">Laboratorio: <i onClick={ handleClickLaboratorio }className={`${resultadoLaboratorio} fa-lg`}></i></p>
-                                <p className="parrafo-nutricion">Nutrición: <i className="fas fa-check text-success fa-lg"></i></p>
+                                <p className="parrafo-nutricion">Nutrición: <i onClick={ handleClickNutricion }className={`${iconoNutricion} fa-lg`}></i></p>
                                 <p className="parrafo-sintomas">Sintomas: <i onClick={ handleClickPreguntas }className={`${iconoSintomas} fa-lg`}></i></p>
                                 <p className="parrafo-avisos">Avisos:</p>
                                 <p className="parrafo-avisos-resultado">{aviso}</p>
@@ -93,6 +100,7 @@ export const MedicalVainas = ({...props}) => {
                 <VainasModal key={props.enfermedad} parametros={infoCompensacion}/>
                 <VainasModalLab key={props.enfermedad+91212} parametros={infoLaboratorio}/>
                 <VainasModalSintomas key={props.enfermedad+9832} parametros={infoSintomas}/>
+                <VainasModalNutricion key={props.enfermedad+4832} parametros={infoNutricion}/>
             </div>
         </Fragment>
     );

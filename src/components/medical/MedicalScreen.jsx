@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 
 import { MedicalVainas } from './MedicalVainas';
-import { clearActiveEnfermedad, clearCompensacion, clearInfoPaciente, clearLaboratorio, clearMolestias, clearTratamientos, patientIsCheckingFalse}from '../../actions/patient';
+import { clearActiveEnfermedad, clearAvisos, clearCompensacion, clearInfoPaciente, clearLaboratorio, clearMolestias, clearNutricion, clearPreguntas, clearSintomas, clearTratamientos, patientIsCheckingFalse}from '../../actions/patient';
 
 
 
@@ -30,6 +30,10 @@ export const MedicalScreen = () => {
         dispatch(clearLaboratorio());   
         dispatch(clearMolestias());   
         dispatch(clearTratamientos());
+        dispatch(clearAvisos());
+        dispatch(clearSintomas());
+        dispatch(clearPreguntas());
+        dispatch(clearNutricion());
     }
 
     return (

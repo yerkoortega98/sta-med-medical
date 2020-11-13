@@ -47,6 +47,7 @@ export const startLoadInfoPaciente = (rutPaciente) => {
         await dispatch(startLoadPreguntas(rutPaciente));
         await dispatch(startLoadAvisos(rutPaciente));
         await dispatch(startLoadSintomas());
+        await dispatch(startLoadNutricion());
         
         setTimeout(() => {
             dispatch(patientIsCheckingTrue());
@@ -276,6 +277,32 @@ export const clearSintomas = ()=>({
     type:types.clearSintomas
 })
 
+export const startLoadNutricion = ()=>{
+    return async(dispatch)=>{
+
+        await axios({
+            method:'GET',
+            url:'http://localhost:4000/getNutricion'
+        }).then(res =>{
+            const nutricion = res.data;
+            dispatch(setNutricion(nutricion));
+
+        }).catch(e =>{
+            console.log(e);
+        })
+
+    }
+}
+
+export const setNutricion = (nutricion)=>({
+    type:types.setNutricion,
+    payload: nutricion
+})
+
+export const clearNutricion = ()=>({
+    type:types.clearNutricion
+})
+
 export const patientIsCheckingTrue = ()=>({
     type:types.patientIsCheckingTrue
 })
@@ -283,6 +310,7 @@ export const patientIsCheckingTrue = ()=>({
 export const patientIsCheckingFalse = ()=>({
     type:types.patientIsCheckingFalse
 })
+
 
 
 

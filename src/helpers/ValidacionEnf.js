@@ -6,7 +6,7 @@ import { calcCompensacionDiabetes, calcCompensacionEpilepsia, calcCompensacionHi
 
 import { validarInfoExamen, validarInfoPreguntas, validarParametrosComp,validacionAvisos} from './validaciones'
 
-export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas,peso,edad)=>{
+export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas,peso,edad, nutricion)=>{
        
     if(nombreEnfermedad === 'DM'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -21,42 +21,63 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'DM');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'DM');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'DM');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         // Validacion pregunta 4
         const pregunta4 = respuestaPreg[3];
         const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+        const nutricion4 = resNutricion[3];
+        const puntajeNutricion4 = validarInfoPreguntas(resPreguntas, nutricion4);
 
         // Validacion pregunta 5
         const pregunta5 = respuestaPreg[4];
         const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+        const nutricion5 = resNutricion[4];
+        const puntajeNutricion5 = validarInfoPreguntas(resPreguntas, nutricion5);
 
         // Validacion pregunta 6
         const pregunta6 = respuestaPreg[5];
         const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
+        const nutricion6 = resNutricion[5];
+        const puntajeNutricion6 = validarInfoPreguntas(resPreguntas, nutricion6);
 
         // Validacion pregunta 7
         const pregunta7= respuestaPreg[6];
         const puntajeRespuesta7 = validarInfoPreguntas(resPreguntas,pregunta7);
+        const nutricion7 = resNutricion[6];
+        const puntajeNutricion7 = validarInfoPreguntas(resPreguntas, nutricion7);
 
         // Validacion pregunta 8
         const pregunta8 = respuestaPreg[7];
         const puntajeRespuesta8 = validarInfoPreguntas(resPreguntas,pregunta8);
+        const nutricion8 = resNutricion[7];
+        const puntajeNutricion8 = validarInfoPreguntas(resPreguntas, nutricion8);
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6)+(puntajeRespuesta7)+(puntajeRespuesta8);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3)+(puntajeNutricion4)+(puntajeNutricion5)+(puntajeNutricion6)+(puntajeNutricion7)+(puntajeNutricion8);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
       
         // Calculo de laboratorio    
         const respLab = laboratorio.filter(lab => lab.condicion_cr === 'DM');
@@ -118,7 +139,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultado = calcCompensacionDiabetes(hbglic, glicemia);
     
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
         
     }else if(nombreEnfermedad === 'Hipotir'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -136,26 +157,39 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Hipotir');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Hipotir');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'Hipotir');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         // Validacion pregunta 4
         const pregunta4 = respuestaPreg[3];
         const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+        const nutricion4 = resNutricion[3];
+        const puntajeNutricion4 = validarInfoPreguntas(resPreguntas, nutricion4);
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3)+(puntajeNutricion4);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -203,7 +237,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
        
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'IRC'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -217,30 +251,45 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'IRC');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'IRC');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'IRC');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         // Validacion pregunta 4
         const pregunta4 = respuestaPreg[3];
         const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+        const nutricion4 = resNutricion[3];
+        const puntajeNutricion4 = validarInfoPreguntas(resPreguntas, nutricion4);
 
         // Validacion pregunta 5
         const pregunta5 = respuestaPreg[4];
         const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+        const nutricion5 = resNutricion[4];
+        const puntajeNutricion5 = validarInfoPreguntas(resPreguntas, nutricion5);
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3)+(puntajeNutricion4)+(puntajeNutricion5);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
 
         //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
         const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'IRC');
@@ -335,7 +384,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
    
       
-        return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'Dis/ATE'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -353,22 +402,33 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Dis/ATE');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Dis/ATE');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'Dis/ATE');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[0];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -459,7 +519,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
 
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'HTA'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -477,38 +537,57 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'HTA');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'HTA');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'HTA');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         // Validacion pregunta 4
         const pregunta4 = respuestaPreg[3];
         const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+        const nutricion4 = resNutricion[3];
+        const puntajeNutricion4 = validarInfoPreguntas(resPreguntas, nutricion4);
 
         // Validacion pregunta 5
         const pregunta5 = respuestaPreg[4];
         const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+        const nutricion5 = resNutricion[4];
+        const puntajeNutricion5 = validarInfoPreguntas(resPreguntas, nutricion5);
 
         // Validacion pregunta 6
         const pregunta6 = respuestaPreg[5];
         const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
+        const nutricion6 = resNutricion[5];
+        const puntajeNutricion6 = validarInfoPreguntas(resPreguntas, nutricion6);
 
         // Validacion pregunta 7
         const pregunta7 = respuestaPreg[6];
         const puntajeRespuesta7 = validarInfoPreguntas(resPreguntas,pregunta7);
+        const nutricion7 = resNutricion[6];
+        const puntajeNutricion7 = validarInfoPreguntas(resPreguntas, nutricion7);
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6)+(puntajeRespuesta7);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3)+(puntajeNutricion4)+(puntajeNutricion5)+(puntajeNutricion6)+(puntajeNutricion7);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -558,7 +637,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultado = calcCompesacionHTA(PAS,PAD);
      
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'Epi'){
 
@@ -576,28 +655,37 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         //filtro para buscar preguntas correspondientes a la condición cronica
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Epi');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Epi');
+
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'Epi');
         
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
-        
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
         
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
-        
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
         
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
         
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -629,7 +717,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
       
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'Park'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -647,30 +735,45 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Park');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Park');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'Park');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         // Validacion pregunta 4
         const pregunta4 = respuestaPreg[3];
         const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+        const nutricion4 = resNutricion[3];
+        const puntajeNutricion4 = validarInfoPreguntas(resPreguntas, nutricion4);
 
         // Validacion pregunta 5
         const pregunta5 = respuestaPreg[4];
         const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+        const nutricion5 = resNutricion[4];
+        const puntajeNutricion5 = validarInfoPreguntas(resPreguntas, nutricion5);
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3)+(puntajeNutricion4)+(puntajeNutricion5);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -724,7 +827,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
         
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'Asma'){
         // Obtener tratamientos de la enfermedad de artrosis.
@@ -742,34 +845,51 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Asma');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Asma');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'Asma');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         // Validacion pregunta 4
         const pregunta4 = respuestaPreg[3];
         const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+        const nutricion4 = resNutricion[3];
+        const puntajeNutricion4 = validarInfoPreguntas(resPreguntas, nutricion4);
 
         // Validacion pregunta 5
         const pregunta5 = respuestaPreg[4];
         const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+        const nutricion5 = resNutricion[4];
+        const puntajeNutricion5 = validarInfoPreguntas(resPreguntas, nutricion5);
 
         // Validacion pregunta 6
         const pregunta6 = respuestaPreg[5];
         const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
+        const nutricion6 = resNutricion[5];
+        const puntajeNutricion6 = validarInfoPreguntas(resPreguntas, nutricion6);
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3)+(puntajeNutricion4)+(puntajeNutricion5)+(puntajeNutricion6);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -796,7 +916,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         //Constante que obtiene el resultado del calculo de compensacion de puntaje Asma 
         const resultado = calcCompensacionAsma(PTJEAsma);
       
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'Artrosis'){
         // Obtener tratamientos de la enfermedad de artrosis.
@@ -814,26 +934,39 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'Artrosis');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'Artrosis');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'Artrosis');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         // Validacion pregunta 4
         const pregunta4 = respuestaPreg[3];
         const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+        const nutricion4 = resNutricion[3];
+        const puntajeNutricion4 = validarInfoPreguntas(resPreguntas, nutricion4);
 
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3)+(puntajeNutricion4);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -900,7 +1033,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Variable que guarda el resultado del calculo de compensacion.
         const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
         // Se retorna cada variable necesaria para ser mostrada y procesada en el HTML.
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'EPOC'){
          // Obtener tratamientos de la enfermedad de EPOC.
@@ -910,44 +1043,64 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const resPreguntas = preguntas.filter(preg => preg.con_cronica === 'EPOC');
         const respuestaPreg = sintomas.filter(sin => sin.abreviatura === 'EPOC');
 
+        //filtro para buscar preguntas en relación a nutrición.
+        const resNutricion = nutricion.filter(nutri => nutri.abreviatura === 'EPOC');
+
         // Validacion pregunta 1
         const pregunta1 = respuestaPreg[0];
         const puntajeRespuesta1 = validarInfoPreguntas(resPreguntas,pregunta1);
+        const nutricion1 = resNutricion[0];
+        const puntajeNutricion1 = validarInfoPreguntas(resPreguntas, nutricion1);
 
         // Validacion pregunta 2
         const pregunta2 = respuestaPreg[1];
         const puntajeRespuesta2 = validarInfoPreguntas(resPreguntas,pregunta2);
+        const nutricion2 = resNutricion[1];
+        const puntajeNutricion2 = validarInfoPreguntas(resPreguntas, nutricion2);
 
         // Validacion pregunta 3
         const pregunta3 = respuestaPreg[2];
         const puntajeRespuesta3 = validarInfoPreguntas(resPreguntas,pregunta3);
+        const nutricion3 = resNutricion[2];
+        const puntajeNutricion3 = validarInfoPreguntas(resPreguntas, nutricion3);
 
         // Validacion pregunta 4
         const pregunta4 = respuestaPreg[3];
-        
         const puntajeRespuesta4 = validarInfoPreguntas(resPreguntas,pregunta4);
+        const nutricion4 = resNutricion[3];
+        const puntajeNutricion4 = validarInfoPreguntas(resPreguntas, nutricion4);
 
         // Validacion pregunta 5
         const pregunta5 = respuestaPreg[4];
         const puntajeRespuesta5 = validarInfoPreguntas(resPreguntas,pregunta5);
+        const nutricion5 = resNutricion[4];
+        const puntajeNutricion5 = validarInfoPreguntas(resPreguntas, nutricion5);
 
         // Validacion pregunta 6
         const pregunta6 = respuestaPreg[5];
         const puntajeRespuesta6 = validarInfoPreguntas(resPreguntas,pregunta6);
+        const nutricion6 = resNutricion[5];
+        const puntajeNutricion6 = validarInfoPreguntas(resPreguntas, nutricion6);
        
         // Validacion pregunta 7
         const pregunta7 = respuestaPreg[6];
         const puntajeRespuesta7 = validarInfoPreguntas(resPreguntas,pregunta7);
+        const nutricion7 = resNutricion[6];
+        const puntajeNutricion7 = validarInfoPreguntas(resPreguntas, nutricion7);
 
         // Validacion pregunta 8
         const pregunta8 = respuestaPreg[7];
         const puntajeRespuesta8 = validarInfoPreguntas(resPreguntas,pregunta8);
+        const nutricion8 = resNutricion[7];
+        const puntajeNutricion8 = validarInfoPreguntas(resPreguntas, nutricion8);
 
         
         const puntajeSintomas = (puntajeRespuesta1)+(puntajeRespuesta2)+(puntajeRespuesta3)+(puntajeRespuesta4)+(puntajeRespuesta5)+(puntajeRespuesta6)+(puntajeRespuesta7)+(puntajeRespuesta8);
+        const puntajeNutricion = (puntajeNutricion1)+(puntajeNutricion2)+(puntajeNutricion3)+(puntajeNutricion4)+(puntajeNutricion5)+(puntajeNutricion6)+(puntajeNutricion7)+(puntajeNutricion8);
         
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
+        const iconoNutricion = iconizacionSintomas(puntajeNutricion);
         
 
         //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
@@ -978,6 +1131,6 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1]
 
         const resultado = calcCompensacionEpoc(PTJEEpoc);
-        return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas};
+        return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
     }
 }

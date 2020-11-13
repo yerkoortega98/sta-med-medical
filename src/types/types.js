@@ -43,6 +43,8 @@ export const types={
     clearAvisos: '[Patient] Clear Avisos',
     setSintomas: '[Patient] set Sintomas',
     clearSintomas: '[Patient] Clear Sintomas', 
+    setNutricion: '[Patient] set Nutricion',
+    clearNutricion: '[Patient] Clear Nutricion', 
 
     // PacienteACtivo
     patientIsCheckingTrue: '[Patient] Patient is Checking in True',
