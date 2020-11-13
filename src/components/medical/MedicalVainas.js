@@ -5,11 +5,9 @@ import {  useSelector } from 'react-redux';
 import { VainasModal } from './VainasModal';
 import { VainasModalLab } from './VainasModalLab';
 import { VainasModalSintomas } from './VainasModalSintomas';
-import { iconizacionEnf } from '../../helpers/iconizacion'
-
+import { iconizacionEnf } from '../../helpers/ValidacionEnf'
 
 export const MedicalVainas = ({...props}) => {
-
     // Activar modal
     const [infoCompensacion, setInfoCompensacion] = useState();
     const [infoLaboratorio, setInfoLaboratorio] = useState();
@@ -69,7 +67,6 @@ export const MedicalVainas = ({...props}) => {
                                             className="list-tratamiento" 
                                             key={tra.nombre_breve}
                                         >
-                                            
                                             <strong className="nombre_breve">{tra.nombre_breve}: </strong> <span className={`${tra.consumo_medicamento === 1 && "text-success-consumo"} ${tra.consumo_medicamento === 2 && "text-warning-consumo"} ${tra.consumo_medicamento === 3 && "text-danger-consumo"} `}>{tra.dosis_diaria}</span>
 
                                         </li> 

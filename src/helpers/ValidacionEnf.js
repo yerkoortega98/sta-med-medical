@@ -1,27 +1,10 @@
-import { 
-    calcCompensacionDiabetes, 
-    calcCompensacionEpilepsia, 
-    calcCompensacionHipotiroihismo, 
-    calcCompensacionInsuficienciaRenal, 
-    calcCompesacionHTA,
-    calcCompensacionParkinson,
-    calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia
- } from './compensacion';
-import { 
-    iconizacionDM, 
-    iconizacionEpoc, 
-    iconizacionHipotir, 
-    iconizacionIRC, 
-    iconizacionDisAte, 
-    iconizacionHTA, 
-    iconizacionEpi, 
-    iconizacionPark, 
-    iconizacionAsma, 
-    iconizacionArtrosis
-} from './laboratorio';
-import { iconizacionSintomas } from './iconizacionPreguntas';
-import { validacionAvisos } from './validacionAviso';
-import { validarInfoExamen, validarInfoPreguntas, validarParametrosComp} from './validarParametrosComp'
+import { calcCompensacionDiabetes, calcCompensacionEpilepsia, calcCompensacionHipotiroihismo, calcCompensacionInsuficienciaRenal, 
+         calcCompesacionHTA,calcCompensacionParkinson,calcCompensacionAsma,calcCompensacionEpoc,calcCompensacionArtrosis, calcCompensacionDilipdemia,
+         iconizacionSintomas,iconizacionDM, iconizacionEpoc, iconizacionHipotir, iconizacionIRC,  iconizacionDisAte, iconizacionHTA, 
+         iconizacionEpi, iconizacionPark, iconizacionAsma, iconizacionArtrosis
+ } from './iconos';
+
+import { validarInfoExamen, validarInfoPreguntas, validarParametrosComp,validacionAvisos} from './validaciones'
 
 export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas,peso,edad)=>{
        
