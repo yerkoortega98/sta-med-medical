@@ -24,7 +24,7 @@ export const MedicalVainas = ({...props}) => {
    
     const resultIconizacion = iconizacionEnf(nombreEnfermedad,compensacion,laboratorio, tratamiento, preguntas, avisos,sintomas,peso,edad, nutricion);
 
-    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion } = resultIconizacion;
+    const { resultado:result, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia } = resultIconizacion;
     
     const handleClick = ()=>{        
         setInfoCompensacion(parametrosCompensacion);
@@ -90,10 +90,19 @@ export const MedicalVainas = ({...props}) => {
                     <br/>
                     <section>
                         <div className="BotonCambio">Cambio</div>
-                        <p>Sacar Atenolol
-                            No hay IAM.
-                            Reducir HCT a la mitad
-                        </p>
+                        {   
+                            (resultSugerencia)
+                            &&
+                            resultSugerencia.map(sug => (
+                                <li 
+                                    className="list-tratamiento" 
+                                    key={sug}
+                                >
+                                    <p>{sug}</p>
+
+                                </li> 
+                            ))
+                        }
                     </section>
                 </div>
 

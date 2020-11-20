@@ -172,7 +172,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -183,7 +183,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -281,6 +281,8 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 return sugerencia;
             }
         }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -349,7 +351,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -360,7 +362,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -390,8 +392,14 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         }
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
        
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, };
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
 
     }else if(nombreEnfermedad === 'IRC'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -570,7 +578,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -581,7 +589,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -611,8 +619,14 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         }
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
       
-        return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
 
     }else if(nombreEnfermedad === 'Dis/ATE'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -780,7 +794,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -791,7 +805,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -822,7 +836,13 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
 
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
+
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
 
     }else if(nombreEnfermedad === 'HTA'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -973,7 +993,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -984,7 +1004,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -1014,8 +1034,14 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         }
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
      
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
 
     }else if(nombreEnfermedad === 'Epi'){
 
@@ -1128,7 +1154,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -1139,7 +1165,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -1169,8 +1195,14 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         }
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
       
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
 
     }else if(nombreEnfermedad === 'Park'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -1313,7 +1345,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -1324,7 +1356,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -1354,8 +1386,14 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         }
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
         
-        return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
 
     }else if(nombreEnfermedad === 'Asma'){
         // Obtener tratamientos de la enfermedad de artrosis.
@@ -1477,7 +1515,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -1488,7 +1526,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -1518,8 +1556,14 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         }
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
       
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
 
     }else if(nombreEnfermedad === 'Artrosis'){
         // Obtener tratamientos de la enfermedad de artrosis.
@@ -1670,7 +1714,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -1681,7 +1725,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -1712,7 +1756,13 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
 
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
+
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
 
     }else if(nombreEnfermedad === 'EPOC'){
          // Obtener tratamientos de la enfermedad de EPOC.
@@ -1843,7 +1893,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const validacionIconoCompensacion = () => {
             if(resultado === "fas fa-arrow-down text-danger") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Reevalue el aumento de tratamiento";
@@ -1854,7 +1904,7 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
                 }
             }else if(resultado === "far fa-circle text-warning") {
                 if(!!resConsumoMedicamentoVerde) {
-                    const sugerencia = "aumente dosis tratamiento";
+                    const sugerencia = "Aumente dosis tratamiento";
                     return sugerencia;
                 }else if(!!resConsumoMedicamentoAmarillo) {
                     const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
@@ -1885,6 +1935,12 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
 
         const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
 
-        return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
+
+        return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
     }
 }
