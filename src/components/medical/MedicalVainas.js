@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import {  useSelector } from 'react-redux';
 
+
 // Modal
 import { VainasModal } from './VainasModal';
 import { VainasModalLab } from './VainasModalLab';
@@ -84,12 +85,14 @@ export const MedicalVainas = ({...props}) => {
                     </div>
                 </div>
                 <div className="Botones">
-                    <button className="btn2 btn_vainas">
+                    <button className={`${result === "fas fa-check text-success" && "btn BotonCambio2"} ${result === "far fa-circle text-warning" && "btn btn2"} ${result === "fas fa-arrow-down text-danger" && "btn btn2"} ${result === "fas fa-times text-danger" && "btn btn2"} ${result === "fas fa-exclamation-triangle text-warning" && "btn btn2"}`}>
                         Mantener
+                        <br/>
                     </button>
                     <br/>
                     <section>
-                        <div className="BotonCambio">Cambio</div>
+                        <div className={`${result === "fas fa-check text-success" && "btn BotonCambio3"} ${result === "far fa-circle text-warning" && "btn btn3"} ${result === "fas fa-arrow-down text-danger" && "btn btn3"} ${result === "fas fa-times text-danger" && "btn btn3"} ${result === "fas fa-exclamation-triangle text-warning" && "btn btn3"}
+                                        ${resTratamiento.consumo_medicamento === 1 && "btn BotonCambio2"} ${resTratamiento.consumo_medicamento === 2 && "btn BotonCambio"} ${resTratamiento.consumo_medicamento === 3 && "btn BotonCambio"}`}>Cambio</div>
                         {   
                             (resultSugerencia)
                             &&

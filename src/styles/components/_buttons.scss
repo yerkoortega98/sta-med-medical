@@ -19,11 +19,19 @@
 }
 
 .btn2 {
-  padding: .375rem 2.5rem;
+  padding: .375rem 2.0rem;
   border-radius: .25rem;
   background-color: rgb(214, 62, 52);
   color: rgb(0, 0, 0);
   transition: background-color .15s ease-in-out;
+}
+
+.btn3 {
+    padding: .375rem 2.5rem;
+    border-radius: .10rem;
+    background-color: rgb(214, 62, 52);
+    color: rgb(0, 0, 0);
+    transition: background-color .15s ease-in-out;
 }
 
 .btn-btn2:hover, .btn-btn2:focus {
@@ -32,6 +40,14 @@
 
 .btn-btn2:active {
   background-color: #cc0000;
+}
+
+.btn-btn3:hover, .btn-btn3:focus {
+    background-color: #d90000;
+}
+  
+.btn-btn3:active {
+    background-color: #cc0000;
 }
 
 .btn-primary{
