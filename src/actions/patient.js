@@ -10,7 +10,6 @@ import {types} from '../types/types';
 export const startLoadInfoPaciente = (rutPaciente) => { 
     return async(dispatch)=> {   
 
-       
              // Alerta
         Swal.fire({
             title:'Cargando información...',

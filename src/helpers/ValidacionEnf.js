@@ -78,6 +78,18 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
       
         // Calculo de laboratorio    
         const respLab = laboratorio.filter(lab => lab.condicion_cr === 'DM');
@@ -111,6 +123,20 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen(examen7,compensacion);
         
         const resultadoLaboratorio = iconizacionDM(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6,dataExamen7)
+
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         // ------------------------------------------------------------------------------------------------------------------------------------------\\
         // Calculo para la compensacion
@@ -138,8 +164,63 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5,laboratorio6,laboratorio7]
 
         const resultado = calcCompensacionDiabetes(hbglic, glicemia);
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
+        const resultSugerencia = [
+            resultadoSugerenciaCompensacion,
+            resultadoSugerenciaLaboratorio,
+            resultadoSugerenciaNutricion
+        ]
     
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, resultSugerencia};
         
     }else if(nombreEnfermedad === 'Hipotir'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -190,6 +271,16 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -211,7 +302,21 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const examen5 = respLab[4];
         const {resultado:dataExamen5,infoLaboratorio:laboratorio5} = validarInfoExamen(examen5,compensacion);
         
-        const resultadoLaboratorio = iconizacionHipotir(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5);   
+        const resultadoLaboratorio = iconizacionHipotir(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5); 
+        
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         // ------------------------------------------------------------------------------------------------------------------------------------------\\
         // calculoCompensacion.
@@ -236,8 +341,57 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5];
 
         const resultado = calcCompensacionHipotiroihismo( TSH, T4L );
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
        
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion, };
 
     }else if(nombreEnfermedad === 'IRC'){
          // Obtener tratamientos de la enfermedad de artrosis.
@@ -291,6 +445,18 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
 
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
+
         //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
         const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'IRC');
 
@@ -322,6 +488,20 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         
         const resultadoLaboratorio = iconizacionIRC(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6);
         
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
+
         // calculoCompensacion.
         const respuestaHombre = compensacion.filter(com => com.nombre_param === 'Creatinina hombre')
         const validacionSexoHombre = respuestaHombre[0];
@@ -382,7 +562,55 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5,laboratorio6]
 
         const resultado = calcCompensacionInsuficienciaRenal( uremia, VFG, microalbuminuria, nureico );
-   
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
       
         return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
@@ -429,6 +657,18 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -455,6 +695,20 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen(examen7,compensacion);
 
         const resultadoLaboratorio = iconizacionDisAte(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6, dataExamen7);
+
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         // ------------------------------------------------------------------------------------------------------------------------------------------\\
         // ------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -518,6 +772,55 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5, laboratorio6,laboratorio7]
 
         const resultado = calcCompensacionDilipdemia(CT,TG,LDL,HDL,sexo);
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
 
         return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
@@ -588,6 +891,18 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -612,6 +927,20 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const {resultado:dataExamen7,infoLaboratorio:laboratorio7} = validarInfoExamen(examen7,compensacion); 
         
         const resultadoLaboratorio = iconizacionHTA(dataExamen1,dataExamen2,dataExamen3,dataExamen4,dataExamen5,dataExamen6,dataExamen7);
+
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         //Calculo de compensacion.
         const respuestaPAS = compensacion.filter(com=> com.nombre_param === 'pa_sist');
@@ -636,6 +965,55 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4,laboratorio5, laboratorio6,laboratorio7]
 
         const resultado = calcCompesacionHTA(PAS,PAD);
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
      
         return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
@@ -686,6 +1064,18 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
         
         // Validacion examen 1
         const examen1 = respLab[0];
@@ -701,6 +1091,20 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const {resultado:dataExamen4,infoLaboratorio:laboratorio4} = validarInfoExamen(examen4,compensacion);
         
         const resultadoLaboratorio = iconizacionEpi(dataExamen1,dataExamen2,dataExamen3,dataExamen4);
+
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         //Calcular comendacion
         const respuestPTJEEpilepsia = compensacion.filter(com=> com.nombre_param === 'PTJEEpilepsia');
@@ -716,6 +1120,55 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1,laboratorio2,laboratorio3,laboratorio4]
 
         const resultado = calcCompensacionEpilepsia(PTJEEpilepsia);
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
       
         return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
@@ -774,12 +1227,38 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
         
         // Validacion examen 1
         const examen1 = respLab[0];
         const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
         
         const resultadoLaboratorio = iconizacionPark(dataExamen1);
+
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         //calculo de compensación        
         const respuestaTemblor = compensacion.filter(com => com.nombre_param === 'Temblor');
@@ -826,8 +1305,57 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1]
 
         const resultado = calcCompensacionParkinson( temblor,equilibrio,rigidez,lento,arrastre,suma);
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
         
-        return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
+        return {resultado, resultadoLaboratorio, resTratamiento, parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'Asma'){
         // Obtener tratamientos de la enfermedad de artrosis.
@@ -890,11 +1418,37 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
         
         // Validacion examen 1
         const examen1 = respLab[0];
         const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
         const resultadoLaboratorio = iconizacionAsma(dataExamen1);
+
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         //Calcular compensacion
         // Validacion compensacion Parametro Puntaje asma
@@ -915,6 +1469,55 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         
         //Constante que obtiene el resultado del calculo de compensacion de puntaje Asma 
         const resultado = calcCompensacionAsma(PTJEAsma);
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
       
         return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
@@ -967,11 +1570,37 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
         
         // Validacion examen 1
         const examen1 = respLab[0];
         const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
         const resultadoLaboratorio = iconizacionArtrosis(dataExamen1);
+
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         //Calcular compensacion
         const respuestaRx = compensacion.filter(com => com.nombre_param === 'Rx');
@@ -1033,6 +1662,56 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Variable que guarda el resultado del calculo de compensacion.
         const resultado = calcCompensacionArtrosis(PTJEArtrosis,Rx,D,C,B,I);
         // Se retorna cada variable necesaria para ser mostrada y procesada en el HTML.
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
         return {resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
 
     }else if(nombreEnfermedad === 'EPOC'){
@@ -1101,7 +1780,18 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         // Debes retornar iconoSintomas
         const iconoSintomas = iconizacionSintomas(puntajeSintomas);
         const iconoNutricion = iconizacionSintomas(puntajeNutricion);
-        
+
+        const validacionIconoNutricion = () => {
+            if(iconoNutricion === "fas fa-times text-danger" || iconoNutricion === "far fa-circle text-warning ") {
+                const sugerencia = "Reforzar nutrición";
+                return sugerencia;
+            }else if(iconoNutricion === "fas fa-check text-success"){
+                const sugerencia = "Nutrición buena";
+                return sugerencia;
+            }
+        }
+
+        const resultadoSugerenciaNutricion = validacionIconoNutricion();
 
         //Filtro para obtener los avisos de molestia correspondientes a la condicion cronica.
         const resAvisos = avisos.filter(avisos => avisos.con_cronica === 'EPOC');
@@ -1115,6 +1805,20 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const {resultado:dataExamen1,infoLaboratorio:laboratorio1} = validarInfoExamen(examen1,compensacion);
         
         const resultadoLaboratorio = iconizacionEpoc(dataExamen1);
+
+        const validacionIconoLaboratorio = () => {
+
+            if(resultadoLaboratorio === "far fa-circle text-warning" || resultadoLaboratorio === "fas fa-times text-danger" || resultadoLaboratorio === "fas fa-exclamation-triangle text-warning") {
+                const sugerencia = "Repita laboratorio";
+                return sugerencia;
+            }else if(resultadoLaboratorio === "fas fa-check text-success"){
+                const sugerencia = "Laboratorio bueno";
+                return sugerencia;
+            }
+
+        }
+
+        const resultadoSugerenciaLaboratorio = validacionIconoLaboratorio();
         
         //calcular compensación 
         const respuestaPTJEEpoc = compensacion.filter(com=> com.nombre_param === 'PTJEEpoc');
@@ -1131,6 +1835,56 @@ export const iconizacionEnf=(nombreEnfermedad,compensacion,laboratorio, tratamie
         const parametrosLaboratorio=[laboratorio1]
 
         const resultado = calcCompensacionEpoc(PTJEEpoc);
+
+        const resConsumoMedicamentoVerde = resTratamiento.filter(tra => tra.consumo_medicamento  === 1);
+        const resConsumoMedicamentoAmarillo = resTratamiento.filter(tra => tra.consumo_medicamento  === 2);
+        const resConsumoMedicamentoRojo = resTratamiento.filter(tra => tra.consumo_medicamento  === 3);
+
+        const validacionIconoCompensacion = () => {
+            if(resultado === "fas fa-arrow-down text-danger") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Reevalue el aumento de tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "revise tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "far fa-circle text-warning") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "aumente dosis tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoRojo) {
+                    const sugerencia = "Asegurese que el paciente se tome todo el tratamiento";
+                    return sugerencia;
+                }
+            }else if(resultado === "fas fa-check text-success") {
+                if(!!resConsumoMedicamentoVerde) {
+                    const sugerencia = "Mantener todos los tratamientos";
+                    return sugerencia;
+                }else if(!!resConsumoMedicamentoAmarillo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }else if(!!resConsumoMedicamentoRojo) {
+                    resConsumoMedicamentoAmarillo.map(tra => {
+                        const medicamentos = tra.dosis_diaria;
+                        const sugerencia = "El remedio " + medicamentos + " esta sobrando";
+                        return sugerencia;
+                    })
+                }
+            }
+        }
+
+        const resultadoSugerenciaCompensacion = validacionIconoCompensacion();
+
         return { resultado, resultadoLaboratorio, resTratamiento,parametrosCompensacion, parametrosLaboratorio, resPreguntas, aviso, iconoSintomas, iconoNutricion, resNutricion};
     }
 }
